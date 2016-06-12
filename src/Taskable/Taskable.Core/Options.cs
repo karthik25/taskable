@@ -1,8 +1,10 @@
-﻿namespace Taskable.Core
+﻿using System.Collections.Generic;
+
+namespace Taskable.Core
 {
     public class Options
     {
-        public string[] TaskDefinitionPaths { get; set; }
+        public List<string> TaskDefinitionPaths { get; set; }
         public string CommandPrefix { get; set; }
 
         public string ReplPrefix
@@ -11,6 +13,6 @@
             {
                 return CommandPrefix ?? "> ";
             }
-        }
+        }        
     }
 }

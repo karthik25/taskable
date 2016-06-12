@@ -6,8 +6,9 @@ namespace Taskable
     {
         public override void Initialize(IScriptPackSession session)
         {
-            var scriptArgs = session.ScriptArgs;
-            this.Context = new TaskableContext(null);
+            var arguments = Arguments.Parse(session.ScriptArgs);
+            var options = arguments.AsOptions();
+            this.Context = new TaskableContext(options);
         }
     }
 }
