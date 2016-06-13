@@ -73,7 +73,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ICompilerOptionsProvider.cs" />
-    <Compile Include="IDefaultMetadataProvider.cs" />
     <Compile Include="IDynamicAssemblyProvider.cs" />
     <Compile Include="IDynamicCompilerProvider.cs" />
     <Compile Include="IMetadataProvider.cs" />

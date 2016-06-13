@@ -4,7 +4,7 @@ using Taskable.Contracts;
 
 namespace Taskable.Core.TaskLoader
 {
-    public class DefaultMetadataProvider : IDefaultMetadataProvider
+    public class DefaultMetadataProvider : IMetadataProvider
     {
         private readonly Options _options;
 
