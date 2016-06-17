@@ -1,6 +1,6 @@
 ﻿using Taskable.Core;
 
-namespace Taskable
+namespace TaskableBase
 {
     public static class ArgumentExtensions
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Taskable.Core.Extensions;
 
-namespace Taskable
+namespace TaskableBase
 {
     public class Arguments
     {
@@ -11,6 +11,9 @@ namespace Taskable
 
         [Option('p', "script-path", DefaultValue = "", HelpText = "Path for .csx files (")]
         public IEnumerable<string> ScriptPaths { get; set; }
+
+        [Option('l', "log-level", DefaultValue = "", HelpText = "Log level (g, d, e)")]
+        public string LogLevel { get; set; }
 
         public static Arguments Parse(string[] args)
         {

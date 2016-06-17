@@ -8,9 +8,9 @@ using Taskable.Core.Concrete;
 using Taskable.Core.Extensions;
 using Taskable.Core.Exceptions;
 
-namespace Taskable
+namespace TaskableBase
 {
-    public class TaskableContext : IScriptPackContext, ITaskableContext
+    public class Taskable : IScriptPackContext, ITaskableContext
     {
         private List<ComputedTask> _rawTasks;
         private ILookup<string, ComputedTask> _taskLookup;
@@ -19,7 +19,7 @@ namespace Taskable
 
         private readonly Options _options;
 
-        public TaskableContext(Options options)
+        public Taskable(Options options)
         {
             _options = options;
             _rawTasks = new List<ComputedTask>();
@@ -31,6 +31,7 @@ namespace Taskable
             {
                 _taskLookup = _rawTasks.ToLookup(k => k.Pattern.Shift(), v => v);
                 _isInitialized = true;
+                Console.WriteLine("[General] Initialized 'taskable'");
             }
         }
 
@@ -55,6 +56,7 @@ namespace Taskable
             if (_rawTasks.Any(t => t.Name == simpleTask.Name))
                 throw new DuplicateTaskDefinitionException(simpleTask.Name);
 
+            Console.WriteLine("[General] Registered a task: {0}", simpleTask.Name);
             _rawTasks.Add(new ComputedTask(simpleTask));
         }
 

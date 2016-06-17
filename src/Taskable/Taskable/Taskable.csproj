@@ -7,7 +7,7 @@
     <ProjectGuid>{F59D904D-F032-4BC3-B5D8-BC8A4D584C38}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Taskable</RootNamespace>
+    <RootNamespace>TaskableBase</RootNamespace>
     <AssemblyName>Taskable</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
