@@ -55,6 +55,7 @@
     <Compile Include="ComputedTasks\ComputedTaskGeneratorTests.cs" />
     <Compile Include="ComputedTasks\TaskFinderTests.cs" />
     <Compile Include="ComputedTasks\TaskValidatorTests.cs" />
+    <Compile Include="Parser\OptionsParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestTasks\TestMultipleTask.cs" />
     <Compile Include="TestTasks\TestTask.cs" />

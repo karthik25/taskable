@@ -1,4 +1,5 @@
 ﻿using ScriptCs.Contracts;
+using Taskable.Core;
 
 namespace TaskableBase
 {
@@ -8,7 +9,7 @@ namespace TaskableBase
         {
             session.ImportNamespace(this.GetType().Namespace);
             var arguments = Arguments.Parse(session.ScriptArgs);
-            var options = arguments.AsOptions();
+            var options = arguments.CreateAsOptions();
             this.Context = new Taskable(options);
         }
     }

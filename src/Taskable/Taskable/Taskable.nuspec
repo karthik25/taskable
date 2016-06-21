@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>Karthik Anant</authors>
+    <owners>Karthik Anant</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>English like cmdlet to execute arbitrary, pre-defined commands</description>
+    <releaseNotes>Initial version of taskable.</releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>csharp roslyn .net scriptcs</tags>
+  </metadata>
+</package>
