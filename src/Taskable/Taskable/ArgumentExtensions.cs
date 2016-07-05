@@ -6,7 +6,7 @@ namespace TaskableBase
     {
         public static Options CreateAsOptions(this Arguments arguments)
         {
-            throw new System.NotImplementedException();
+            return new Options();
         }
     }
 }

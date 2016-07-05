@@ -7,9 +7,9 @@ namespace TaskableBase
     public class Arguments
     {
         [Option('c', "command-prefix", DefaultValue = "", HelpText = "Command prefix")]
-        public int CommandPrefix { get; set; }
+        public string CommandPrefix { get; set; }
 
-        [Option('p', "script-path", DefaultValue = "", HelpText = "Path for .csx files (")]
+        [Option('p', "script-path", DefaultValue = null, HelpText = "Path for .csx files (")]
         public IEnumerable<string> ScriptPaths { get; set; }
 
         [Option('l', "log-level", DefaultValue = "", HelpText = "Log level (g, d, e)")]
