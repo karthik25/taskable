@@ -69,10 +69,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Taskable.Roslyn.Contracts\Taskable.Roslyn.Contracts.csproj">
-      <Project>{8FF1DF95-6486-4E60-9F89-CEA512703A86}</Project>
-      <Name>Taskable.Roslyn.Contracts</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Taskable.ScriptCs.Contracts\Taskable.ScriptCs.Contracts.csproj">
       <Project>{740e1573-3a6d-4512-8fc3-241d09951768}</Project>
       <Name>Taskable.ScriptCs.Contracts</Name>
