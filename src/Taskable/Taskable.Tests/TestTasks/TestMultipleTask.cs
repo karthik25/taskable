@@ -1,5 +1,5 @@
 ﻿using System;
-using Taskable.Contracts;
+using Taskable.ScriptCs.Contracts;
 
 namespace Taskable.Tests.TestTasks
 {

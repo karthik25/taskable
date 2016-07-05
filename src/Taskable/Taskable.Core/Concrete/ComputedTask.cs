@@ -1,5 +1,5 @@
-﻿using Taskable.Contracts;
-using Taskable.Core.Extensions;
+﻿using Taskable.Core.Extensions;
+using Taskable.ScriptCs.Contracts;
 
 namespace Taskable.Core.Concrete
 {

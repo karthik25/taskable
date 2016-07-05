@@ -1,5 +1,5 @@
-﻿using Taskable.Contracts;
-using Taskable.Core.Exceptions;
+﻿using Taskable.Core.Exceptions;
+using Taskable.ScriptCs.Contracts;
 
 namespace Taskable.Core
 {

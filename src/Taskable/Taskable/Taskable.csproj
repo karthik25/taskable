@@ -70,13 +70,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Taskable.Contracts\Taskable.Contracts.csproj">
-      <Project>{45a36efa-4025-4246-8c31-ae2a1ad3304e}</Project>
-      <Name>Taskable.Contracts</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Taskable.Core\Taskable.Core.csproj">
       <Project>{8974c622-6f81-4227-b168-7e0104c735df}</Project>
       <Name>Taskable.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Taskable.ScriptCs.Contracts\Taskable.ScriptCs.Contracts.csproj">
+      <Project>{740E1573-3A6D-4512-8FC3-241D09951768}</Project>
+      <Name>Taskable.ScriptCs.Contracts</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

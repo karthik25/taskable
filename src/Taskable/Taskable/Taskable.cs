@@ -3,10 +3,10 @@ using System.Linq;
 using ScriptCs.Contracts;
 using System.Collections.Generic;
 using Taskable.Core;
-using Taskable.Contracts;
 using Taskable.Core.Concrete;
 using Taskable.Core.Extensions;
 using Taskable.Core.Exceptions;
+using Taskable.ScriptCs.Contracts;
 
 namespace TaskableBase
 {
