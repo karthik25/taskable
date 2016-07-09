@@ -37,12 +37,13 @@ namespace TaskableScriptPack
 
         public void WaitForCommands()
         {
-            _options.ReplPrefix.PrintDefault();
+            "Enter 'bye' or 'q' to exit from the prompt.".PrintGreen();
+            _options.ReplPrefix.Print();
             string line = null;
             while (!ExitSignals.Contains(line = Console.ReadLine()))
             {
                 var status = InvokeTask(line);
-                _options.ReplPrefix.PrintDefault();
+                _options.ReplPrefix.Print();
             }
         }
 
