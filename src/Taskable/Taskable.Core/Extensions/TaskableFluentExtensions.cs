@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using Taskable.Core.Concrete;
+using TaskableCore.Concrete;
 
-namespace Taskable.Core.Extensions
+namespace TaskableCore.Extensions
 {
     public static class TaskableFluentExtensions
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.CodeAnalysis;
 
-namespace Taskable.Roslyn.Contracts
+namespace TaskableRoslyn.Contracts
 {
     public interface IMetadataProvider
     {

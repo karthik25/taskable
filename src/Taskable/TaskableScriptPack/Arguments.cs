@@ -1,8 +1,8 @@
 ﻿using CommandLine;
 using System.Collections.Generic;
-using Taskable.Core.Extensions;
+using TaskableCore.Extensions;
 
-namespace TaskableBase
+namespace TaskableScriptPack
 {
     public class Arguments
     {

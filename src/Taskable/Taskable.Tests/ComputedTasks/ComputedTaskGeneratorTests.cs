@@ -1,11 +1,11 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Taskable.Core.Concrete;
-using Taskable.Core;
-using Taskable.Tests.TestTasks;
-using Taskable.Core.Extensions;
+using TaskableCore.Concrete;
+using TaskableCore;
+using TaskableTests.TestTasks;
+using TaskableCore.Extensions;
 using System.Linq;
 
-namespace Taskable.Tests.ComputedTasks
+namespace TaskableTests.ComputedTasks
 {
     [TestClass]
     public class ComputedTaskGeneratorTests

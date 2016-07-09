@@ -1,9 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Taskable.Core;
-using Taskable.Core.Exceptions;
-using Taskable.Tests.TestTasks;
+using TaskableCore;
+using TaskableCore.Exceptions;
+using TaskableTests.TestTasks;
 
-namespace Taskable.Tests.ComputedTasks
+namespace TaskableTests.ComputedTasks
 {
     [TestClass]
     public class TaskValidatorTests

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace Taskable.Core.Concrete
+namespace TaskableCore.Concrete
 {
     public class ParameterData
     {

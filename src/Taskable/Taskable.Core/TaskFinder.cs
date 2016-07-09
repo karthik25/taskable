@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using Taskable.Core.Concrete;
-using Taskable.Core.Extensions;
+using TaskableCore.Concrete;
+using TaskableCore.Extensions;
 
-namespace Taskable.Core
+namespace TaskableCore
 {
     public static class TaskFinder
     {

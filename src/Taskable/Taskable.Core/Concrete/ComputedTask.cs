@@ -1,7 +1,7 @@
-﻿using Taskable.Core.Extensions;
-using Taskable.ScriptCs.Contracts;
+﻿using TaskableCore.Extensions;
+using TaskableScriptCs.Contracts;
 
-namespace Taskable.Core.Concrete
+namespace TaskableCore.Concrete
 {
     public class ComputedTask : SimpleTask
     {

@@ -1,4 +1,4 @@
-﻿namespace Taskable.Core
+﻿namespace TaskableCore
 {
     public enum TaskType
     {

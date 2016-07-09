@@ -1,7 +1,7 @@
 ﻿using System;
 using ColoredConsole;
 
-namespace Taskable.Core.Extensions
+namespace TaskableCore.Extensions
 {
     public static class ConsoleExtensions
     {

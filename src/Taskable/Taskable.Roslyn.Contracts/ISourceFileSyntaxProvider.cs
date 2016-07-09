@@ -1,4 +1,4 @@
-﻿namespace Taskable.Roslyn.Contracts
+﻿namespace TaskableRoslyn.Contracts
 {
     public interface ISourceFileSyntaxProvider
     {

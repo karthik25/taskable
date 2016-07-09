@@ -7,7 +7,7 @@
     <ProjectGuid>{8FF1DF95-6486-4E60-9F89-CEA512703A86}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Taskable.Roslyn.Contracts</RootNamespace>
+    <RootNamespace>TaskableRoslyn.Contracts</RootNamespace>
     <AssemblyName>Taskable.Roslyn.Contracts</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

@@ -1,6 +1,6 @@
-﻿using Taskable.Core;
+﻿using TaskableCore;
 
-namespace TaskableBase
+namespace TaskableScriptPack
 {
     public static class ArgumentExtensions
     {

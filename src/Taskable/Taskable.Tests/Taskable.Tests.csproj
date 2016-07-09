@@ -6,7 +6,7 @@
     <ProjectGuid>{FD22D165-D415-470D-9D9C-686F7EA61595}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Taskable.Tests</RootNamespace>
+    <RootNamespace>TaskableTests</RootNamespace>
     <AssemblyName>Taskable.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

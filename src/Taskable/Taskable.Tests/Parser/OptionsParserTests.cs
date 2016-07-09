@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Taskable.Tests.Parser
+namespace TaskableTests.Parser
 {
     [TestClass]
     public class OptionsParserTests
@@ -9,7 +9,7 @@ namespace Taskable.Tests.Parser
         public void CanParseAYamlFileIntoOptions()
         {
             const string optionsYaml = @"";
-            var parsedOptions = Core.Options.ParseFromFile(optionsYaml);
+            var parsedOptions = TaskableCore.Options.ParseFromFile(optionsYaml);
             Assert.IsNotNull(parsedOptions);
             Assert.AreEqual("d", parsedOptions.LogLevel);
             Assert.AreEqual(">>>", parsedOptions.CommandPrefix);

@@ -1,7 +1,7 @@
 ﻿using System;
-using Taskable.ScriptCs.Contracts;
+using TaskableScriptCs.Contracts;
 
-namespace Taskable.SampleTasks
+namespace TaskableSampleTasks
 {
     public class ListAllTasks : ISimpleTask
     {

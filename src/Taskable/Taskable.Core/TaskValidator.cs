@@ -1,7 +1,7 @@
-﻿using Taskable.Core.Exceptions;
-using Taskable.ScriptCs.Contracts;
+﻿using TaskableCore.Exceptions;
+using TaskableScriptCs.Contracts;
 
-namespace Taskable.Core
+namespace TaskableCore
 {
     public static class TaskValidator
     {

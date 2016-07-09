@@ -7,7 +7,7 @@
     <ProjectGuid>{23F80303-F349-40D1-9A70-68785404A89A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Taskable.SampleTasks</RootNamespace>
+    <RootNamespace>TaskableSampleTasks</RootNamespace>
     <AssemblyName>Taskable.SampleTasks</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

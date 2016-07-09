@@ -1,12 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
-using Taskable.Core;
-using Taskable.Core.Concrete;
-using Taskable.Core.Extensions;
-using Taskable.Tests.TestTasks;
+using TaskableCore;
+using TaskableCore.Concrete;
+using TaskableCore.Extensions;
+using TaskableTests.TestTasks;
 
-namespace Taskable.Tests.ComputedTasks
+namespace TaskableTests.ComputedTasks
 {
     [TestClass]
     public class TaskFinderTests

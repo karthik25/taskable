@@ -2,13 +2,13 @@
 using System.Linq;
 using ScriptCs.Contracts;
 using System.Collections.Generic;
-using Taskable.Core;
-using Taskable.Core.Concrete;
-using Taskable.Core.Extensions;
-using Taskable.Core.Exceptions;
-using Taskable.ScriptCs.Contracts;
+using TaskableCore;
+using TaskableCore.Concrete;
+using TaskableCore.Extensions;
+using TaskableCore.Exceptions;
+using TaskableScriptCs.Contracts;
 
-namespace TaskableBase
+namespace TaskableScriptPack
 {
     public class Taskable : IScriptPackContext, ITaskableContext
     {

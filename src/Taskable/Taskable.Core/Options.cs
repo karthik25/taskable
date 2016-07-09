@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace Taskable.Core
+namespace TaskableCore
 {
     public class Options
     {

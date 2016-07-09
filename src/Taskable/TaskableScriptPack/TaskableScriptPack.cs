@@ -1,6 +1,6 @@
 ﻿using ScriptCs.Contracts;
 
-namespace TaskableBase
+namespace TaskableScriptPack
 {
     public class TaskableScriptPack : ScriptPack<Taskable>
     {

@@ -1,8 +1,8 @@
 ﻿using Microsoft.CodeAnalysis;
 using System;
-using Taskable.Roslyn.Contracts;
+using TaskableRoslyn.Contracts;
 
-namespace Taskable.Roslyn.Core.TaskLoader
+namespace TaskableRoslynCore.TaskLoader
 {
     public class DefaultMetadataProvider : IMetadataProvider
     {

@@ -1,7 +1,7 @@
 ﻿using System;
-using Taskable.ScriptCs.Contracts;
+using TaskableScriptCs.Contracts;
 
-namespace Taskable.Core.Concrete
+namespace TaskableCore.Concrete
 {
     public abstract class SimpleTask : ISimpleTask
     {

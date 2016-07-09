@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Taskable.ScriptCs.Contracts
+namespace TaskableScriptCs.Contracts
 {
     public interface ISimpleTask
     {

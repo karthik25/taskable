@@ -1,7 +1,7 @@
 ﻿using System;
-using Taskable.ScriptCs.Contracts;
+using TaskableScriptCs.Contracts;
 
-namespace Taskable.Tests.TestTasks
+namespace TaskableTests.TestTasks
 {
     internal class TestMultipleTask : ISimpleTask
     {

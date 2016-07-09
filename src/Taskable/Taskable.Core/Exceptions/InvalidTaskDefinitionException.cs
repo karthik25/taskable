@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Taskable.Core.Exceptions
+namespace TaskableCore.Exceptions
 {
     public class InvalidTaskDefinitionException : Exception
     {
