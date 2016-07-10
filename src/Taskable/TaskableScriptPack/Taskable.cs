@@ -25,18 +25,9 @@ namespace TaskableScriptPack
             _rawTasks = new List<ComputedTask>();
         }
 
-        public void Initialize()
-        {
-            if (!_isInitialized)
-            {
-                _taskLookup = _rawTasks.ToLookup(k => k.Pattern.Shift(), v => v);
-                _isInitialized = true;
-                Console.WriteLine("[General] Initialized 'taskable'");
-            }
-        }
-
         public void WaitForCommands()
         {
+            Initialize();
             "Enter 'bye' or 'q' to exit from the prompt.".PrintGreen();
             _options.ReplPrefix.Print();
             string line = null;
@@ -71,6 +62,16 @@ namespace TaskableScriptPack
                 return true;
             }
             return false;
+        }
+
+        private void Initialize()
+        {
+            if (!_isInitialized)
+            {
+                _taskLookup = _rawTasks.ToLookup(k => k.Pattern.Shift(), v => v);
+                _isInitialized = true;
+                Console.WriteLine("[General] Initialized 'taskable'");
+            }
         }
 
         private static List<string> ExitSignals = new List<string> { "bye", "q" };

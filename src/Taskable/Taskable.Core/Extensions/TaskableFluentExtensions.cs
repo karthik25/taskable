@@ -22,7 +22,7 @@ namespace TaskableCore.Extensions
                         break;
                     case "{}":
                         {
-                            builder.Append(@"(\S+)");
+                            builder.Append(@"("".*?""|\S+)");
                             postions.Add(i);
                         }
                         break;
