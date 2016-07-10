@@ -7,7 +7,6 @@ namespace TaskableTests.TestTasks
     {
         public TestTask()
         {
-            Name = "Test";
             Pattern = "echo {}";
             Stuff = parameters =>
             {
@@ -17,7 +16,6 @@ namespace TaskableTests.TestTasks
 
         public TestTask(string name, string pattern)
         {
-            Name = name;
             Pattern = pattern;
             Stuff = parameters =>
             {
@@ -27,30 +25,8 @@ namespace TaskableTests.TestTasks
 
         public TestTask(Action<string[]> action)
         {
-            Name = "Test";
             Pattern = "echo {}";
             Stuff = action;
-        }
-
-        public string Example
-        {
-            get
-            {
-                return "echo Hello!";
-            }
-        }
-
-        private string _name;
-        public string Name
-        {
-            get
-            {
-                return _name;
-            }
-            private set
-            {
-                _name = value;
-            }
         }
 
         private string _pattern;

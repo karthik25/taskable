@@ -5,22 +5,6 @@ namespace TaskableTests.TestTasks
 {
     internal class TestMultipleTask : ISimpleTask
     {
-        public string Example
-        {
-            get
-            {
-                return @"move C:\Temp\a.txt to c:\Temp\b.txt";
-            }
-        }
-
-        public string Name
-        {
-            get
-            {
-                return "TestMultiple";
-            }
-        }
-
         public string Pattern
         {
             get

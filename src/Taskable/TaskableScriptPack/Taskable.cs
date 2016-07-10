@@ -45,11 +45,13 @@ namespace TaskableScriptPack
 
             TaskValidator.ValidateTask(simpleTask);
 
-            if (_rawTasks.Any(t => t.Name == simpleTask.Name))
-                throw new DuplicateTaskDefinitionException(simpleTask.Name);
+            var computedTask = new ComputedTask(simpleTask);
 
-            Console.WriteLine("[General] Registered a task: {0}", simpleTask.Name);
-            _rawTasks.Add(new ComputedTask(simpleTask));
+            if (_rawTasks.Any(t => t.Name == computedTask.Name))
+                throw new DuplicateTaskDefinitionException(computedTask.Name);
+
+            Console.WriteLine("[General] Registered a task: {0}", computedTask.Name);
+            _rawTasks.Add(computedTask);
         }
 
         private bool InvokeTask(string command)

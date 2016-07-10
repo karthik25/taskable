@@ -1,4 +1,5 @@
-﻿using TaskableCore.Extensions;
+﻿using System.Collections.Generic;
+using TaskableCore.Extensions;
 using TaskableScriptCs.Contracts;
 
 namespace TaskableCore.Concrete
@@ -16,6 +17,8 @@ namespace TaskableCore.Concrete
             this.Data = this.Pattern.Parse();
         }
 
+        public string Name { get; set; }
+        public IEnumerable<string> Examples { get; set; }
         public ParameterData Data { get; set; }
         public TaskType Type
         {

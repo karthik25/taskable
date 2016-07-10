@@ -7,9 +7,6 @@ namespace TaskableCore
     {
         public static void ValidateTask(ISimpleTask simpleTask)
         {
-            if (string.IsNullOrEmpty(simpleTask.Name))
-                throw new InvalidTaskDefinitionException("Task name cannot be null or empty");
-
             if (string.IsNullOrEmpty(simpleTask.Pattern))
                 throw new InvalidTaskDefinitionException("Task pattern cannot be null or empty");
 
