@@ -29,14 +29,18 @@ namespace TaskableTests.ComputedTasks
 
             // Test for not null etc
             Assert.IsNotNull(requiredTask);
-            Assert.AreEqual("TestMultiple", requiredTask.Name);
+            Assert.AreEqual("Test Multiple", requiredTask.Name);
             Assert.AreEqual("move {} to {}", requiredTask.Pattern);
             Assert.IsNotNull(requiredTask.Data);
             Assert.AreEqual(2, requiredTask.Data.Positions.Count);
-            Assert.AreEqual(@"(move)([ ])(\S+)([ ])(to)([ ])(\S+)", requiredTask.Data.Regex.ToString());
+            Assert.AreEqual(@"(move)([ ])("".*?""|\S+)([ ])(to)([ ])("".*?""|\S+)", requiredTask.Data.Regex.ToString());
             Assert.AreEqual(TaskType.Parameterized, requiredTask.Type);
+            Assert.AreEqual(@"move C:\Temp\a.txt to c:\Temp\b.txt", requiredTask.Examples.First());
+
+            var testTask = lookup.FindTask(@"echo hello");
+
+            Assert.IsNotNull(testTask);
+            Assert.AreEqual("TestTask", testTask.Name);
         }
     }
-
-
 }

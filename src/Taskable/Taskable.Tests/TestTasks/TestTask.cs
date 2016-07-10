@@ -14,7 +14,7 @@ namespace TaskableTests.TestTasks
             };
         }
 
-        public TestTask(string name, string pattern)
+        public TestTask(string pattern)
         {
             Pattern = pattern;
             Stuff = parameters =>
@@ -23,9 +23,9 @@ namespace TaskableTests.TestTasks
             };
         }
 
-        public TestTask(Action<string[]> action)
+        public TestTask(Action<string[]> action, string pattern)
         {
-            Pattern = "echo {}";
+            Pattern = pattern;
             Stuff = action;
         }
 

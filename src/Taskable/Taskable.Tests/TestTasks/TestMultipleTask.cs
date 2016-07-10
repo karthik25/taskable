@@ -1,8 +1,11 @@
 ﻿using System;
+using TaskableCore.Attributes;
 using TaskableScriptCs.Contracts;
 
 namespace TaskableTests.TestTasks
 {
+    [TaskName("Test Multiple")]
+    [TaskExample(@"move C:\Temp\a.txt to c:\Temp\b.txt")]
     internal class TestMultipleTask : ISimpleTask
     {
         public string Pattern

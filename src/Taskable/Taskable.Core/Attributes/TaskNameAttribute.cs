@@ -11,5 +11,13 @@ namespace TaskableCore.Attributes
         {
             _taskName = taskName;
         }
+
+        public string Name
+        {
+            get
+            {
+                return _taskName;
+            }
+        }
     }
 }

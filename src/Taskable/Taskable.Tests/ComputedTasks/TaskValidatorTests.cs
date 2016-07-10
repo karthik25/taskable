@@ -10,17 +10,9 @@ namespace TaskableTests.ComputedTasks
     {
         [TestMethod]
         [ExpectedException(typeof(InvalidTaskDefinitionException))]
-        public void CanThrowAnExceptionOnEmptyName()
-        {
-            var simpleTask = new TestTask("", "echo {}");
-            TaskValidator.ValidateTask(simpleTask);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(InvalidTaskDefinitionException))]
         public void CanThrowAnExceptionOnEmptyParameters()
         {
-            var simpleTask = new TestTask("Test", "");
+            var simpleTask = new TestTask("");
             TaskValidator.ValidateTask(simpleTask);
         }
 
@@ -28,7 +20,7 @@ namespace TaskableTests.ComputedTasks
         [ExpectedException(typeof(InvalidTaskDefinitionException))]
         public void CanThrowAnExceptionOnNullStuff()
         {
-            var simpleTask = new TestTask(null);
+            var simpleTask = new TestTask(null, "echo {}");
             TaskValidator.ValidateTask(simpleTask);
         }
     }

@@ -11,5 +11,13 @@ namespace TaskableCore.Attributes
         {
             _exampleCmd = exampleCmd;
         }
+
+        public string Example
+        {
+            get
+            {
+                return _exampleCmd;
+            }
+        }
     }
 }

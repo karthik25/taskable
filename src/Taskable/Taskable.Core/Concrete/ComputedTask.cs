@@ -9,6 +9,8 @@ namespace TaskableCore.Concrete
         public ComputedTask(ISimpleTask simpleTask)
             :base (simpleTask)
         {
+            this.Name = simpleTask.GetName();
+            this.Examples = simpleTask.GetExamples();
             this.Compute();
         }
 

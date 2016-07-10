@@ -2,12 +2,36 @@
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using TaskableCore.Attributes;
 using TaskableCore.Concrete;
+using TaskableScriptCs.Contracts;
 
 namespace TaskableCore.Extensions
 {
     public static class TaskableFluentExtensions
     {
+        public static string GetName(this ISimpleTask simpleTask)
+        {
+            var type = simpleTask.GetType();
+            var attribute = type.GetCustomAttributes(false).OfType<TaskNameAttribute>().FirstOrDefault();
+            if (attribute != null)
+            {
+                return attribute.Name;
+            }
+            return type.Name;
+        }
+
+        public static IEnumerable<string> GetExamples(this ISimpleTask simpleTask)
+        {
+            var type = simpleTask.GetType();
+            var attributes = type.GetCustomAttributes(false).OfType<TaskExampleAttribute>();
+            if (attributes.Any())
+            {
+                return attributes.Select(a => a.Example);
+            }
+            return null;
+        }
+
         public static ParameterData Parse(this string src)
         {
             var builder = new StringBuilder();
