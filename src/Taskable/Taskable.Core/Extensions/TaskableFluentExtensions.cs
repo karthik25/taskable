@@ -36,9 +36,13 @@ namespace TaskableCore.Extensions
 
         public static IEnumerable<string> GetParameters(this ComputedTask computedTask, string command)
         {
+            var acceptedEnclosers = new char[] { '\'', '\"' };
             var matches = computedTask.Data.Regex.Match(command);
             foreach (var position in computedTask.Data.Positions)
-                yield return matches.Groups[(position + 1)].Value;
+                yield return matches.Groups[(position + 1)]
+                                    .Value
+                                    .TrimStart(acceptedEnclosers)
+                                    .TrimEnd(acceptedEnclosers);
         }
 
         public static IEnumerable<string> SplitWithSpace(this string src)

@@ -54,8 +54,20 @@ namespace TaskableTests.ComputedTasks
             var computedTask = new ComputedTask(testTask);
             var parameters = computedTask.GetParameters(command).ToList();
             Assert.AreEqual(2, parameters.Count);
-            Assert.AreEqual(@"""C:\Temp\a.txt""", parameters[0]);
-            Assert.AreEqual(@"""c:\Temp\b.txt""", parameters[1]);
+            Assert.AreEqual(@"C:\Temp\a.txt", parameters[0]);
+            Assert.AreEqual(@"c:\Temp\b.txt", parameters[1]);
+        }
+
+        [TestMethod]
+        public void GiveAParameterWithSpaceAndSingleQuotes()
+        {
+            var command = @"move 'C:\Temp\a.txt' to 'c:\Temp\b.txt'";
+            var testTask = new TestMultipleTask();
+            var computedTask = new ComputedTask(testTask);
+            var parameters = computedTask.GetParameters(command).ToList();
+            Assert.AreEqual(2, parameters.Count);
+            Assert.AreEqual(@"C:\Temp\a.txt", parameters[0]);
+            Assert.AreEqual(@"c:\Temp\b.txt", parameters[1]);
         }
     }
 }
