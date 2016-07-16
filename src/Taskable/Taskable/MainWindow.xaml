@@ -4,9 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaskableApp"
+        xmlns:views="clr-namespace:TaskableApp.Views"
+        xmlns:viewModels="clr-namespace:TaskableApp.ViewModels"
+        xmlns:models="clr-namespace:TaskableApp.Models"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Taskable" Height="350" Width="525" WindowState="Maximized"
+        Icon="/Images/taskable.png">
     <Grid>
-        
+        <views:CodeCollectionView/>
     </Grid>
 </Window>

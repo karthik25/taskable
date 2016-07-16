@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ICSharpCode.AvalonEdit, Version=5.0.3.0, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
+      <HintPath>..\packages\AvalonEdit.5.0.3\lib\Net40\ICSharpCode.AvalonEdit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -49,12 +53,28 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.1.16356.12170, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.AvalonDock.3.1.16356.12170\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Abstract\INamedFileEntry.cs" />
+    <Compile Include="ViewModels\CodeCollectionViewModel.cs" />
+    <Compile Include="ViewModels\CodeEditorViewModel.cs" />
+    <Compile Include="Views\CodeCollectionView.xaml.cs">
+      <DependentUpon>CodeCollectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CodeEditorView.xaml.cs">
+      <DependentUpon>CodeEditorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsDialogView.xaml.cs">
+      <DependentUpon>SettingsDialogView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -63,12 +83,31 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BindableBase.cs" />
+    <Compile Include="CustomTextEditor.cs" />
+    <Compile Include="DirectoryTreeGenerator.cs" />
+    <Compile Include="GenericCommand.cs" />
+    <Compile Include="InvertableBooleanToVisibilityConverter.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\CodeCollectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CodeEditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SettingsDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="Models\FileOrFolderEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -86,6 +125,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -94,6 +134,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\csharp.png" />
+    <Resource Include="Images\directory.png" />
+    <Resource Include="Images\icon-Save.gif" />
+    <Resource Include="Images\new.png" />
+    <Resource Include="Images\taskable.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
