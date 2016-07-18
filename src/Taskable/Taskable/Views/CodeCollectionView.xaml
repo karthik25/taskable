@@ -34,34 +34,36 @@
                                                        CanAutoHide="True"
                                                        AutoHideWidth="200"
                                                        Title="Documents">
-                        <StackPanel Orientation="Vertical">
-                            <WrapPanel Orientation="Horizontal">
-                                <Button Height="20" Width="20" Background="Transparent" BorderThickness="0" Command="{Binding NewDocumentCommand}" ToolTip="Create a New Document">
-                                    <Image Source="/Images/new.png" />
-                                </Button>
-                            </WrapPanel>
-                            <TreeView Name="trvFiles" ItemsSource="{Binding FileOrFolderEntries}" Loaded="trvFiles_Loaded">
-                                <TreeView.ItemContainerStyle>
-                                    <Style TargetType="{x:Type TreeViewItem}">
-                                        <EventSetter Event="MouseDoubleClick" Handler="TreeViewItem_DoubleClicked" />
-                                    </Style>
-                                </TreeView.ItemContainerStyle>
-                                <TreeView.Resources>
-                                    <HierarchicalDataTemplate DataType="{x:Type models:FileOrFolderEntry}" ItemsSource="{Binding Entries}">
-                                        <StackPanel Orientation="Horizontal">
-                                            <StackPanel.Resources>
-                                                <BooleanToVisibilityConverter x:Key="boolToVis" />
-                                                <local:InvertableBooleanToVisibilityConverter x:Key="inverseBoolToVis" />
-                                            </StackPanel.Resources>
-                                            <Image Source="/Images/directory.png" Height="20" Width="20" Visibility="{Binding IsFolder, Converter={StaticResource boolToVis}}" />
-                                            <Image Source="/Images/csharp.png" Height="15" Width="15" Visibility="{Binding IsFolder, Converter={StaticResource inverseBoolToVis}, ConverterParameter=Inverted}" />
-                                            <TextBlock Text=" " />
-                                            <TextBlock Text="{Binding Name}"/>
-                                        </StackPanel>
-                                    </HierarchicalDataTemplate>
-                                </TreeView.Resources>
-                            </TreeView>
-                        </StackPanel>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <StackPanel Orientation="Vertical">
+                                <WrapPanel Orientation="Horizontal">
+                                    <Button Height="20" Width="20" Background="Transparent" BorderThickness="0" Command="{Binding NewDocumentCommand}" ToolTip="Create a New Document">
+                                        <Image Source="/Images/new.png" />
+                                    </Button>
+                                </WrapPanel>
+                                <TreeView Name="trvFiles" ItemsSource="{Binding FileOrFolderEntries}" Loaded="trvFiles_Loaded">
+                                    <TreeView.ItemContainerStyle>
+                                        <Style TargetType="{x:Type TreeViewItem}">
+                                            <EventSetter Event="MouseDoubleClick" Handler="TreeViewItem_DoubleClicked" />
+                                        </Style>
+                                    </TreeView.ItemContainerStyle>
+                                    <TreeView.Resources>
+                                        <HierarchicalDataTemplate DataType="{x:Type models:FileOrFolderEntry}" ItemsSource="{Binding Entries}">
+                                            <StackPanel Orientation="Horizontal">
+                                                <StackPanel.Resources>
+                                                    <BooleanToVisibilityConverter x:Key="boolToVis" />
+                                                    <local:InvertableBooleanToVisibilityConverter x:Key="inverseBoolToVis" />
+                                                </StackPanel.Resources>
+                                                <Image Source="/Images/directory.png" Height="20" Width="20" Visibility="{Binding IsFolder, Converter={StaticResource boolToVis}}" />
+                                                <Image Source="/Images/csharp.png" Height="15" Width="15" Visibility="{Binding IsFolder, Converter={StaticResource inverseBoolToVis}, ConverterParameter=Inverted}" />
+                                                <TextBlock Text=" " />
+                                                <TextBlock Text="{Binding Name}"/>
+                                            </StackPanel>
+                                        </HierarchicalDataTemplate>
+                                    </TreeView.Resources>
+                                </TreeView>
+                            </StackPanel>
+                        </ScrollViewer>
                     </dock:LayoutAnchorable>
                 </dock:LayoutAnchorablePane>
                 <dock:LayoutDocumentPane />
