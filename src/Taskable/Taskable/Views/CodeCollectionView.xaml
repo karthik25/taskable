@@ -11,7 +11,8 @@
              xmlns:dockctrl="clr-namespace:Xceed.Wpf.AvalonDock.Controls;assembly=Xceed.Wpf.AvalonDock"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <dock:DockingManager DocumentsSource="{Binding CodeEditors, Mode=OneTime}" ActiveContent="{Binding CurrentDocument, Mode=TwoWay}">
+    <dock:DockingManager DocumentsSource="{Binding CodeEditors, Mode=OneTime}" ActiveContent="{Binding CurrentDocument, Mode=TwoWay}"
+                         DocumentClosing="DockingManager_DocumentClosing">
         <dock:DockingManager.Resources>
             <DataTemplate DataType="{x:Type viewModels:CodeEditorViewModel}">
                 <views:CodeEditorView/>

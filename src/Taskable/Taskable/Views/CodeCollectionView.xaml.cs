@@ -40,5 +40,12 @@ namespace TaskableApp.Views
                 }
             }
         }
+
+        private void DockingManager_DocumentClosing(object sender, Xceed.Wpf.AvalonDock.DocumentClosingEventArgs e)
+        {
+            e.Cancel = true;            
+            var item = (CodeEditorViewModel)e.Document.Content;
+            ((CodeCollectionViewModel)this.DataContext).CloseDocument(item);
+        }
     }
 }
