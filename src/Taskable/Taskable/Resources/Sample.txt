@@ -1,0 +1,25 @@
+﻿[TaskName("<<<Replace>>>")]
+[TaskExample("<<<Replace>>>")]
+public class DefaultTask : ISimpleTask
+{
+	public string Pattern
+	{
+		get
+		{
+			// Use {} to indicate parameters
+			// Like "command {}"
+			throw new NotImplementedException();
+		}
+	}
+
+	public Action<string[]> Stuff
+	{
+		get
+		{
+			return parameters =>
+			{
+				throw new NotImplementedException();
+			};
+		}
+	}
+}

@@ -1,8 +1,10 @@
 ﻿using ICSharpCode.AvalonEdit.Document;
 using ICSharpCode.AvalonEdit.Utils;
+using System;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 
 namespace TaskableApp.ViewModels
 {
@@ -28,10 +30,36 @@ namespace TaskableApp.ViewModels
             get; set;
         }
 
+        private string _statusText;
+        public string StatusText
+        {
+            get
+            {
+                return _statusText;
+            }
+            set
+            {
+                SetProperty<string>(ref _statusText, value);
+            }
+        }
+
+        private string _statusTextY;
+        public string StatusTextY
+        {
+            get
+            {
+                return _statusTextY;
+            }
+            set
+            {
+                SetProperty<string>(ref _statusTextY, value);
+            }
+        }
+
         public CodeEditorViewModel()
         {
             Title = "New Document";
-            Document = new TextDocument();
+            Document = new TextDocument(Properties.Resources.Sample);
             SaveDocumentCommand = new GenericCommand(Save);
         }
 
@@ -42,20 +70,35 @@ namespace TaskableApp.ViewModels
                 CurrentFile = filePath;
                 Title = Path.GetFileName(filePath);
                 Document = FileLoader.LoadFile(filePath);
+                StatusText = filePath;
             }
             SaveDocumentCommand = new GenericCommand(Save);
         }
-        
+
         private async Task Save()
         {
             if (string.IsNullOrEmpty(CurrentFile))
                 return;
 
+            this.StatusTextY = "Saving: " + this.CurrentFile;
             var contents = Document.Text;
             using (var writer = new StreamWriter(CurrentFile, false))
             {
                 await writer.WriteAsync(contents);
             }
+            this.StatusTextY = "Saved";
+            PerformDelayedUpdate(() => { this.StatusTextY = ""; });
+        }
+
+        private void PerformDelayedUpdate(Action action, int intervalSeconds = 5)
+        {
+            var timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(intervalSeconds);
+            timer.Tick += new EventHandler((object s, EventArgs a) =>
+            {
+                action();
+            });
+            timer.Start();
         }
 
         private static class FileLoader

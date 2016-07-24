@@ -59,5 +59,39 @@ namespace TaskableApp.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [TaskName(&quot;&lt;&lt;&lt;Replace&gt;&gt;&gt;&quot;)]
+        ///[TaskExample(&quot;&lt;&lt;&lt;Replace&gt;&gt;&gt;&quot;)]
+        ///public class DefaultTask : ISimpleTask
+        ///{
+        ///	public string Pattern
+        ///	{
+        ///		get
+        ///		{
+        ///			// Use {} to indicate parameters
+        ///			// Like &quot;command {}&quot;
+        ///			throw new NotImplementedException();
+        ///		}
+        ///	}
+        ///
+        ///	public Action&lt;string[]&gt; Stuff
+        ///	{
+        ///		get
+        ///		{
+        ///			return parameters =&gt;
+        ///			{
+        ///				throw new NotImplementedException();
+        ///			};
+        ///		}
+        ///	}
+        ///}
+        ///.
+        /// </summary>
+        internal static string Sample {
+            get {
+                return ResourceManager.GetString("Sample", resourceCulture);
+            }
+        }
     }
 }

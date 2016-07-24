@@ -37,9 +37,16 @@
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
                             <StackPanel Orientation="Vertical">
                                 <WrapPanel Orientation="Horizontal">
-                                    <Button Height="20" Width="20" Background="Transparent" BorderThickness="0" Command="{Binding NewDocumentCommand}" ToolTip="Create a New Document">
-                                        <Image Source="/Images/new.png" />
-                                    </Button>
+                                    <ToolBarTray>
+                                        <ToolBar>
+                                            <Button Height="20" Background="Transparent" BorderThickness="0" Command="{Binding NewDocumentCommand}" ToolTip="Create a New Document">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Image Source="/Images/new.png" />
+                                                    <TextBlock Margin="5,0,0,0" Text="New Task" />
+                                                </StackPanel>
+                                            </Button>
+                                        </ToolBar>
+                                    </ToolBarTray>
                                 </WrapPanel>
                                 <TreeView Name="trvFiles" ItemsSource="{Binding FileOrFolderEntries}" Loaded="trvFiles_Loaded">
                                     <TreeView.ItemContainerStyle>

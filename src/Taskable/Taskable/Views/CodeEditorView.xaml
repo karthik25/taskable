@@ -11,13 +11,20 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition />
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <WrapPanel Orientation="Horizontal" Grid.Row="0">
-            <Button Height="20" Width="20" Background="Transparent" BorderThickness="0" Command="{Binding SaveDocumentCommand}">
-                <Image Source="/Images/icon-Save.gif" />
-            </Button>
-        </WrapPanel>
-        <editor:CustomTextEditor x:Name="textEditor"
+        <ToolBarTray Grid.Row="0">
+            <ToolBar>
+                <Button Height="20" Background="Transparent" BorderThickness="0" Command="{Binding SaveDocumentCommand}" ToolTip="Save">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Images/icon-Save.gif" />
+                        <TextBlock Margin="5,0,0,0" Text="Save" />
+                    </StackPanel>
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
+        <DockPanel Grid.Row="1">
+            <editor:CustomTextEditor x:Name="textEditor"
                                  SyntaxHighlighting="C#"
                                  FontFamily="Consolas"
                                  FontSize="10pt" 
@@ -25,7 +32,11 @@
                                  HorizontalAlignment="Stretch"
                                  VerticalAlignment="Stretch"
                                  HorizontalScrollBarVisibility="Hidden"
-                                 Grid.Row="1"
                                  Loaded="textEditor_Loaded"/>
+        </DockPanel>
+        <StatusBar Grid.Row="2">
+            <StatusBarItem Name="lblStatus" Content="{Binding StatusText}" HorizontalAlignment="Left"></StatusBarItem>
+            <StatusBarItem Name="lblStatusY" Content="{Binding StatusTextY}" HorizontalAlignment="Right" Foreground="Green" FontWeight="Bold"></StatusBarItem>
+        </StatusBar>
     </Grid>
 </UserControl>
