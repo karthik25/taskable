@@ -11,6 +11,30 @@
         Title="Taskable" Height="350" Width="525" WindowState="Maximized"
         Icon="/Images/taskable.png">
     <Grid>
-        <views:CodeCollectionView/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="6*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+        <views:CodeCollectionView Grid.Row="0" />
+        <StackPanel Grid.Row="1">
+            <TabControl>
+                <TabItem Header="Task Runner">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Choose Command" Grid.Row="0" Grid.Column="0" />
+                        <ComboBox Name="CmdList" Grid.Row="0" Grid.Column="1" />
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </StackPanel>
     </Grid>
 </Window>
