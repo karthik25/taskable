@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using TaskableApp.Views;
 
 namespace TaskableApp
 {
@@ -11,6 +12,11 @@ namespace TaskableApp
         {
             InitializeComponent();
             this.DataContext = new MainWindowViewModel();
+        }
+
+        private void BtnSettings_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }
