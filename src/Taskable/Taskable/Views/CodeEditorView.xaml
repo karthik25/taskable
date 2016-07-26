@@ -21,6 +21,12 @@
                         <TextBlock Margin="5,0,0,0" Text="Save" />
                     </StackPanel>
                 </Button>
+                <Button Height="20" Margin="10,0,0,0" Background="Transparent" BorderThickness="0" ToolTip="Edit in VS Code">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Images/vscode.png" />
+                        <TextBlock Margin="5,0,0,0" Text="Edit in VS Code" />
+                    </StackPanel>
+                </Button>
             </ToolBar>
         </ToolBarTray>
         <DockPanel Grid.Row="1">

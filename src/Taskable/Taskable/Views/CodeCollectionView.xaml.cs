@@ -16,6 +16,7 @@ namespace TaskableApp.Views
         {
             InitializeComponent();
             this.DataContext = new CodeCollectionViewModel();
+            ((CodeCollectionViewModel)this.DataContext).CreateNewDocument();
         }
 
         private void trvFiles_Loaded(object sender, RoutedEventArgs e)

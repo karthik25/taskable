@@ -61,6 +61,10 @@ namespace TaskableApp.ViewModels
         public void CloseDocument(CodeEditorViewModel model)
         {
             CodeEditors.Remove(model);
+            if (CodeEditors.Count == 0)
+            {
+                CreateNewDocument();
+            }
             CurrentDocument = CodeEditors.LastOrDefault();
         }
 
