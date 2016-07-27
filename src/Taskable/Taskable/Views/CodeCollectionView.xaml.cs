@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using Microsoft.Win32;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -47,6 +48,15 @@ namespace TaskableApp.Views
             e.Cancel = true;            
             var item = (CodeEditorViewModel)e.Document.Content;
             ((CodeCollectionViewModel)this.DataContext).CloseDocument(item);
+        }
+
+        private void BtnOpen_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                ((CodeCollectionViewModel)this.DataContext).AddDocument(openFileDialog.FileName);
+            }
         }
     }
 }

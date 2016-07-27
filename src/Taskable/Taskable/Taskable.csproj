@@ -66,6 +66,7 @@
     <Compile Include="Abstract\INamedFileEntry.cs" />
     <Compile Include="ViewModels\CodeCollectionViewModel.cs" />
     <Compile Include="ViewModels\CodeEditorViewModel.cs" />
+    <Compile Include="ViewModels\TaskSelectorViewModel.cs" />
     <Compile Include="Views\CodeCollectionView.xaml.cs">
       <DependentUpon>CodeCollectionView.xaml</DependentUpon>
     </Compile>
@@ -74,6 +75,9 @@
     </Compile>
     <Compile Include="Views\SettingsDialogView.xaml.cs">
       <DependentUpon>SettingsDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TaskSelectorView.xaml.cs">
+      <DependentUpon>TaskSelectorView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -101,6 +105,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SettingsDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TaskSelectorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -150,6 +158,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\icon-settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\open.png" />
+    <Resource Include="Images\run.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

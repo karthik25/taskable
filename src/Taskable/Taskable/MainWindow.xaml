@@ -17,37 +17,7 @@
         </Grid.RowDefinitions>
         <views:CodeCollectionView Grid.Row="0" />
         <StackPanel Grid.Row="1">
-            <TabControl>
-                <TabItem Header="Task Runner">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <WrapPanel Grid.Row="0" Grid.Column="0">
-                            <ToolBarTray Grid.Row="0">
-                                <ToolBar>
-                                    <Button Height="20" Background="Transparent" BorderThickness="0" ToolTip="Settings" Name="BtnSettings" Click="BtnSettings_Click">
-                                        <StackPanel Orientation="Horizontal">
-                                            <Image Source="/Images/icon-settings.png" />
-                                            <TextBlock Margin="5,0,0,0" Text="Settings" />
-                                        </StackPanel>
-                                    </Button>
-                                </ToolBar>
-                            </ToolBarTray>
-                        </WrapPanel>
-                        <TextBlock Text="Choose Command" Grid.Row="1" Grid.Column="0" />
-                        <ComboBox Name="CmdList" Grid.Row="1" Grid.Column="1" />
-                    </Grid>
-                </TabItem>
-            </TabControl>
+            <views:TaskSelectorView />
         </StackPanel>
     </Grid>
 </Window>

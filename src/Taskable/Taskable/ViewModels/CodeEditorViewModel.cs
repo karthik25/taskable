@@ -1,6 +1,7 @@
 ﻿using ICSharpCode.AvalonEdit.Document;
 using ICSharpCode.AvalonEdit.Utils;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,11 @@ namespace TaskableApp.ViewModels
     public class CodeEditorViewModel : BindableBase
     {
         public GenericCommand SaveDocumentCommand
+        {
+            get; set;
+        }
+
+        public GenericCommand OpenInVsCommand
         {
             get; set;
         }
@@ -61,6 +67,7 @@ namespace TaskableApp.ViewModels
             Title = "New Document";
             Document = new TextDocument(Properties.Resources.Sample);
             SaveDocumentCommand = new GenericCommand(Save);
+            OpenInVsCommand = new GenericCommand((Action)OpenFileInVs);
         }
 
         public CodeEditorViewModel(string filePath)
@@ -73,6 +80,7 @@ namespace TaskableApp.ViewModels
                 StatusText = filePath;
             }
             SaveDocumentCommand = new GenericCommand(Save);
+            OpenInVsCommand = new GenericCommand((Action)OpenFileInVs);
         }
 
         private async Task Save()
@@ -99,6 +107,15 @@ namespace TaskableApp.ViewModels
                 action();
             });
             timer.Start();
+        }
+
+        public void OpenFileInVs()
+        {
+            var vsPath = @"C:\Program Files (x86)\Microsoft VS Code\code.exe";
+            if (!string.IsNullOrEmpty(CurrentFile))
+            {
+                Process.Start(vsPath, CurrentFile);
+            }
         }
 
         private static class FileLoader
