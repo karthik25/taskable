@@ -11,15 +11,18 @@ namespace TaskableCore
     public sealed class Tasker
     {
         private static volatile Tasker tasker;
-        private static object rootObj = new Object();
+        private static object rootObj = new object();
 
         private List<ComputedTask> _rawTasks;
         private ILookup<string, ComputedTask> _taskLookup;
         private bool _isInitialized = false;
+        private CommandExecutionFactory _commandExecutionFactory;
 
         private Tasker()
         {
             _rawTasks = new List<ComputedTask>();
+            var commandContext = CreateCommandContext();
+            _commandExecutionFactory = CommandExecutionFactory.Create(commandContext);
         }
 
         public static Tasker Instance
@@ -58,6 +61,13 @@ namespace TaskableCore
 
         public bool InvokeTask(string command)
         {
+            TaskerCommand taskerCommand;
+            if (command.IsCommand(out taskerCommand))
+            {
+                _commandExecutionFactory.Execute(taskerCommand);
+                return true;
+            }
+
             var task = _taskLookup.FindTask(command);
             if (task != null)
             {
@@ -77,5 +87,10 @@ namespace TaskableCore
                 Console.WriteLine("[General] Initialized 'taskable'");
             }
         }
-    }
+
+        private CommandContext CreateCommandContext()
+        {
+            throw new NotImplementedException();
+        }
+    }          
 }
