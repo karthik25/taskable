@@ -92,7 +92,10 @@ namespace TaskableCore
 
         private CommandContext CreateCommandContext()
         {
-            throw new NotImplementedException();
+            return new CommandContext
+            {
+                TaskLookup = _taskLookup
+            };
         }
     }          
 }

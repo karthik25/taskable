@@ -6,7 +6,7 @@ namespace TaskableCore
 {
     public class CommandContext
     {
-        ILookup<string, ComputedTask> TaskLookup { get; set; }
-        IWriter Writer { get; set; }
+        public ILookup<string, ComputedTask> TaskLookup { get; set; }
+        public IWriter Writer { get; set; }
     }
 }
