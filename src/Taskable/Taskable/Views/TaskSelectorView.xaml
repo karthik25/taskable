@@ -19,8 +19,8 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*" />
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="4*" />
+                    <ColumnDefinition Width="4*" />
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
                     <Grid.RowDefinitions>
@@ -30,7 +30,6 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
                         <ColumnDefinition />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
@@ -51,9 +50,11 @@
                     <TextBlock Text="Choose Parameters" Margin="5,5,5,5" Grid.Row="2" Grid.Column="0" />
                     <ListBox Name="ParameterList" Margin="5,5,5,5" Grid.Row="2" Grid.Column="1" Height="75" />
                 </Grid>
-                <StackPanel Grid.Column="1">
+                <StackPanel Grid.Column="1" Orientation="Vertical">
+                    <TextBlock Text="Output" FontWeight="Bold" />
                     <TextBlock x:Name="TxtOutput" 
                                TextWrapping="Wrap" 
+                               Height="50"
                                Foreground="Black" />
                 </StackPanel>
             </Grid>
