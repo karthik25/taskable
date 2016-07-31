@@ -8,7 +8,7 @@ namespace TaskableCore
         public static bool IsCommand(this string command, out TaskerCommand type)
         {
             var firstWord = command.Shift();
-            return Enum.TryParse(firstWord, out type);
+            return Enum.TryParse(firstWord, true, out type);
         }
     }
 }
