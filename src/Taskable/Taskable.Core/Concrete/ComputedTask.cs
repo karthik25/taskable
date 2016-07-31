@@ -9,6 +9,7 @@ namespace TaskableCore.Concrete
         public ComputedTask(ISimpleTask simpleTask)
             :base (simpleTask)
         {
+            this.Command = simpleTask.Pattern.Shift();
             this.Name = simpleTask.GetName();
             this.Examples = simpleTask.GetExamples();
             this.Compute();
@@ -19,6 +20,7 @@ namespace TaskableCore.Concrete
             this.Data = this.Pattern.Parse();
         }
 
+        public string Command { get; set; }
         public string Name { get; set; }
         public IEnumerable<string> Examples { get; set; }
         public ParameterData Data { get; set; }

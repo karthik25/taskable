@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 
 namespace TaskableCore.Commands
 {
@@ -10,11 +9,14 @@ namespace TaskableCore.Commands
             Console.WriteLine("List of all tasks");
             Console.WriteLine();
 
+            if (context == null || context.TaskLookup == null)
+                return;
+
             foreach(var entry in context.TaskLookup)
             {
                 foreach (var item in entry)
                 {
-                    Console.WriteLine(item.Name);
+                    Console.WriteLine(item.Command);
                 }
             }
         }

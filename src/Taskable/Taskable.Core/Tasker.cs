@@ -21,8 +21,6 @@ namespace TaskableCore
         private Tasker()
         {
             _rawTasks = new List<ComputedTask>();
-            var commandContext = CreateCommandContext();
-            _commandExecutionFactory = CommandExecutionFactory.Create(commandContext);
         }
 
         public static Tasker Instance
@@ -85,6 +83,10 @@ namespace TaskableCore
             {
                 _taskLookup = _rawTasks.ToLookup(k => k.Pattern.Shift(), v => v);
                 _isInitialized = true;
+
+                var commandContext = CreateCommandContext();
+                _commandExecutionFactory = CommandExecutionFactory.Create(commandContext);
+
                 Console.WriteLine("[General] Initialized 'taskable'");
             }
         }

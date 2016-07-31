@@ -7,19 +7,18 @@ namespace TaskableCore.Commands
     {
         public void Execute(CommandContext context, string[] args)
         {
-            if (!context.TaskLookup.Contains(args.First()))
+            var taskName = args.First();
+
+            if (!context.TaskLookup.Contains(taskName))
             {
                 Console.WriteLine("Task not found");
                 return;
             }
-
-            Console.WriteLine("Details about " + args.First());
-            Console.WriteLine();
-
-            var tasks = context.TaskLookup[args.First()];
+            
+            var tasks = context.TaskLookup[taskName];
             foreach (var task in tasks)
             {
-                Console.WriteLine("Details about: " + task.Name);
+                Console.WriteLine("Details about: " + task.Command);
                 Console.WriteLine();
                 Console.WriteLine("Examples:");
                 foreach (var example in task.Examples)
