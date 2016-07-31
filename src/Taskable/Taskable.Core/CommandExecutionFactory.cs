@@ -17,10 +17,10 @@ namespace TaskableCore
             return new CommandExecutionFactory(commandContext);
         }
 
-        public void Execute(TaskerCommand command)
+        public void Execute(TaskerCommand command, string[] paramters)
         {
             var executor = _commandExecutorMap[command];
-            executor.Execute(_commandContext);
+            executor.Execute(_commandContext, paramters);
         }
 
         private static Dictionary<TaskerCommand, ITaskerCommand> _commandExecutorMap = new Dictionary<TaskerCommand, ITaskerCommand>

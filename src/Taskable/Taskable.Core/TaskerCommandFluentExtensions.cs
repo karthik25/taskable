@@ -1,4 +1,5 @@
 ﻿using System;
+using TaskableCore.Extensions;
 
 namespace TaskableCore
 {
@@ -6,7 +7,8 @@ namespace TaskableCore
     {
         public static bool IsCommand(this string command, out TaskerCommand type)
         {
-            return Enum.TryParse(command, out type);
+            var firstWord = command.Shift();
+            return Enum.TryParse(firstWord, out type);
         }
     }
 }

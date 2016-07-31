@@ -4,9 +4,9 @@ namespace TaskableCore.Commands
 {
     public class ExplainCommand : ITaskerCommand
     {
-        public void Execute(CommandContext context)
+        public void Execute(CommandContext context, string[] args)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Explain command");
         }
     }
 }

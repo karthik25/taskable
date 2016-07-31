@@ -64,7 +64,9 @@ namespace TaskableCore
             TaskerCommand taskerCommand;
             if (command.IsCommand(out taskerCommand))
             {
-                _commandExecutionFactory.Execute(taskerCommand);
+                Console.WriteLine("[Command] Executing...");
+                var commandParameters = command.GetCommandParameters();
+                _commandExecutionFactory.Execute(taskerCommand, commandParameters);
                 return true;
             }
 

@@ -83,5 +83,11 @@ namespace TaskableCore.Extensions
             var splits = src.Split(new[] { ' ' });
             return splits.First();
         }
+
+        public static string[] GetCommandParameters(this string src)
+        {
+            var splits = src.Split(new[] { ' ' });
+            return splits.Skip(1).ToArray();
+        }
     }
 }

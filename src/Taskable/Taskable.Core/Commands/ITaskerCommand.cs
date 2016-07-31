@@ -2,6 +2,6 @@
 {
     public interface ITaskerCommand
     {
-        void Execute(CommandContext context);
+        void Execute(CommandContext context, string[] args);
     }
 }
