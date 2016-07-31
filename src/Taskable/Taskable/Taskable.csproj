@@ -163,6 +163,12 @@
     <Resource Include="Images\open.png" />
     <Resource Include="Images\run.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Taskable.Core\Taskable.Core.csproj">
+      <Project>{8974C622-6F81-4227-B168-7E0104C735DF}</Project>
+      <Name>Taskable.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
