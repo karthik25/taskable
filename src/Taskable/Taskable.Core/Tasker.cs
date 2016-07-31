@@ -41,7 +41,7 @@ namespace TaskableCore
             }
         }
 
-        public void RegisterTask(ISimpleTask simpleTask)
+        public ComputedTask RegisterTask(ISimpleTask simpleTask)
         {
             if (_isInitialized)
                 throw new NotSupportedException("You cannot register tasks after initializing taskable.");
@@ -53,8 +53,9 @@ namespace TaskableCore
             if (_rawTasks.Any(t => t.Name == computedTask.Name))
                 throw new DuplicateTaskDefinitionException(computedTask.Name);
 
-            Console.WriteLine("[General] Registered a task: {0}", computedTask.Name);
             _rawTasks.Add(computedTask);
+
+            return computedTask;
         }
 
         public bool InvokeTask(string command)
@@ -77,18 +78,17 @@ namespace TaskableCore
             return false;
         }
 
-        public void Initialize()
+        public bool Initialize()
         {
             if (!_isInitialized)
             {
                 _taskLookup = _rawTasks.ToLookup(k => k.Pattern.Shift(), v => v);
-                _isInitialized = true;
-
                 var commandContext = CreateCommandContext();
                 _commandExecutionFactory = CommandExecutionFactory.Create(commandContext);
-
-                Console.WriteLine("[General] Initialized 'taskable'");
+                _isInitialized = true;
+                return _isInitialized;
             }
+            return false;
         }
 
         private CommandContext CreateCommandContext()

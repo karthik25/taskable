@@ -20,8 +20,9 @@ namespace TaskableScriptPack
 
         public void WaitForCommands()
         {
-            _tasker.Initialize();
-            "Enter 'bye' or 'q' to exit from the prompt.".PrintGreen();
+            var init = _tasker.Initialize();
+            "Initialized taskable".PrintGreen();
+            "Enter 'bye' or 'q' to exit from the prompt.".PrintRed();
             _options.ReplPrefix.Print();
             string line = null;
             while (!ExitSignals.Contains(line = Console.ReadLine()))
@@ -33,7 +34,8 @@ namespace TaskableScriptPack
 
         public void RegisterTask(ISimpleTask simpleTask)
         {
-            _tasker.RegisterTask(simpleTask);
+            var computedTask = _tasker.RegisterTask(simpleTask);
+            string.Format("Registered a task: {0}", computedTask.Command).PrintYellow();
         }
 
         private static List<string> ExitSignals = new List<string> { "bye", "q" };
