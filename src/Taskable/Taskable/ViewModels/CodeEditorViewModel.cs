@@ -86,7 +86,14 @@ namespace TaskableApp.ViewModels
         private async Task Save()
         {
             if (string.IsNullOrEmpty(CurrentFile))
-                return;
+            {
+                Microsoft.Win32.SaveFileDialog dialog = new Microsoft.Win32.SaveFileDialog();
+
+                if (dialog.ShowDialog() == true)
+                {
+                    this.CurrentFile = dialog.FileName;
+                }
+            }
 
             this.StatusTextY = "Saving: " + this.CurrentFile;
             var contents = Document.Text;
