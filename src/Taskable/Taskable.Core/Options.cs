@@ -1,31 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
+using YamlDotNet.Serialization;
+using YamlDotNet.Serialization.NamingConventions;
 
 namespace TaskableCore
 {
     public class Options
     {
         public List<string> TaskDefinitionPaths { get; set; }
-        public string CommandPrefix { get; set; }
-        public string LogLevel { get; set; }
+        public List<string> AdditionalReferences { get; set; }
 
-        public string ReplPrefix
+        public static Options ParseFromString(string strContent)
         {
-            get
-            {
-                return CommandPrefix ?? "> ";
-            }
+            return ParseFromFile(new StringReader(strContent));
         }
-        
+
         public static Options ParseFromFile(string optionsFile)
         {
             return ParseFromFile(new StreamReader(optionsFile));
         }
         
-        public static Options ParseFromFile(StreamReader stream)
+        public static Options ParseFromFile(TextReader stream)
         {
-            throw new NotImplementedException();
+            var deserializer = new Deserializer(namingConvention: new CamelCaseNamingConvention());
+            var options = deserializer.Deserialize<Options>(stream);
+            return options;
+        }
+
+        public static void CreateDefaultOptionsFile(string configPath)
+        {
+            var options = new Options();
+            var serializer = new Serializer();
+            var writer = new StreamWriter(configPath);
+            serializer.Serialize(writer, options);
         }
     }
 }

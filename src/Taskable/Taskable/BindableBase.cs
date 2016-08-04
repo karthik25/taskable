@@ -1,10 +1,20 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.IO;
 using System.Runtime.CompilerServices;
+using TaskableCore;
 
 namespace TaskableApp
 {
     public class BindableBase : INotifyPropertyChanged
     {
+        protected Options _options;
+
+        public BindableBase()
+        {
+            _options = ParseUserSpecificOptions();
+        }
+
         protected virtual void SetProperty<T>(ref T member, T val,
            [CallerMemberName] string propertyName = null)
         {
@@ -20,5 +30,16 @@ namespace TaskableApp
         }
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
+
+        private static Options ParseUserSpecificOptions()
+        {
+            var baseConfigPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            var configPath = string.Format(@"{0}\taskable.yml", baseConfigPath);
+            if (!File.Exists(configPath))
+            {
+                Options.CreateDefaultOptionsFile(configPath);
+            }
+            return Options.ParseFromFile(configPath);
+        }
     }
 }

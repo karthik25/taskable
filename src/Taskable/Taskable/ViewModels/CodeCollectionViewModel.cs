@@ -21,7 +21,7 @@ namespace TaskableApp.ViewModels
         {
             NewDocumentCommand = new GenericCommand((Action) CreateNewDocument);
             CloseDocumentCommand = new GenericCommand<CodeEditorViewModel>(CloseDocument);
-            FileOrFolderEntries = new ObservableCollection<FileOrFolderEntry>(DirectoryTreeGenerator.GetFilesAndFoldersRecursively(tempBasePath));
+            FileOrFolderEntries = new ObservableCollection<FileOrFolderEntry>(DirectoryTreeGenerator.GetFilesAndFoldersRecursively(_options.TaskDefinitionPaths));
             CodeEditors = new ObservableCollection<CodeEditorViewModel>();
         }
 
@@ -65,9 +65,7 @@ namespace TaskableApp.ViewModels
             {
                 CreateNewDocument();
             }
-            CurrentDocument = CodeEditors.LastOrDefault();
+            CurrentDocument = CodeEditors.LastOrDefault();            
         }
-
-        private const string tempBasePath = @"C:\Users\Karthik\Custom\GitHub Forks\ILSpy";
     }
 }

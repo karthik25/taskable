@@ -7,21 +7,24 @@ namespace TaskableApp
 {
     public static class DirectoryTreeGenerator
     {
-        public static List<FileOrFolderEntry> GetFilesAndFoldersRecursively(string basePath)
+        public static List<FileOrFolderEntry> GetFilesAndFoldersRecursively(List<string> basePaths)
         {
-            if (!Directory.Exists(basePath))
-                throw new System.Exception("Directory does not exist " + basePath);
-
             var fileOrFolderEntries = new List<FileOrFolderEntry>();
-            var fileOrFolderEntry = new FileOrFolderEntry { Name = GetDirectoryName(basePath), Path = basePath, IsFolder = true, Entries = new List<FileOrFolderEntry>() };
-            fileOrFolderEntries.Add(fileOrFolderEntry);
-            var directories = Directory.GetDirectories(basePath);
-            foreach (var directory in directories)
+            foreach (var basePath in basePaths)
             {
-                ProcessDirectory(directory, fileOrFolderEntry);
-            }
+                if (!Directory.Exists(basePath))
+                    throw new System.Exception("Directory does not exist " + basePath);
 
-            FindFilesInFolders(basePath, fileOrFolderEntry);
+                var fileOrFolderEntry = new FileOrFolderEntry { Name = GetDirectoryName(basePath), Path = basePath, IsFolder = true, Entries = new List<FileOrFolderEntry>() };
+                fileOrFolderEntries.Add(fileOrFolderEntry);
+                var directories = Directory.GetDirectories(basePath);
+                foreach (var directory in directories)
+                {
+                    ProcessDirectory(directory, fileOrFolderEntry);
+                }
+
+                FindFilesInFolders(basePath, fileOrFolderEntry);
+            }
 
             return fileOrFolderEntries;
         }
