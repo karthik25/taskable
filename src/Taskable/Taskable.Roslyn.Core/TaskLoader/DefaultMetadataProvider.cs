@@ -1,6 +1,7 @@
 ﻿using Microsoft.CodeAnalysis;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using TaskableRoslyn.Contracts;
 
 namespace TaskableRoslynCore.TaskLoader
@@ -12,7 +13,8 @@ namespace TaskableRoslynCore.TaskLoader
             var references = new List<MetadataReference>
             {
                 MetadataReference.CreateFromFile(typeof(object).Assembly.Location),
-                MetadataReference.CreateFromFile(typeof(Enumerable).Assembly.Location)
+                MetadataReference.CreateFromFile(typeof(Enumerable).Assembly.Location),
+                MetadataReference.CreateFromFile(typeof(WebClient).Assembly.Location)
             };
 
             if (additionalReferences.Any())
