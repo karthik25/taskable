@@ -20,9 +20,11 @@ namespace TaskableApp.ViewModels
         {
             _tasker = Tasker.Instance;
             _bootstrapper = new TaskBootstrapper();
-            //var tasks = _bootstrapper.GetTasks(_options)
-            //                         .Select(t => new ComputedTask(t));
-            //this.CommandList = tasks.Select(t => t.Command).ToList();
+            this.CommandList = new List<string>
+            {
+                "echo",
+                "git-download"
+            };
         }
     }
 }
