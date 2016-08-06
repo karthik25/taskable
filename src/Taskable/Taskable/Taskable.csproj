@@ -168,6 +168,14 @@
       <Project>{8974C622-6F81-4227-B168-7E0104C735DF}</Project>
       <Name>Taskable.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Taskable.Roslyn.Core\Taskable.Roslyn.Core.csproj">
+      <Project>{1F03ED77-DCDE-43E5-B441-03BA3C551359}</Project>
+      <Name>Taskable.Roslyn.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Taskable.ScriptCs.Contracts\Taskable.ScriptCs.Contracts.csproj">
+      <Project>{740e1573-3a6d-4512-8fc3-241d09951768}</Project>
+      <Name>Taskable.ScriptCs.Contracts</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

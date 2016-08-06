@@ -34,5 +34,13 @@ namespace TaskableCore
             var writer = new StreamWriter(configPath);
             serializer.Serialize(writer, options);
         }
+
+        public static Options OverrideWithReferences(Options options, IEnumerable<string> references)
+        {
+            if (options.AdditionalReferences == null)
+                options.AdditionalReferences = new List<string>();
+            options.AdditionalReferences.AddRange(references);
+            return options;
+        }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using TaskableCore.Attributes;
 using TaskableScriptCs.Contracts;
 
 namespace TaskableTests.TestTasks

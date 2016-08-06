@@ -1,4 +1,7 @@
-﻿[TaskName("<<<Replace>>>")]
+﻿using System;
+using TaskableCore.Attributes;
+
+[TaskName("<<<Replace>>>")]
 [TaskExample("<<<Replace>>>")]
 public class <<<Replace>>>Task : ISimpleTask
 {

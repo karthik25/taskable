@@ -50,8 +50,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\TaskExampleAttribute.cs" />
-    <Compile Include="Attributes\TaskNameAttribute.cs" />
     <Compile Include="CommandContext.cs" />
     <Compile Include="CommandExecutionFactory.cs" />
     <Compile Include="Commands\ExplainCommand.cs" />

@@ -20,7 +20,7 @@ namespace TaskableRoslynCore.TaskLoader
         public Compilation GetCompilation(ISourceFileSyntaxProvider sourceProvider, IMetadataProvider metadataProvider)
         {
             var compilerOptions = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary);
-            var references = metadataProvider.GenerateMetadaReferences(new List<string>());
+            var references = metadataProvider.GenerateMetadaReferences(_options.AdditionalReferences);
             var trees = sourceProvider.GetTaskSyntaxTrees(_options.TaskDefinitionPaths).ToArray();
             string assemblyName = Path.GetRandomFileName();
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TaskableCore.Attributes
+namespace TaskableScriptCs.Contracts
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public class TaskExampleAttribute : Attribute

@@ -8,7 +8,6 @@ namespace TaskableScriptPack
         {
             session.ImportNamespace(this.GetType().Namespace);
             session.ImportNamespace("TaskableScriptCs.Contracts");
-            session.ImportNamespace("TaskableCore.Attributes");
             var arguments = Arguments.Parse(session.ScriptArgs ?? new string[] { });
             this.Context = new Taskable(arguments);
         }
