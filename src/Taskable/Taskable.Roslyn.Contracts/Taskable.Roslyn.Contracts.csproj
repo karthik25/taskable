@@ -126,11 +126,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ICompilerOptionsProvider.cs" />
     <Compile Include="IDynamicAssemblyProvider.cs" />
     <Compile Include="IDynamicCompilerProvider.cs" />
     <Compile Include="IMetadataProvider.cs" />
-    <Compile Include="ISourceFileSymbolProvider.cs" />
     <Compile Include="ISourceFileSyntaxProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

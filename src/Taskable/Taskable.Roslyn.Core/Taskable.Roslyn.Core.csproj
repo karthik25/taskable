@@ -126,13 +126,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LanguageType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SourceFileProviderFactory.cs" />
+    <Compile Include="TaskBootstrapper.cs" />
+    <Compile Include="TaskLoader\CSharpCompilationProvider.cs" />
+    <Compile Include="TaskLoader\CSharpSourceFileSyntaxProvider.cs" />
+    <Compile Include="TaskLoader\DefaultDynamicAssemblyProvider.cs" />
     <Compile Include="TaskLoader\DefaultMetadataProvider.cs" />
+    <Compile Include="TaskLoader\SyntaxTreeHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Taskable.Core\Taskable.Core.csproj">
+      <Project>{8974c622-6f81-4227-b168-7e0104c735df}</Project>
+      <Name>Taskable.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Taskable.Roslyn.Contracts\Taskable.Roslyn.Contracts.csproj">
       <Project>{8ff1df95-6486-4e60-9f89-cea512703a86}</Project>
       <Name>Taskable.Roslyn.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Taskable.ScriptCs.Contracts\Taskable.ScriptCs.Contracts.csproj">
+      <Project>{740E1573-3A6D-4512-8FC3-241D09951768}</Project>
+      <Name>Taskable.ScriptCs.Contracts</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
