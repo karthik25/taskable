@@ -19,5 +19,11 @@ namespace TaskableApp.Views
         {
 
         }
+
+        private void BtnAddParam_Click(object sender, RoutedEventArgs e)
+        {
+            var paramView = new AddParameterView();
+            paramView.ShowDialog();
+        }
     }
 }

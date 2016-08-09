@@ -76,6 +76,9 @@
     <Compile Include="ViewModels\CodeCollectionViewModel.cs" />
     <Compile Include="ViewModels\CodeEditorViewModel.cs" />
     <Compile Include="ViewModels\TaskSelectorViewModel.cs" />
+    <Compile Include="Views\AddParameterView.xaml.cs">
+      <DependentUpon>AddParameterView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CodeCollectionView.xaml.cs">
       <DependentUpon>CodeCollectionView.xaml</DependentUpon>
     </Compile>
@@ -105,6 +108,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\AddParameterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CodeCollectionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
