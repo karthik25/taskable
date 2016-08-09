@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using TaskableApp.Models;
 using TaskableCore;
 using TaskableCore.Concrete;
 using TaskableRoslynCore;
@@ -12,6 +14,11 @@ namespace TaskableApp.ViewModels
         private TaskBootstrapper _bootstrapper;
 
         public List<string> CommandList
+        {
+            get;set;
+        }
+
+        public ObservableCollection<Error> Errors
         {
             get;set;
         }

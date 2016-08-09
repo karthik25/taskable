@@ -72,6 +72,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Abstract\INamedFileEntry.cs" />
+    <Compile Include="Models\Error.cs" />
     <Compile Include="ViewModels\CodeCollectionViewModel.cs" />
     <Compile Include="ViewModels\CodeEditorViewModel.cs" />
     <Compile Include="ViewModels\TaskSelectorViewModel.cs" />
@@ -184,6 +185,12 @@
       <Project>{740e1573-3a6d-4512-8fc3-241d09951768}</Project>
       <Name>Taskable.ScriptCs.Contracts</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\errors.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\parameters.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

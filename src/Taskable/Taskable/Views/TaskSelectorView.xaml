@@ -10,7 +10,7 @@
         <TabItem>
             <TabItem.Header>
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="/Images/taskable.png" Height="20" />
+                    <Image Source="/Images/taskable.png" Height="16" />
                     <TextBlock Text="Task Runner" />
                 </StackPanel>
             </TabItem.Header>
@@ -62,10 +62,21 @@
         <TabItem>
             <TabItem.Header>
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="/Images/icon-settings.png" Height="20" />
+                    <Image Source="/Images/icon-settings.png" Height="16" />
                     <TextBlock Text="Settings" />
                 </StackPanel>
             </TabItem.Header>
+        </TabItem>
+        <TabItem>
+            <TabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Images/errors.png" Height="16" />
+                    <TextBlock Text="Errors" />
+                </StackPanel>
+            </TabItem.Header>
+            <StackPanel>
+                <ListView Name="ErrorList" ItemsSource="{Binding Errors}" />
+            </StackPanel>
         </TabItem>
     </TabControl>
 </UserControl>
