@@ -30,8 +30,9 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="4*" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <WrapPanel Grid.Row="0" Grid.Column="0">
                         <ToolBarTray Grid.Row="0">
@@ -49,6 +50,18 @@
                     <ComboBox Name="CmdList" Margin="5,5,5,5" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding CommandList}" />
                     <TextBlock Text="Choose Parameters" Margin="5,5,5,5" Grid.Row="2" Grid.Column="0" />
                     <ListBox Name="ParameterList" Margin="5,5,5,5" Grid.Row="2" Grid.Column="1" Height="75" />
+                    <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="2">
+                        <Button Height="24" Width="24" Margin="5" Background="Transparent" BorderThickness="0" ToolTip="Add Parameter" Name="BtnAddParam">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Images/plus.png" />
+                            </StackPanel>
+                        </Button>
+                        <Button Height="24" Width="24" Margin="5" Background="Transparent" BorderThickness="0" ToolTip="Remove Parameter" Name="BtnRmvParam">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Images/minus.png" />
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
                 </Grid>
                 <StackPanel Grid.Column="1" Orientation="Vertical">
                     <TextBlock Text="Output" FontWeight="Bold" />

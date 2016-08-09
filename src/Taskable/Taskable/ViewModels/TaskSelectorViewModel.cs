@@ -18,6 +18,11 @@ namespace TaskableApp.ViewModels
             get;set;
         }
 
+        public List<string> Parameters
+        {
+            get;set;
+        }
+
         public ObservableCollection<Error> Errors
         {
             get;set;
@@ -29,6 +34,6 @@ namespace TaskableApp.ViewModels
             _bootstrapper = new TaskBootstrapper();
             var tasks = _bootstrapper.GetTasks(_options).Select(t => new ComputedTask(t));
             this.CommandList = tasks.Select(t => t.Command).ToList();
-        }
+        }        
     }
 }
