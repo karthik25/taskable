@@ -33,7 +33,7 @@ namespace TaskableApp.Views
 
         private void Model_Save(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
         }
 
         private void Window_ContentRendered(object sender, EventArgs e)

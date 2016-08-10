@@ -43,7 +43,7 @@ namespace TaskableApp.ViewModels
 
         private void ParameterViewModel_Save(object sender, System.EventArgs e)
         {
-            this.Parameters.Add(new ParameterItemViewModel { ParameterValue = this.ParameterViewModel.Parameter });
+            this.Parameters.Add(new ParameterItemViewModel(this.ParameterViewModel.Parameter));
             this.ParameterViewModel.Reset();
         }
     }
