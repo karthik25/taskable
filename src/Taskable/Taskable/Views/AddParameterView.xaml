@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaskableApp.Views"
         mc:Ignorable="d" WindowStyle="ToolWindow"
-        Title="Add Parameter" Height="150" Width="450" ContentRendered="Window_ContentRendered">
+        Title="Add Parameter" Height="150" Width="450" ContentRendered="Window_ContentRendered" Closed="Window_Closed">
     <Grid Margin="15">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />

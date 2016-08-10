@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using TaskableApp.Models;
 using TaskableCore;
 using TaskableCore.Concrete;
@@ -18,6 +20,8 @@ namespace TaskableApp.ViewModels
             get;set;
         }
 
+        public string SelectedTask { get; set; }
+
         public ObservableCollection<ParameterItemViewModel> Parameters
         {
             get;set;
@@ -30,6 +34,8 @@ namespace TaskableApp.ViewModels
 
         public AddParameterViewModel ParameterViewModel { get; set; }
 
+        public GenericCommand RunTaskCommand { get; set; }
+
         public TaskSelectorViewModel()
         {
             _tasker = Tasker.Instance;
@@ -39,6 +45,12 @@ namespace TaskableApp.ViewModels
             this.Parameters = new ObservableCollection<ParameterItemViewModel>();
             this.ParameterViewModel = new AddParameterViewModel();
             this.ParameterViewModel.Save += ParameterViewModel_Save;
+            this.RunTaskCommand = new GenericCommand((Action)RunSelectedTask);
+        }
+
+        public void RunSelectedTask()
+        {
+            MessageBox.Show("Running the task now " + this.SelectedTask ?? "n/a");
         }
 
         private void ParameterViewModel_Save(object sender, System.EventArgs e)

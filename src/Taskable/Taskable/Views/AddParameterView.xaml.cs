@@ -32,14 +32,18 @@ namespace TaskableApp.Views
         }
 
         private void Model_Save(object sender, EventArgs e)
-        {
-            ((AddParameterViewModel)this.DataContext).Save -= Model_Save;
+        {            
             this.Close();
         }
 
         private void Window_ContentRendered(object sender, EventArgs e)
         {
             TxtParam.Focus();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            ((AddParameterViewModel)this.DataContext).Save -= Model_Save;
         }
     }
 }
