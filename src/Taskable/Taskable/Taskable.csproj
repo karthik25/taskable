@@ -73,8 +73,10 @@
     </ApplicationDefinition>
     <Compile Include="Abstract\INamedFileEntry.cs" />
     <Compile Include="Models\Error.cs" />
+    <Compile Include="ViewModels\AddParameterViewModel.cs" />
     <Compile Include="ViewModels\CodeCollectionViewModel.cs" />
     <Compile Include="ViewModels\CodeEditorViewModel.cs" />
+    <Compile Include="ViewModels\ParameterItemViewModel.cs" />
     <Compile Include="ViewModels\TaskSelectorViewModel.cs" />
     <Compile Include="Views\AddParameterView.xaml.cs">
       <DependentUpon>AddParameterView.xaml</DependentUpon>

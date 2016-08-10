@@ -15,14 +15,10 @@ namespace TaskableApp.Views
             this.DataContext = new TaskSelectorViewModel();
         }
 
-        private void BtnSettings_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void BtnAddParam_Click(object sender, RoutedEventArgs e)
         {
-            var paramView = new AddParameterView();
+            var selectorModel = (TaskSelectorViewModel)this.DataContext;
+            var paramView = new AddParameterView(selectorModel.ParameterViewModel);
             paramView.ShowDialog();
         }
     }

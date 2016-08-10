@@ -13,10 +13,5 @@ namespace TaskableApp
             InitializeComponent();
             this.DataContext = new MainWindowViewModel();
         }
-
-        private void BtnSettings_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
     }
 }

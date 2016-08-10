@@ -18,7 +18,7 @@ namespace TaskableApp.ViewModels
             get;set;
         }
 
-        public List<string> Parameters
+        public ObservableCollection<ParameterItemViewModel> Parameters
         {
             get;set;
         }
@@ -28,12 +28,23 @@ namespace TaskableApp.ViewModels
             get;set;
         }
 
+        public AddParameterViewModel ParameterViewModel { get; set; }
+
         public TaskSelectorViewModel()
         {
             _tasker = Tasker.Instance;
             _bootstrapper = new TaskBootstrapper();
             var tasks = _bootstrapper.GetTasks(_options).Select(t => new ComputedTask(t));
             this.CommandList = tasks.Select(t => t.Command).ToList();
-        }        
+            this.Parameters = new ObservableCollection<ParameterItemViewModel>();
+            this.ParameterViewModel = new AddParameterViewModel();
+            this.ParameterViewModel.Save += ParameterViewModel_Save;
+        }
+
+        private void ParameterViewModel_Save(object sender, System.EventArgs e)
+        {
+            this.Parameters.Add(new ParameterItemViewModel { ParameterValue = this.ParameterViewModel.Parameter });
+            this.ParameterViewModel.Reset();
+        }
     }
 }

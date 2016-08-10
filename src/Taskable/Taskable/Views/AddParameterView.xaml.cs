@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TaskableApp.ViewModels;
 
 namespace TaskableApp.Views
 {
@@ -24,23 +25,20 @@ namespace TaskableApp.Views
             InitializeComponent();
         }
 
-        private void btnDialogOk_Click(object sender, RoutedEventArgs e)
+        public AddParameterView(AddParameterViewModel model) : this()
         {
-            this.DialogResult = true;
+            this.DataContext = model;
+            model.Save += Model_Save;
+        }
+
+        private void Model_Save(object sender, EventArgs e)
+        {
+            this.Hide();
         }
 
         private void Window_ContentRendered(object sender, EventArgs e)
         {
-            txtAnswer.SelectAll();
-            txtAnswer.Focus();
-        }
-
-        public string Parameter
-        {
-            get
-            {
-                return txtAnswer.Text;
-            }
+            TxtParam.Focus();
         }
     }
 }
