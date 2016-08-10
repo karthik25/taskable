@@ -33,6 +33,7 @@ namespace TaskableApp.Views
 
         private void Model_Save(object sender, EventArgs e)
         {
+            ((AddParameterViewModel)this.DataContext).Save -= Model_Save;
             this.Close();
         }
 
