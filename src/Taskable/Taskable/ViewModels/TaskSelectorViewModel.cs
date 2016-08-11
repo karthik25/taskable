@@ -7,6 +7,7 @@ using TaskableApp.Models;
 using TaskableCore;
 using TaskableCore.Concrete;
 using TaskableRoslynCore;
+using TaskableScriptCs.Contracts;
 
 namespace TaskableApp.ViewModels
 {
@@ -38,10 +39,8 @@ namespace TaskableApp.ViewModels
 
         public TaskSelectorViewModel()
         {
-            _tasker = Tasker.Instance;
-            _bootstrapper = new TaskBootstrapper();
-            var tasks = _bootstrapper.GetTasks(_options).Select(t => new ComputedTask(t));
-            this.CommandList = tasks.Select(t => t.Command).ToList();
+            InitializeTasker();
+            this.CommandList = _tasker.GetTaskCommands().ToList();
             this.Parameters = new ObservableCollection<ParameterItemViewModel>();
             this.ParameterViewModel = new AddParameterViewModel();
             this.ParameterViewModel.Save += ParameterViewModel_Save;
@@ -50,7 +49,20 @@ namespace TaskableApp.ViewModels
 
         public void RunSelectedTask()
         {
-            MessageBox.Show("Running the task now " + this.SelectedTask ?? "n/a");
+            var computedTask = _tasker.FindTask(SelectedTask);
+            MessageBox.Show(computedTask.Command + " : " + computedTask.Data.Positions.Count());
+        }
+
+        private void InitializeTasker()
+        {
+            _tasker = Tasker.Instance;
+            _bootstrapper = new TaskBootstrapper();
+            var tasks = _bootstrapper.GetTasks(_options);
+            foreach(var task in tasks)
+            {
+                _tasker.RegisterTask(task);
+            }
+            _tasker.Initialize();
         }
 
         private void ParameterViewModel_Save(object sender, System.EventArgs e)

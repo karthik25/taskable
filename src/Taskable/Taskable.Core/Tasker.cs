@@ -91,6 +91,22 @@ namespace TaskableCore
             return false;
         }
 
+        public ComputedTask FindTask(string commandPrefix)
+        {
+            if (!_isInitialized)
+                throw new Exception("Tasker has not been initialized");
+
+            if (!_taskLookup.Contains(commandPrefix))
+                throw new Exception(string.Format("Task {0} is unknown or not registered", commandPrefix));
+
+            return _taskLookup[commandPrefix].First();
+        }
+
+        public IEnumerable<string> GetTaskCommands()
+        {
+            return _taskLookup.Select(t => t.Key);
+        }
+
         private CommandContext CreateCommandContext()
         {
             return new CommandContext
