@@ -68,7 +68,8 @@
                     <TextBlock x:Name="TxtOutput" 
                                TextWrapping="Wrap" 
                                Height="50"
-                               Foreground="Black" />
+                               Foreground="Black"
+                               Text="{Binding OutputText}" />
                 </StackPanel>
             </Grid>
         </TabItem>

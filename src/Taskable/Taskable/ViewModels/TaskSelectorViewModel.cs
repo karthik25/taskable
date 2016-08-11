@@ -37,6 +37,13 @@ namespace TaskableApp.ViewModels
 
         public GenericCommand RunTaskCommand { get; set; }
 
+        private string outputText;
+        public string OutputText
+        {
+            get { return outputText; }
+            set { SetProperty<string>(ref outputText, value); }
+        }
+
         public TaskSelectorViewModel()
         {
             InitializeTasker();
@@ -65,7 +72,7 @@ namespace TaskableApp.ViewModels
                         }
                     }
                     var finalCommand = string.Join(" ", cmdSplit);
-                    MessageBox.Show(finalCommand);
+                    OutputText = "Running: " + finalCommand;
                 }
             }
         }
