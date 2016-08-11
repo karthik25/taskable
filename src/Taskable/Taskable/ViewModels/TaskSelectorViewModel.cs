@@ -44,14 +44,19 @@ namespace TaskableApp.ViewModels
             set { SetProperty<string>(ref outputText, value); }
         }
 
+        public event EventHandler TaskSaved;
+        public GenericCommand TaskSavedCommand { get; set; }
+
         public TaskSelectorViewModel()
         {
+            _tasker = Tasker.Instance;
             InitializeTasker();
             this.CommandList = _tasker.GetTaskCommands().ToList();
             this.Parameters = new ObservableCollection<ParameterItemViewModel>();
             this.ParameterViewModel = new AddParameterViewModel();
             this.ParameterViewModel.Save += ParameterViewModel_Save;
             this.RunTaskCommand = new GenericCommand((Action)RunSelectedTask);
+            this.TaskSavedCommand = new GenericCommand((Action)InitializeTasker);
         }
 
         public void RunSelectedTask()
@@ -79,7 +84,6 @@ namespace TaskableApp.ViewModels
 
         private void InitializeTasker()
         {
-            _tasker = Tasker.Instance;
             _bootstrapper = new TaskBootstrapper();
             var tasks = _bootstrapper.GetTasks(_options);
             foreach(var task in tasks)
