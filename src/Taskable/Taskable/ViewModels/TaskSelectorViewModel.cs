@@ -49,8 +49,25 @@ namespace TaskableApp.ViewModels
 
         public void RunSelectedTask()
         {
-            var computedTask = _tasker.FindTask(SelectedTask);
-            MessageBox.Show(computedTask.Command + " : " + computedTask.Data.Positions.Count());
+            if (!string.IsNullOrEmpty(SelectedTask))
+            {
+                var computedTask = _tasker.FindTask(SelectedTask);
+                if (computedTask.Data.Positions.Count() == Parameters.Count)
+                {
+                    var parameterIndex = 0;
+                    var cmdSplit = computedTask.Pattern.Split(new[] { ' ' }).ToList();
+                    for (int i = 0; i < cmdSplit.Count; i++)
+                    {
+                        if (cmdSplit[i] == "{}")
+                        {
+                            cmdSplit[i] = Parameters[parameterIndex].ParameterValue;
+                            parameterIndex++;
+                        }
+                    }
+                    var finalCommand = string.Join(" ", cmdSplit);
+                    MessageBox.Show(finalCommand);
+                }
+            }
         }
 
         private void InitializeTasker()
