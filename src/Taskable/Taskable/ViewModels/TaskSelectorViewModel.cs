@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows;
 using TaskableApp.Models;
 using TaskableCore;
-using TaskableCore.Concrete;
 using TaskableRoslynCore;
-using TaskableScriptCs.Contracts;
 
 namespace TaskableApp.ViewModels
 {
@@ -35,6 +32,8 @@ namespace TaskableApp.ViewModels
 
         public AddParameterViewModel ParameterViewModel { get; set; }
 
+        public GenericCommand RemoveParameter { get; set; }
+        public ParameterItemViewModel SelectedItem { get; set; }
         public GenericCommand RunTaskCommand { get; set; }
 
         private string outputText;
@@ -57,6 +56,7 @@ namespace TaskableApp.ViewModels
             this.ParameterViewModel.Save += ParameterViewModel_Save;
             this.RunTaskCommand = new GenericCommand((Action)RunSelectedTask);
             this.TaskSavedCommand = new GenericCommand((Action)InitializeTasker);
+            this.RemoveParameter = new GenericCommand((Action)RemoveParam);
         }
 
         public void RunSelectedTask()
@@ -97,6 +97,14 @@ namespace TaskableApp.ViewModels
         {
             this.Parameters.Add(new ParameterItemViewModel(this.ParameterViewModel.Parameter));
             this.ParameterViewModel.Reset();
+        }
+
+        private void RemoveParam()
+        {
+            if (SelectedItem != null)
+            {
+                this.Parameters.Remove(SelectedItem);
+            }
         }
     }
 }
