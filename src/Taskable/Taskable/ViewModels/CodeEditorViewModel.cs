@@ -11,6 +11,8 @@ namespace TaskableApp.ViewModels
 {
     public class CodeEditorViewModel : BindableBase
     {
+        private MainWindowViewModel _mainViewModel;
+
         public GenericCommand SaveDocumentCommand
         {
             get; set;
@@ -62,16 +64,18 @@ namespace TaskableApp.ViewModels
             }
         }
 
-        public CodeEditorViewModel()
+        public CodeEditorViewModel(MainWindowViewModel mainViewModel)
         {
+            _mainViewModel = mainViewModel;
             Title = "New Document";
             Document = new TextDocument(Properties.Resources.Sample);
             SaveDocumentCommand = new GenericCommand(Save);
             OpenInVsCommand = new GenericCommand((Action)OpenFileInVs);
         }
 
-        public CodeEditorViewModel(string filePath)
+        public CodeEditorViewModel(string filePath, MainWindowViewModel mainViewModel)
         {
+            _mainViewModel = mainViewModel;
             if (File.Exists(filePath))
             {
                 CurrentFile = filePath;

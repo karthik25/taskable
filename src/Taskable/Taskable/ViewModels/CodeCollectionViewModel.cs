@@ -7,6 +7,8 @@ namespace TaskableApp.ViewModels
 {
     public class CodeCollectionViewModel : BindableBase
     {
+        private MainWindowViewModel _mainViewModel;
+
         public GenericCommand NewDocumentCommand
         {
             get; set;
@@ -17,8 +19,9 @@ namespace TaskableApp.ViewModels
             get;set;
         }
 
-        public CodeCollectionViewModel()
+        public CodeCollectionViewModel(MainWindowViewModel mainViewModel)
         {
+            _mainViewModel = mainViewModel;
             NewDocumentCommand = new GenericCommand((Action) CreateNewDocument);
             CloseDocumentCommand = new GenericCommand<CodeEditorViewModel>(CloseDocument);
             FileOrFolderEntries = new ObservableCollection<FileOrFolderEntry>(DirectoryTreeGenerator.GetFilesAndFoldersRecursively(_options.TaskDefinitionPaths));
@@ -29,7 +32,7 @@ namespace TaskableApp.ViewModels
         {
             if (CodeEditors.Any(c => c.CurrentFile == filePath))
                 return;
-            var codeEditorModel = new CodeEditorViewModel(filePath);
+            var codeEditorModel = new CodeEditorViewModel(filePath, _mainViewModel);
             CodeEditors.Add(codeEditorModel);
             CurrentDocument = codeEditorModel;
         }
@@ -53,7 +56,7 @@ namespace TaskableApp.ViewModels
 
         public void CreateNewDocument()
         {
-            var newEditorModel = new CodeEditorViewModel();
+            var newEditorModel = new CodeEditorViewModel(_mainViewModel);
             CodeEditors.Add(newEditorModel);
             CurrentDocument = newEditorModel;
         }

@@ -9,8 +9,8 @@ namespace TaskableApp
 
         public MainWindowViewModel()
         {
-            this.TaskSelectorViewModel = new TaskSelectorViewModel();
-            this.CodeCollectionViewModel = new CodeCollectionViewModel();
+            this.TaskSelectorViewModel = new TaskSelectorViewModel(this);
+            this.CodeCollectionViewModel = new CodeCollectionViewModel(this);
         }
     }
 }

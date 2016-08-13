@@ -10,6 +10,7 @@ namespace TaskableApp.ViewModels
 {
     public class TaskSelectorViewModel : BindableBase
     {
+        private MainWindowViewModel _mainViewModel;
         private Tasker _tasker;
         private TaskBootstrapper _bootstrapper;
 
@@ -41,8 +42,9 @@ namespace TaskableApp.ViewModels
             get;set;
         }
         
-        public TaskSelectorViewModel()
+        public TaskSelectorViewModel(MainWindowViewModel mainViewModel)
         {
+            _mainViewModel = mainViewModel;
             _tasker = Tasker.Instance;
             InitializeTasker();
             this.CommandList = _tasker.GetTaskCommands().ToList();

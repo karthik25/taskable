@@ -1,5 +1,5 @@
 ﻿using System;
-using TaskableCore.Attributes;
+using TaskableScriptCs.Contracts;
 
 [TaskName("<<<Replace>>>")]
 [TaskExample("<<<Replace>>>")]
