@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using TaskableApp.Models;
 using TaskableCore;
 using TaskableRoslynCore;
@@ -56,7 +57,13 @@ namespace TaskableApp.ViewModels
             this.RemoveParameter = new GenericCommand((Action)RemoveParam);
         }
 
-        public void RunSelectedTask()
+        public void TaskSaved()
+        {
+            this.OutputEntries.Clear();
+            this.OutputEntries.Add("Regenerating the tasks");
+        } 
+
+        private void RunSelectedTask()
         {
             if (!string.IsNullOrEmpty(SelectedTask))
             {

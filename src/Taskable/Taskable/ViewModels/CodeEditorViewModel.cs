@@ -107,6 +107,8 @@ namespace TaskableApp.ViewModels
             }
             this.StatusTextY = "Saved";
             PerformDelayedUpdate(() => { this.StatusTextY = ""; });
+
+            _mainViewModel.TaskSelectorViewModel.TaskSaved();
         }
 
         private void PerformDelayedUpdate(Action action, int intervalSeconds = 5)
