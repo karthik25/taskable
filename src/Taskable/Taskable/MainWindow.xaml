@@ -15,7 +15,8 @@
             <RowDefinition Height="6*" />
             <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
-        <views:CodeCollectionView Grid.Row="0" />
+        <views:CodeCollectionView Grid.Row="0"
+                                  DataContext="{Binding CodeCollectionViewModel}" />
         <StackPanel Grid.Row="1">
             <views:TaskSelectorView DataContext="{Binding TaskSelectorViewModel}" />
         </StackPanel>
