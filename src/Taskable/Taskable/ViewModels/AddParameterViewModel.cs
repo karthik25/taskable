@@ -17,7 +17,7 @@ namespace TaskableApp.ViewModels
 
         public void Reset()
         {
-            
+            this.Parameter = string.Empty;
         }
     }
 }

@@ -1,22 +1,14 @@
-﻿namespace TaskableApp
-{
-    /*
-     * MainWindowViewModel needs to manage TaskSelectorViewModel 
-     * CodeCollectionViewModel and CodeEditorViewModel
-     * 
-     * 
-     * 
-     * */
-    public class MainWindowViewModel : BindableBase
-    {        
-        public MainWindowViewModel()
-        {            
-            
-        }
+﻿using TaskableApp.ViewModels;
 
-        public void ShowSettingsDialog()
+namespace TaskableApp
+{
+    public class MainWindowViewModel : BindableBase
+    {
+        public TaskSelectorViewModel TaskSelectorViewModel { get; set; }
+
+        public MainWindowViewModel()
         {
-            
+            this.TaskSelectorViewModel = new TaskSelectorViewModel();   
         }
     }
 }

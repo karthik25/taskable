@@ -12,7 +12,6 @@ namespace TaskableApp.Views
         public TaskSelectorView()
         {
             InitializeComponent();
-            this.DataContext = new TaskSelectorViewModel();
         }
 
         private void BtnAddParam_Click(object sender, RoutedEventArgs e)

@@ -17,7 +17,7 @@
         </Grid.RowDefinitions>
         <views:CodeCollectionView Grid.Row="0" />
         <StackPanel Grid.Row="1">
-            <views:TaskSelectorView />
+            <views:TaskSelectorView DataContext="{Binding TaskSelectorViewModel}" />
         </StackPanel>
     </Grid>
 </Window>
