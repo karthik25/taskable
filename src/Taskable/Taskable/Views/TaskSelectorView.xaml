@@ -71,11 +71,8 @@
                 </Grid>
                 <StackPanel Grid.Column="1" Orientation="Vertical">
                     <TextBlock Text="Output" FontWeight="Bold" />
-                    <TextBlock x:Name="TxtOutput" 
-                               TextWrapping="Wrap" 
-                               Height="50"
-                               Foreground="Black"
-                               Text="{Binding OutputText}" />
+                    <ListView Name="Output"
+                              ItemsSource="{Binding OutputEntries}" />
                 </StackPanel>
             </Grid>
         </TabItem>

@@ -36,26 +36,21 @@ namespace TaskableApp.ViewModels
         public ParameterItemViewModel SelectedItem { get; set; }
         public GenericCommand RunTaskCommand { get; set; }
 
-        private string outputText;
-        public string OutputText
+        public ObservableCollection<string> OutputEntries
         {
-            get { return outputText; }
-            set { SetProperty<string>(ref outputText, value); }
+            get;set;
         }
-
-        public event EventHandler TaskSaved;
-        public GenericCommand TaskSavedCommand { get; set; }
-
+        
         public TaskSelectorViewModel()
         {
             _tasker = Tasker.Instance;
             InitializeTasker();
             this.CommandList = _tasker.GetTaskCommands().ToList();
             this.Parameters = new ObservableCollection<ParameterItemViewModel>();
+            this.OutputEntries = new ObservableCollection<string>();
             this.ParameterViewModel = new AddParameterViewModel();
             this.ParameterViewModel.Save += ParameterViewModel_Save;
             this.RunTaskCommand = new GenericCommand((Action)RunSelectedTask);
-            this.TaskSavedCommand = new GenericCommand((Action)InitializeTasker);
             this.RemoveParameter = new GenericCommand((Action)RemoveParam);
         }
 
@@ -77,7 +72,7 @@ namespace TaskableApp.ViewModels
                         }
                     }
                     var finalCommand = string.Join(" ", cmdSplit);
-                    OutputText = "Running: " + finalCommand;
+                    OutputEntries.Add("Running: " + finalCommand);
                 }
             }
         }
@@ -96,6 +91,7 @@ namespace TaskableApp.ViewModels
         private void ParameterViewModel_Save(object sender, System.EventArgs e)
         {
             this.Parameters.Add(new ParameterItemViewModel(this.ParameterViewModel.Parameter));
+            this.OutputEntries.Add("Parameter added: " + this.ParameterViewModel.Parameter);
             this.ParameterViewModel.Reset();
         }
 
@@ -103,6 +99,7 @@ namespace TaskableApp.ViewModels
         {
             if (SelectedItem != null)
             {
+                this.OutputEntries.Add("Parameter removed: " + SelectedItem.ParameterValue);
                 this.Parameters.Remove(SelectedItem);
             }
         }
