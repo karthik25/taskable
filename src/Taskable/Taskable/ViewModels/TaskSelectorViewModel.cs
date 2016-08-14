@@ -47,7 +47,9 @@ namespace TaskableApp.ViewModels
         {
             _mainViewModel = mainViewModel;
             _tasker = Tasker.Instance;
+            _bootstrapper = new TaskBootstrapper();
             InitializeTasker();
+            _tasker.Initialize();
             this.CommandList = _tasker.GetTaskCommands().ToList();
             this.Parameters = new ObservableCollection<ParameterItemViewModel>();
             this.OutputEntries = new ObservableCollection<string>();
@@ -90,13 +92,11 @@ namespace TaskableApp.ViewModels
 
         private void InitializeTasker()
         {
-            _bootstrapper = new TaskBootstrapper();
             var tasks = _bootstrapper.GetTasks(_options);
             foreach(var task in tasks)
             {
                 _tasker.RegisterTask(task);
             }
-            _tasker.Initialize();
         }
 
         private void ParameterViewModel_Save(object sender, System.EventArgs e)
