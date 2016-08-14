@@ -82,6 +82,8 @@ namespace TaskableApp.ViewModels
                     }
                     var finalCommand = string.Join(" ", cmdSplit);
                     OutputEntries.Add("Running: " + finalCommand);
+                    var runStatus = _tasker.InvokeTask(finalCommand);
+                    OutputEntries.Add("Completed running the task (status): " + runStatus);
                 }
             }
         }
