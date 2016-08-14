@@ -15,6 +15,9 @@ namespace TaskableApp.ViewModels
         private Tasker _tasker;
         private TaskBootstrapper _bootstrapper;
 
+        public ObservableCollection<string> TaskDefitionPaths { get; set; }
+        public ObservableCollection<string> AdditionalReferences { get; set; }
+
         public List<string> CommandList
         {
             get;set;
@@ -51,6 +54,8 @@ namespace TaskableApp.ViewModels
             InitializeTasker();
             _tasker.Initialize();
             this.CommandList = _tasker.GetTaskCommands().ToList();
+            this.TaskDefitionPaths = new ObservableCollection<string>(_options.TaskDefinitionPaths);
+            this.AdditionalReferences = new ObservableCollection<string>(_options.AdditionalReferences);
             this.Parameters = new ObservableCollection<ParameterItemViewModel>();
             this.OutputEntries = new ObservableCollection<string>();
             this.ParameterViewModel = new AddParameterViewModel();

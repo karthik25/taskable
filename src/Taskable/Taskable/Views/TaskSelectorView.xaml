@@ -71,7 +71,7 @@
                 </Grid>
                 <StackPanel Grid.Column="1" Orientation="Vertical">
                     <TextBlock Text="Output" FontWeight="Bold" />
-                    <ListView Name="Output"
+                    <ListView Name="Output" Height="100"
                               ItemsSource="{Binding OutputEntries}" />
                 </StackPanel>
             </Grid>
@@ -83,6 +83,36 @@
                     <TextBlock Text="Settings" />
                 </StackPanel>
             </TabItem.Header>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Task Definition Paths" FontWeight="Bold" Grid.Row="0" Grid.Column="0" />
+                <TextBlock Text="Additional Reference Paths" FontWeight="Bold" Grid.Row="0" Grid.Column="1" />
+                <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0">
+                    <ListBox ItemsSource="{Binding TaskDefitionPaths}" Height="100" />
+                    <Button Height="24" Margin="5" Background="Transparent" BorderThickness="0" ToolTip="Add Task Def. Path">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Images/plus.png" />
+                            <TextBlock Margin="5,0,0,0" Text="Add Path" />
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1">
+                    <ListBox ItemsSource="{Binding AdditionalReferences}" Height="100" />
+                    <Button Height="24" Margin="5" Background="Transparent" BorderThickness="0" ToolTip="Add Reference">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Images/plus.png" />
+                            <TextBlock Margin="5,0,0,0" Text="Add Reference" />
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
         </TabItem>
         <TabItem>
             <TabItem.Header>
