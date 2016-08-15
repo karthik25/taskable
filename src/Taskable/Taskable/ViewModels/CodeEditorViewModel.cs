@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Threading;
 
 namespace TaskableApp.ViewModels
@@ -128,6 +129,10 @@ namespace TaskableApp.ViewModels
             if (!string.IsNullOrEmpty(CurrentFile))
             {
                 Process.Start(vsPath, CurrentFile);
+            }
+            else
+            {
+                MessageBox.Show("Please save the file first to edit it in VS Code.", "Please save the file!");
             }
         }
 
