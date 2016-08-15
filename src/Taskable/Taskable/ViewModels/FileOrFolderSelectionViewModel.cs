@@ -7,6 +7,12 @@ namespace TaskableApp.ViewModels
         public string FileOrFolder { get; set; }
         public SelectionType SelectionType { get; set; }
 
+        public bool IsFolder
+        {
+            get { return SelectionType == SelectionType.File; }
+            set { }
+        }
+
         public event EventHandler Save;
 
         public GenericCommand<object> SaveCommand { get; set; }

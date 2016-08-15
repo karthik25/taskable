@@ -72,12 +72,18 @@ namespace TaskableApp.ViewModels
 
         private void FolderSelectionViewModel_Save(object sender, EventArgs e)
         {
-            
+            if (string.IsNullOrEmpty(this.FolderSelectionViewModel.FileOrFolder))
+                return;
+
+            this.TaskDefitionPaths.Add(this.FolderSelectionViewModel.FileOrFolder);
         }
 
         private void FileSelectionViewModel_Save(object sender, EventArgs e)
         {
-            
+            if (string.IsNullOrEmpty(this.FileSelectionViewModel.FileOrFolder))
+                return;
+
+            this.AdditionalReferences.Add(this.FileSelectionViewModel.FileOrFolder);
         }
 
         public void TaskSaved()

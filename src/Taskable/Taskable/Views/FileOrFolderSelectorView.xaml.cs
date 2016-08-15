@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -44,6 +45,21 @@ namespace TaskableApp.Views
         private void Window_ContentRendered(object sender, EventArgs e)
         {
 
+        }
+
+        private void FolderSelector_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void FileSelector_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Assemblies (*.dll)|*.dll";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                TxtFileOrFolder.Text = openFileDialog.FileName;
+            }
         }
     }
 }
