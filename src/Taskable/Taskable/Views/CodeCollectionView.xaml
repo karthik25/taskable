@@ -67,7 +67,7 @@
                                                     <BooleanToVisibilityConverter x:Key="boolToVis" />
                                                     <local:InvertableBooleanToVisibilityConverter x:Key="inverseBoolToVis" />
                                                 </StackPanel.Resources>
-                                                <Image Source="/Images/directory.png" Height="20" Width="20" Visibility="{Binding IsFolder, Converter={StaticResource boolToVis}}" />
+                                                <Image Source="/Images/directory.png" Height="16" Width="20" Visibility="{Binding IsFolder, Converter={StaticResource boolToVis}}" />
                                                 <Image Source="/Images/csharp.png" Height="15" Width="15" Visibility="{Binding IsFolder, Converter={StaticResource inverseBoolToVis}, ConverterParameter=Inverted}" />
                                                 <TextBlock Text=" " />
                                                 <TextBlock Text="{Binding Name}"/>

@@ -36,6 +36,8 @@ namespace TaskableApp.ViewModels
         }
 
         public AddParameterViewModel ParameterViewModel { get; set; }
+        public FileOrFolderSelectionViewModel FileSelectionViewModel { get; set; }
+        public FileOrFolderSelectionViewModel FolderSelectionViewModel { get; set; }
 
         public GenericCommand RemoveParameter { get; set; }
         public ParameterItemViewModel SelectedItem { get; set; }
@@ -60,8 +62,22 @@ namespace TaskableApp.ViewModels
             this.OutputEntries = new ObservableCollection<string>();
             this.ParameterViewModel = new AddParameterViewModel();
             this.ParameterViewModel.Save += ParameterViewModel_Save;
+            this.FileSelectionViewModel = new FileOrFolderSelectionViewModel(SelectionType.File);
+            this.FileSelectionViewModel.Save += FileSelectionViewModel_Save;
+            this.FolderSelectionViewModel = new FileOrFolderSelectionViewModel(SelectionType.Folder);
+            this.FolderSelectionViewModel.Save += FolderSelectionViewModel_Save;
             this.RunTaskCommand = new GenericCommand((Action)RunSelectedTask);
             this.RemoveParameter = new GenericCommand((Action)RemoveParam);
+        }
+
+        private void FolderSelectionViewModel_Save(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void FileSelectionViewModel_Save(object sender, EventArgs e)
+        {
+            
         }
 
         public void TaskSaved()
@@ -106,6 +122,9 @@ namespace TaskableApp.ViewModels
 
         private void ParameterViewModel_Save(object sender, System.EventArgs e)
         {
+            if (string.IsNullOrEmpty(this.ParameterViewModel.Parameter))
+                return;
+
             this.Parameters.Add(new ParameterItemViewModel(this.ParameterViewModel.Parameter));
             this.OutputEntries.Add("Parameter added: " + this.ParameterViewModel.Parameter);
             this.ParameterViewModel.Reset();

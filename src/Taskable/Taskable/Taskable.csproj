@@ -76,6 +76,7 @@
     <Compile Include="ViewModels\AddParameterViewModel.cs" />
     <Compile Include="ViewModels\CodeCollectionViewModel.cs" />
     <Compile Include="ViewModels\CodeEditorViewModel.cs" />
+    <Compile Include="ViewModels\FileOrFolderSelectionViewModel.cs" />
     <Compile Include="ViewModels\ParameterItemViewModel.cs" />
     <Compile Include="ViewModels\TaskSelectorViewModel.cs" />
     <Compile Include="Views\AddParameterView.xaml.cs">
@@ -86,6 +87,9 @@
     </Compile>
     <Compile Include="Views\CodeEditorView.xaml.cs">
       <DependentUpon>CodeEditorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FileOrFolderSelectorView.xaml.cs">
+      <DependentUpon>FileOrFolderSelectorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SettingsDialogView.xaml.cs">
       <DependentUpon>SettingsDialogView.xaml</DependentUpon>
@@ -119,6 +123,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CodeEditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FileOrFolderSelectorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -204,6 +212,9 @@
   <ItemGroup>
     <Resource Include="Images\minus.png" />
     <Resource Include="Images\plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\file.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

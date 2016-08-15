@@ -96,7 +96,7 @@
                 <TextBlock Text="Additional Reference Paths" FontWeight="Bold" Grid.Row="0" Grid.Column="1" />
                 <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0">
                     <ListBox ItemsSource="{Binding TaskDefitionPaths}" Height="100" />
-                    <Button Height="24" Margin="5" Background="Transparent" BorderThickness="0" ToolTip="Add Task Def. Path">
+                    <Button Name="BtnAddFolder" Height="16" Margin="5" Background="Transparent" BorderThickness="0" ToolTip="Add Task Def. Path" Click="BtnAddFolder_Click">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Images/plus.png" />
                             <TextBlock Margin="5,0,0,0" Text="Add Path" />
@@ -105,7 +105,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1">
                     <ListBox ItemsSource="{Binding AdditionalReferences}" Height="100" />
-                    <Button Height="24" Margin="5" Background="Transparent" BorderThickness="0" ToolTip="Add Reference">
+                    <Button Name="BtnAddFile" Height="16" Margin="5" Background="Transparent" BorderThickness="0" ToolTip="Add Reference" Click="BtnAddFile_Click">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Images/plus.png" />
                             <TextBlock Margin="5,0,0,0" Text="Add Reference" />
