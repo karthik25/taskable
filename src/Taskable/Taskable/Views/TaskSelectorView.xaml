@@ -122,7 +122,16 @@
                 </StackPanel>
             </TabItem.Header>
             <StackPanel>
-                <ListView Name="ErrorList" ItemsSource="{Binding Errors}" />
+                <ListView Height="150" Name="ErrorList" ItemsSource="{Binding Errors}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <WrapPanel>
+                                <Image Source="/Images/errors.png" Height="16" Width="16" />
+                                <TextBlock Margin="5,0,0,0" Text="{Binding Content}" />
+                            </WrapPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </StackPanel>
         </TabItem>
     </TabControl>

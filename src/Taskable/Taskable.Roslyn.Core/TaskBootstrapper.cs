@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using TaskableCore;
 using TaskableRoslynCore.TaskLoader;
@@ -9,25 +8,28 @@ namespace TaskableRoslynCore
 {
     public class TaskBootstrapper
     {
-        public IEnumerable<ISimpleTask> GetTasks(Options options)
+        public TaskResult GetTasks(Options options)
         {
             var sourceProvider = SourceFileProviderFactory.CreateSourceProvider(LanguageType.CSharp);
             var metadataProvider = new DefaultMetadataProvider();
             var compilationProvider = new CSharpCompilationProvider(options);
-            var compilation = compilationProvider.GetCompilation(sourceProvider, metadataProvider);
+            var compilations = compilationProvider.GetCompilations(sourceProvider, metadataProvider);
 
             var assemblyProvider = new DefaultDynamicAssemblyProvider();
-            var assembly = assemblyProvider.GetTaskAssembly(compilation);
+            var assemblyResult = assemblyProvider.GetTaskAssembly(compilations);
 
-            if (assembly != null)
+            var taskResult = new TaskResult();
+            if (assemblyResult != null)
             {
-                var tasks = assembly.GetTypes().Where(t => typeof(ISimpleTask).IsAssignableFrom(t));
+                var tasks = assemblyResult.Assemblies.SelectMany(a => a.GetTypes()).Where(t => typeof(ISimpleTask).IsAssignableFrom(t));
                 foreach (var task in tasks)
                 {
                     var instance = (ISimpleTask)Activator.CreateInstance(task, null);
-                    yield return instance;
+                    taskResult.Tasks.Add(instance);
                 }
             }
+            taskResult.Errors = assemblyResult.CompileErrors;
+            return taskResult;
         }
     }
 }

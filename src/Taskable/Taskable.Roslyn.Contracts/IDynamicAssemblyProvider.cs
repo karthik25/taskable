@@ -1,10 +1,10 @@
 ﻿using Microsoft.CodeAnalysis;
-using System.Reflection;
+using System.Collections.Generic;
 
 namespace TaskableRoslyn.Contracts
 {
     public interface IDynamicAssemblyProvider
     {
-        Assembly GetTaskAssembly(Compilation compilation);
+        AssemblyResult GetTaskAssembly(IEnumerable<Compilation> compilations);
     }
 }

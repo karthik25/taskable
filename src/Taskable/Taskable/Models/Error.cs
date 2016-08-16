@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TaskableApp.Models
+﻿namespace TaskableApp.Models
 {
     public class Error
     {
+        public Error(string content)
+        {
+            this.Content = content;
+        }
 
+        public string Content { get; set; }
     }
 }

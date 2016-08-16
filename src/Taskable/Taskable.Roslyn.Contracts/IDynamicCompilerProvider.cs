@@ -1,9 +1,10 @@
 ﻿using Microsoft.CodeAnalysis;
+using System.Collections.Generic;
 
 namespace TaskableRoslyn.Contracts
 {
     public interface IDynamicCompilerProvider
     {
-        Compilation GetCompilation(ISourceFileSyntaxProvider sourceProvider, IMetadataProvider metadataProvider);
+        IEnumerable<Compilation> GetCompilations(ISourceFileSyntaxProvider sourceProvider, IMetadataProvider metadataProvider);
     }
 }

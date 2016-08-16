@@ -126,6 +126,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssemblyResult.cs" />
     <Compile Include="IDynamicAssemblyProvider.cs" />
     <Compile Include="IDynamicCompilerProvider.cs" />
     <Compile Include="IMetadataProvider.cs" />

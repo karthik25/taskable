@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
 using TaskableApp.Models;
 using TaskableCore;
 using TaskableRoslynCore;
@@ -14,25 +13,26 @@ namespace TaskableApp.ViewModels
         private MainWindowViewModel _mainViewModel;
         private Tasker _tasker;
         private TaskBootstrapper _bootstrapper;
+        private TaskResult _taskResult;
 
         public ObservableCollection<string> TaskDefitionPaths { get; set; }
         public ObservableCollection<string> AdditionalReferences { get; set; }
 
         public List<string> CommandList
         {
-            get;set;
+            get; set;
         }
 
         public string SelectedTask { get; set; }
 
         public ObservableCollection<ParameterItemViewModel> Parameters
         {
-            get;set;
+            get; set;
         }
 
         public ObservableCollection<Error> Errors
         {
-            get;set;
+            get; set;
         }
 
         public AddParameterViewModel ParameterViewModel { get; set; }
@@ -45,9 +45,9 @@ namespace TaskableApp.ViewModels
 
         public ObservableCollection<string> OutputEntries
         {
-            get;set;
+            get; set;
         }
-        
+
         public TaskSelectorViewModel(MainWindowViewModel mainViewModel)
         {
             _mainViewModel = mainViewModel;
@@ -56,6 +56,7 @@ namespace TaskableApp.ViewModels
             InitializeTasker();
             _tasker.Initialize();
             this.CommandList = _tasker.GetTaskCommands().ToList();
+            this.Errors = new ObservableCollection<Error>(_taskResult.Errors.Select(e => new Error(e)));
             this.TaskDefitionPaths = new ObservableCollection<string>(_options.TaskDefinitionPaths);
             this.AdditionalReferences = new ObservableCollection<string>(_options.AdditionalReferences);
             this.Parameters = new ObservableCollection<ParameterItemViewModel>();
@@ -90,7 +91,7 @@ namespace TaskableApp.ViewModels
         {
             this.OutputEntries.Clear();
             this.OutputEntries.Add("Regenerating the tasks");
-        } 
+        }
 
         private void RunSelectedTask()
         {
@@ -119,8 +120,8 @@ namespace TaskableApp.ViewModels
 
         private void InitializeTasker()
         {
-            var tasks = _bootstrapper.GetTasks(_options);
-            foreach(var task in tasks)
+            _taskResult = _bootstrapper.GetTasks(_options);
+            foreach (var task in _taskResult.Tasks)
             {
                 _tasker.RegisterTask(task);
             }

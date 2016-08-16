@@ -135,6 +135,7 @@
     <Compile Include="TaskLoader\DefaultDynamicAssemblyProvider.cs" />
     <Compile Include="TaskLoader\DefaultMetadataProvider.cs" />
     <Compile Include="TaskLoader\SyntaxTreeHelpers.cs" />
+    <Compile Include="TaskResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Taskable.Core\Taskable.Core.csproj">

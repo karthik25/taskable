@@ -17,20 +17,23 @@ namespace TaskableRoslynCore.TaskLoader
             _options = options;
         }
 
-        public Compilation GetCompilation(ISourceFileSyntaxProvider sourceProvider, IMetadataProvider metadataProvider)
+        public IEnumerable<Compilation> GetCompilations(ISourceFileSyntaxProvider sourceProvider, IMetadataProvider metadataProvider)
         {
             var compilerOptions = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary);
             var references = metadataProvider.GenerateMetadaReferences(_options.AdditionalReferences);
-            var trees = sourceProvider.GetTaskSyntaxTrees(_options.TaskDefinitionPaths).ToArray();
+            var syntaxTrees = sourceProvider.GetTaskSyntaxTrees(_options.TaskDefinitionPaths).ToArray();
             string assemblyName = Path.GetRandomFileName();
 
-            CSharpCompilation compilation = CSharpCompilation.Create(
+            foreach (var syntaxTree in syntaxTrees)
+            {
+                CSharpCompilation compilation = CSharpCompilation.Create(
                 assemblyName,
-                syntaxTrees: trees,
+                syntaxTrees: new[] { syntaxTree },
                 references: references,
                 options: new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
 
-            return compilation;
+                yield return compilation;
+            }
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Emit;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -11,30 +10,34 @@ namespace TaskableRoslynCore.TaskLoader
 {
     public class DefaultDynamicAssemblyProvider : IDynamicAssemblyProvider
     {
-        public Assembly GetTaskAssembly(Compilation compilation)
+        public AssemblyResult GetTaskAssembly(IEnumerable<Compilation> compilations)
         {
-            using (var ms = new MemoryStream())
+            var assemblyResult = new AssemblyResult();
+            foreach (var compilation in compilations)
             {
-                EmitResult result = compilation.Emit(ms);
-                if (result.Success)
+                using (var ms = new MemoryStream())
                 {
-                    ms.Seek(0, SeekOrigin.Begin);
-                    Assembly assembly = Assembly.Load(ms.ToArray());
-                    return assembly;
-                }
-                else
-                {
-                    IEnumerable<Diagnostic> failures = result.Diagnostics.Where(diagnostic =>
-                        diagnostic.IsWarningAsError ||
-                        diagnostic.Severity == DiagnosticSeverity.Error);
-
-                    foreach (Diagnostic diagnostic in failures)
+                    EmitResult result = compilation.Emit(ms);
+                    if (result.Success)
                     {
-                        Console.Error.WriteLine("{0}: {1}", diagnostic.Id, diagnostic.GetMessage());
+                        ms.Seek(0, SeekOrigin.Begin);
+                        var assembly = Assembly.Load(ms.ToArray());
+                        assemblyResult.Assemblies.Add(assembly);
+                    }
+                    else
+                    {
+                        IEnumerable<Diagnostic> failures = result.Diagnostics.Where(diagnostic =>
+                            diagnostic.IsWarningAsError ||
+                            diagnostic.Severity == DiagnosticSeverity.Error);
+
+                        foreach (Diagnostic diagnostic in failures)
+                        {
+                            assemblyResult.CompileErrors.Add(string.Format("{0}: {1}", diagnostic.Id, diagnostic.GetMessage()));
+                        }
                     }
                 }
             }
-            return null;
+            return assemblyResult;
         }
     }
 }
