@@ -31,7 +31,7 @@ namespace TaskableApp
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
-        private static Options ParseUserSpecificOptions()
+        private Options ParseUserSpecificOptions()
         {
             var baseConfigPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             var configPath = string.Format(@"{0}\taskable.yml", baseConfigPath);
@@ -40,6 +40,15 @@ namespace TaskableApp
                 Options.CreateDefaultOptionsFile(configPath);
             }
             return Options.ParseFromFile(configPath);
+        }
+
+        protected Options UpdateUserSpecificOptions(Options options)
+        {
+            var baseConfigPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            var configPath = string.Format(@"{0}\taskable.yml", baseConfigPath);
+            var updatedOptions = Options.WriteToFile(options, configPath);
+            this._options = updatedOptions;
+            return updatedOptions;
         }
     }
 }

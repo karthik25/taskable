@@ -54,6 +54,7 @@ namespace TaskableApp.Views
 
         private void FileSelector_Click(object sender, RoutedEventArgs e)
         {
+            // todo: does not bind to the model, check why
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Assemblies (*.dll)|*.dll";
             if (openFileDialog.ShowDialog() == true)

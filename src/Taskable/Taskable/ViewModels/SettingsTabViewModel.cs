@@ -13,6 +13,9 @@ namespace TaskableApp.ViewModels
         public FileOrFolderSelectionViewModel FileSelectionViewModel { get; set; }
         public FileOrFolderSelectionViewModel FolderSelectionViewModel { get; set; }
 
+        public event EventHandler TasksAdded;
+        public event EventHandler ReferencesAdded;
+
         public SettingsTabViewModel(TaskSelectorViewModel model)
         {
             this.TaskSelectorModel = model;
@@ -32,6 +35,8 @@ namespace TaskableApp.ViewModels
                 return;
 
             this.TaskDefitionPaths.Add(this.FolderSelectionViewModel.FileOrFolder);
+
+            OnTasksAdded();
         }
 
         private void FileSelectionViewModel_Save(object sender, EventArgs e)
@@ -40,6 +45,15 @@ namespace TaskableApp.ViewModels
                 return;
 
             this.AdditionalReferences.Add(this.FileSelectionViewModel.FileOrFolder);
+        }
+
+        private void OnTasksAdded()
+        {
+            if (TasksAdded != null)
+            {
+                var handler = TasksAdded;
+                handler(this, new EventArgs());
+            }
         }
     }
 }

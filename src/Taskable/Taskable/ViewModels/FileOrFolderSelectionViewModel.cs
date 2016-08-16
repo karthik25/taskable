@@ -9,7 +9,7 @@ namespace TaskableApp.ViewModels
 
         public bool IsFolder
         {
-            get { return SelectionType == SelectionType.File; }
+            get { return SelectionType == SelectionType.Folder; }
             set { }
         }
 

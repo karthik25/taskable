@@ -22,14 +22,14 @@ namespace TaskableApp.Views
         private void BtnAddFolder_Click(object sender, RoutedEventArgs e)
         {
             var selectorModel = (SettingsTabViewModel)this.DataContext;
-            var fileView = new FileOrFolderSelectorView(selectorModel.FileSelectionViewModel);
+            var fileView = new FileOrFolderSelectorView(selectorModel.FolderSelectionViewModel);
             fileView.ShowDialog();
         }
 
         private void BtnAddFile_Click(object sender, RoutedEventArgs e)
         {
             var selectorModel = (SettingsTabViewModel)this.DataContext;
-            var folderView = new FileOrFolderSelectorView(selectorModel.FolderSelectionViewModel);
+            var folderView = new FileOrFolderSelectorView(selectorModel.FileSelectionViewModel);
             folderView.ShowDialog();
         }
     }

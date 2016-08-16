@@ -61,6 +61,25 @@ namespace TaskableApp.ViewModels
             this.RunTaskCommand = new GenericCommand((Action)RunSelectedTask);
             this.RemoveParameter = new GenericCommand((Action)RemoveParam);
             this.SettingsTabViewModel = new SettingsTabViewModel(this);
+            this.SettingsTabViewModel.TasksAdded += SettingsTabViewModel_TasksAdded;
+            this.SettingsTabViewModel.ReferencesAdded += SettingsTabViewModel_ReferencesAdded;
+        }
+
+        private void SettingsTabViewModel_TasksAdded(object sender, EventArgs e)
+        {
+            var options = new Options
+            {
+                TaskDefinitionPaths = SettingsTabViewModel.TaskDefitionPaths.ToList(),
+                AdditionalReferences = SettingsTabViewModel.AdditionalReferences.ToList()
+            };
+            this.UpdateUserSpecificOptions(options);
+
+            this.OutputEntries.Add("Attempting to regenerate the tasks...");
+        }
+
+        private void SettingsTabViewModel_ReferencesAdded(object sender, EventArgs e)
+        {
+
         }
 
         public void TaskSaved()

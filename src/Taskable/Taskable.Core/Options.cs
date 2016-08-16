@@ -27,6 +27,15 @@ namespace TaskableCore
             return options;
         }
 
+        public static Options WriteToFile(Options options, string optionsFile)
+        {
+            var writer = new StreamWriter(optionsFile);
+            var serializer = new Serializer(namingConvention: new CamelCaseNamingConvention());
+            serializer.Serialize(writer, options);
+            writer.Close();
+            return ParseFromFile(optionsFile);
+        }
+
         public static void CreateDefaultOptionsFile(string configPath)
         {
             var options = new Options();
