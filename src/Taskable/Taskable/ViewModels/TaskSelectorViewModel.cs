@@ -14,10 +14,7 @@ namespace TaskableApp.ViewModels
         private Tasker _tasker;
         private TaskBootstrapper _bootstrapper;
         private TaskResult _taskResult;
-
-        public ObservableCollection<string> TaskDefitionPaths { get; set; }
-        public ObservableCollection<string> AdditionalReferences { get; set; }
-
+        
         public List<string> CommandList
         {
             get; set;
@@ -36,8 +33,6 @@ namespace TaskableApp.ViewModels
         }
 
         public AddParameterViewModel ParameterViewModel { get; set; }
-        public FileOrFolderSelectionViewModel FileSelectionViewModel { get; set; }
-        public FileOrFolderSelectionViewModel FolderSelectionViewModel { get; set; }
 
         public GenericCommand RemoveParameter { get; set; }
         public ParameterItemViewModel SelectedItem { get; set; }
@@ -48,6 +43,8 @@ namespace TaskableApp.ViewModels
             get; set;
         }
 
+        public SettingsTabViewModel SettingsTabViewModel { get; set; }
+
         public TaskSelectorViewModel(MainWindowViewModel mainViewModel)
         {
             _mainViewModel = mainViewModel;
@@ -57,34 +54,13 @@ namespace TaskableApp.ViewModels
             _tasker.Initialize();
             this.CommandList = _tasker.GetTaskCommands().ToList();
             this.Errors = new ObservableCollection<Error>(_taskResult.Errors.Select(e => new Error(e)));
-            this.TaskDefitionPaths = new ObservableCollection<string>(_options.TaskDefinitionPaths);
-            this.AdditionalReferences = new ObservableCollection<string>(_options.AdditionalReferences);
             this.Parameters = new ObservableCollection<ParameterItemViewModel>();
             this.OutputEntries = new ObservableCollection<string>();
             this.ParameterViewModel = new AddParameterViewModel();
             this.ParameterViewModel.Save += ParameterViewModel_Save;
-            this.FileSelectionViewModel = new FileOrFolderSelectionViewModel(SelectionType.File);
-            this.FileSelectionViewModel.Save += FileSelectionViewModel_Save;
-            this.FolderSelectionViewModel = new FileOrFolderSelectionViewModel(SelectionType.Folder);
-            this.FolderSelectionViewModel.Save += FolderSelectionViewModel_Save;
             this.RunTaskCommand = new GenericCommand((Action)RunSelectedTask);
             this.RemoveParameter = new GenericCommand((Action)RemoveParam);
-        }
-
-        private void FolderSelectionViewModel_Save(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(this.FolderSelectionViewModel.FileOrFolder))
-                return;
-
-            this.TaskDefitionPaths.Add(this.FolderSelectionViewModel.FileOrFolder);
-        }
-
-        private void FileSelectionViewModel_Save(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(this.FileSelectionViewModel.FileOrFolder))
-                return;
-
-            this.AdditionalReferences.Add(this.FileSelectionViewModel.FileOrFolder);
+            this.SettingsTabViewModel = new SettingsTabViewModel(this);
         }
 
         public void TaskSaved()

@@ -78,6 +78,7 @@
     <Compile Include="ViewModels\CodeEditorViewModel.cs" />
     <Compile Include="ViewModels\FileOrFolderSelectionViewModel.cs" />
     <Compile Include="ViewModels\ParameterItemViewModel.cs" />
+    <Compile Include="ViewModels\SettingsTabViewModel.cs" />
     <Compile Include="ViewModels\TaskSelectorViewModel.cs" />
     <Compile Include="Views\AddParameterView.xaml.cs">
       <DependentUpon>AddParameterView.xaml</DependentUpon>
@@ -91,8 +92,8 @@
     <Compile Include="Views\FileOrFolderSelectorView.xaml.cs">
       <DependentUpon>FileOrFolderSelectorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SettingsDialogView.xaml.cs">
-      <DependentUpon>SettingsDialogView.xaml</DependentUpon>
+    <Compile Include="Views\SettingsTabView.xaml.cs">
+      <DependentUpon>SettingsTabView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TaskSelectorView.xaml.cs">
       <DependentUpon>TaskSelectorView.xaml</DependentUpon>
@@ -130,7 +131,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SettingsDialogView.xaml">
+    <Page Include="Views\SettingsTabView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
