@@ -29,9 +29,11 @@ namespace TaskableApp.ViewModels
             get; set;
         }
 
+        private ObservableCollection<Error> _errors;
         public ObservableCollection<Error> Errors
         {
-            get; set;
+            get { return _errors; }
+            set { SetProperty(ref _errors, value); }
         }
 
         public AddParameterViewModel ParameterViewModel { get; set; }
@@ -87,8 +89,10 @@ namespace TaskableApp.ViewModels
 
         public void TaskSaved()
         {
-            this.OutputEntries.Clear();
-            this.OutputEntries.Add("Regenerating the tasks");
+            this.OutputEntries.Add("Attempting to regenerate the tasks...");
+            _tasker.ReleaseTasks();
+            InitializeTasker();
+            this.OutputEntries.Add("Regenerated & registered the tasks discovered.");
         }
 
         private void RunSelectedTask()
@@ -125,6 +129,7 @@ namespace TaskableApp.ViewModels
             }
             _tasker.Initialize();
             this.CommandList = new ObservableCollection<TaskItem>(_tasker.GetTaskCommands().Select(t => new TaskItem { Name = t }));
+            this.Errors = new ObservableCollection<Error>(_taskResult.Errors.Select(e => new Error(e)));
         }
 
         private void ParameterViewModel_Save(object sender, System.EventArgs e)
