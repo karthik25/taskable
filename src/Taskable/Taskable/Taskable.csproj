@@ -73,6 +73,7 @@
     </ApplicationDefinition>
     <Compile Include="Abstract\INamedFileEntry.cs" />
     <Compile Include="Models\Error.cs" />
+    <Compile Include="Models\TaskItem.cs" />
     <Compile Include="ViewModels\AddParameterViewModel.cs" />
     <Compile Include="ViewModels\CodeCollectionViewModel.cs" />
     <Compile Include="ViewModels\CodeEditorViewModel.cs" />

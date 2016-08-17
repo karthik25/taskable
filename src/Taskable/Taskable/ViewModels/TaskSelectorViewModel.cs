@@ -14,10 +14,12 @@ namespace TaskableApp.ViewModels
         private Tasker _tasker;
         private TaskBootstrapper _bootstrapper;
         private TaskResult _taskResult;
-        
-        public List<string> CommandList
+
+        private ObservableCollection<TaskItem> _commandList;
+        public ObservableCollection<TaskItem> CommandList
         {
-            get; set;
+            get { return _commandList; }
+            set { SetProperty(ref _commandList, value); }
         }
 
         public string SelectedTask { get; set; }
@@ -51,8 +53,6 @@ namespace TaskableApp.ViewModels
             _tasker = Tasker.Instance;
             _bootstrapper = new TaskBootstrapper();
             InitializeTasker();
-            _tasker.Initialize();
-            this.CommandList = _tasker.GetTaskCommands().ToList();
             this.Errors = new ObservableCollection<Error>(_taskResult.Errors.Select(e => new Error(e)));
             this.Parameters = new ObservableCollection<ParameterItemViewModel>();
             this.OutputEntries = new ObservableCollection<string>();
@@ -75,6 +75,9 @@ namespace TaskableApp.ViewModels
             this.UpdateUserSpecificOptions(options);
 
             this.OutputEntries.Add("Attempting to regenerate the tasks...");
+            _tasker.ReleaseTasks();
+            InitializeTasker();
+            this.OutputEntries.Add("Regenerated & registered the tasks discovered.");
         }
 
         private void SettingsTabViewModel_ReferencesAdded(object sender, EventArgs e)
@@ -120,6 +123,8 @@ namespace TaskableApp.ViewModels
             {
                 _tasker.RegisterTask(task);
             }
+            _tasker.Initialize();
+            this.CommandList = new ObservableCollection<TaskItem>(_tasker.GetTaskCommands().Select(t => new TaskItem { Name = t }));
         }
 
         private void ParameterViewModel_Save(object sender, System.EventArgs e)

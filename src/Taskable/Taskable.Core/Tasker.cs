@@ -107,6 +107,16 @@ namespace TaskableCore
             return _taskLookup.Select(t => t.Key);
         }
 
+        public bool ReleaseTasks()
+        {
+            _taskLookup = null;
+            _rawTasks.Clear();
+            _rawTasks = null;
+            _rawTasks = new List<ComputedTask>();
+            _isInitialized = false;
+            return true;
+        }
+
         private CommandContext CreateCommandContext()
         {
             return new CommandContext
