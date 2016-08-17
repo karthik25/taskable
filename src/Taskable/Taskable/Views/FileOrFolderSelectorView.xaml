@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:g="clr-namespace:TaskableApp"
         mc:Ignorable="d" Closed="Window_Closed" ContentRendered="Window_ContentRendered"
-        Title="FileOrFolderSelectorView" Height="150" Width="450">
+        Title="{Binding SelectorTitle}" Height="150" Width="450">
     <Grid Margin="15">
         <Grid.Resources>
             <BooleanToVisibilityConverter x:Key="boolToVis" />

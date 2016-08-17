@@ -13,6 +13,12 @@ namespace TaskableApp.ViewModels
             set { }
         }
 
+        public string SelectorTitle
+        {
+            get { return SelectionType == SelectionType.Folder ? "Select Task Def. Path" : "Select Additional Reference"; }
+            set { }
+        }
+
         public event EventHandler Save;
 
         public GenericCommand<object> SaveCommand { get; set; }
