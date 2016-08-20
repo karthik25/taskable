@@ -20,5 +20,11 @@ namespace TaskableApp.Views
             var paramView = new AddParameterView(selectorModel.ParameterViewModel);
             paramView.ShowDialog();
         }
+
+        private async void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            var selectorModel = (TaskSelectorViewModel)this.DataContext;
+            await selectorModel.RefreshTaskableInstances();
+        }
     }
 }

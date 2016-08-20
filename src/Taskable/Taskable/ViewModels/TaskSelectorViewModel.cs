@@ -1,7 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Windows;
 using TaskableApp.Models;
 using TaskableCore;
 using TaskableRoslynCore;
@@ -54,8 +55,6 @@ namespace TaskableApp.ViewModels
             _mainViewModel = mainViewModel;
             _tasker = Tasker.Instance;
             _bootstrapper = new TaskBootstrapper();
-            InitializeTasker();
-            this.Errors = new ObservableCollection<Error>(_taskResult.Errors.Select(e => new Error(e)));
             this.Parameters = new ObservableCollection<ParameterItemViewModel>();
             this.OutputEntries = new ObservableCollection<string>();
             this.ParameterViewModel = new AddParameterViewModel();
@@ -67,7 +66,7 @@ namespace TaskableApp.ViewModels
             this.SettingsTabViewModel.ReferencesAdded += SettingsTabViewModel_ReferencesAdded;
         }
 
-        private void SettingsTabViewModel_TasksAdded(object sender, EventArgs e)
+        private async void SettingsTabViewModel_TasksAdded(object sender, EventArgs e)
         {
             var options = new Options
             {
@@ -77,9 +76,7 @@ namespace TaskableApp.ViewModels
             this.UpdateUserSpecificOptions(options);
 
             this.OutputEntries.Add("Attempting to regenerate the tasks...");
-            _tasker.ReleaseTasks();
-            InitializeTasker();
-            this.OutputEntries.Add("Regenerated & registered the tasks discovered.");
+            await ReinitializeTasks();
         }
 
         private void SettingsTabViewModel_ReferencesAdded(object sender, EventArgs e)
@@ -87,12 +84,10 @@ namespace TaskableApp.ViewModels
 
         }
 
-        public void TaskSaved()
+        public async void TaskSaved()
         {
             this.OutputEntries.Add("Attempting to regenerate the tasks...");
-            _tasker.ReleaseTasks();
-            InitializeTasker();
-            this.OutputEntries.Add("Regenerated & registered the tasks discovered.");
+            await ReinitializeTasks();            
         }
 
         private void RunSelectedTask()
@@ -118,6 +113,32 @@ namespace TaskableApp.ViewModels
                     OutputEntries.Add("Completed running the task (status): " + runStatus);
                 }
             }
+        }
+
+        public async Task RefreshTaskableInstances()
+        {
+            await ReinitializeTasks();
+        }
+
+        private async Task ReinitializeTasks()
+        {
+            await Task.Factory.StartNew(new Action(async () =>
+            {
+                _tasker.ReleaseTasks();
+                var bootstrapper = new TaskBootstrapper();
+                var taskResult = bootstrapper.GetTasks(_options);
+                foreach (var task in taskResult.Tasks)
+                {
+                    _tasker.RegisterTask(task);
+                }
+                _tasker.Initialize();
+                await Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    this.CommandList = new ObservableCollection<TaskItem>(_tasker.GetTaskCommands().Select(t => new TaskItem { Name = t }));
+                    this.Errors = new ObservableCollection<Error>(taskResult.Errors.Select(e => new Error(e)));
+                    this.OutputEntries.Add("Regenerated & registered the tasks discovered.");
+                }));
+            }));
         }
 
         private void InitializeTasker()
