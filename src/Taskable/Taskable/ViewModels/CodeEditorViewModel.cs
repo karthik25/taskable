@@ -1,12 +1,15 @@
 ﻿using ICSharpCode.AvalonEdit.Document;
 using ICSharpCode.AvalonEdit.Utils;
 using System;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
+using TaskableApp.Models;
+using TaskableRoslynCore;
 
 namespace TaskableApp.ViewModels
 {
@@ -63,6 +66,11 @@ namespace TaskableApp.ViewModels
             {
                 SetProperty<string>(ref _statusTextY, value);
             }
+        }
+
+        public ObservableCollection<Identifier> Identifiers
+        {
+            get; set;
         }
 
         public CodeEditorViewModel(MainWindowViewModel mainViewModel)
@@ -134,6 +142,19 @@ namespace TaskableApp.ViewModels
             {
                 MessageBox.Show("Please save the file first to edit it in VS Code.", "Please save the file!");
             }
+        }
+
+        public async void GetIdentifierList()
+        {
+            await Task.Factory.StartNew(new Action(async () =>
+            {
+
+
+                await Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                {
+
+                }));
+            }));
         }
 
         private static class FileLoader
