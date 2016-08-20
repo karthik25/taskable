@@ -9,4 +9,8 @@
 - https://www.iconfinder.com/icons/1055071/document_file_icon : GPL (http://www.gnu.org/copyleft/gpl.html)
 - https://www.iconfinder.com/icons/48047/active_directory_icon : GPL (http://www.gnu.org/copyleft/gpl.html)
 
+## Controls
+
+- http://huydinhpham.blogspot.com/2011/07/wpf-loading-panel.html
+
 ## Repos
