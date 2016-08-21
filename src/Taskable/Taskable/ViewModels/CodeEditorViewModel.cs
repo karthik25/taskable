@@ -8,8 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
-using TaskableApp.Models;
 using TaskableRoslynCore;
+using TaskableRoslynCore.Analyzer;
 
 namespace TaskableApp.ViewModels
 {
@@ -70,9 +70,11 @@ namespace TaskableApp.ViewModels
 
         public Identifier SelectedIdentifier { get; set; }
 
+        private ObservableCollection<Identifier> _identifiers;
         public ObservableCollection<Identifier> Identifiers
         {
-            get; set;
+            get { return _identifiers; }
+            set { SetProperty(ref _identifiers, value); }
         }
 
         public GenericCommand GotoIdentifierCommand { get; set; }
@@ -98,14 +100,13 @@ namespace TaskableApp.ViewModels
             }
             SaveDocumentCommand = new GenericCommand(Save);
             OpenInVsCommand = new GenericCommand((Action)OpenFileInVs);
-            this.Identifiers = new ObservableCollection<Identifier>
-            {
-                new Identifier { FullName = "GitDownloadTask", Type = IdentifierType.Class, LineNumber = 7 },
-                new Identifier { FullName = "GitDownloadTask.Pattern", Type = IdentifierType.Property, LineNumber = 9 }
-            };
             this.GotoIdentifierCommand = new GenericCommand(() =>
             {
                 MessageBox.Show(SelectedIdentifier.FullName + " : " + SelectedIdentifier.LineNumber + " : " + SelectedIdentifier.Type);
+            });
+            Application.Current.Dispatcher.InvokeAsync(() =>
+            {
+                GetIdentifierList();
             });
         }
 
@@ -131,6 +132,11 @@ namespace TaskableApp.ViewModels
             PerformDelayedUpdate(() => { this.StatusTextY = ""; });
 
             _mainViewModel.TaskSelectorViewModel.TaskSaved();
+
+            await Application.Current.Dispatcher.InvokeAsync(() =>
+            {
+                GetIdentifierList();
+            });
         }
 
         private void PerformDelayedUpdate(Action action, int intervalSeconds = 5)
@@ -159,13 +165,15 @@ namespace TaskableApp.ViewModels
 
         public async void GetIdentifierList()
         {
+            var text = Document.Text;
+
             await Task.Factory.StartNew(new Action(async () =>
             {
-
+                var identifiers = text.GetIdentifiers();
 
                 await Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                 {
-
+                    this.Identifiers = new ObservableCollection<Identifier>(identifiers);
                 }));
             }));
         }
