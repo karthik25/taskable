@@ -32,7 +32,7 @@
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="/Images/vscode.png" Width="16" Height="16" />
+                                <Image Source="{Binding Image}" Width="16" Height="16" />
                                 <TextBlock Text="{Binding FullName}" />
                             </StackPanel>
                         </DataTemplate>
