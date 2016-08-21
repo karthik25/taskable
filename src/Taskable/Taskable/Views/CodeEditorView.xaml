@@ -27,6 +27,22 @@
                         <TextBlock Margin="5,0,0,0" Text="Edit in VS Code" />
                     </StackPanel>
                 </Button>
+                <Label Margin="15,0,0,0" FontWeight="Bold" Content="Jump To: " />
+                <ComboBox Margin="5,0,0,0" Width="400" ItemsSource="{Binding Identifiers}" SelectedItem="{Binding SelectedIdentifier}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Images/vscode.png" Width="16" Height="16" />
+                                <TextBlock Text="{Binding FullName}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Button Height="20" Background="Transparent" BorderThickness="0" Command="{Binding GotoIdentifierCommand}" ToolTip="Go to...">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Images/run.png" />
+                    </StackPanel>
+                </Button>
             </ToolBar>
         </ToolBarTray>
         <DockPanel Grid.Row="1">

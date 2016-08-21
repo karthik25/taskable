@@ -68,10 +68,14 @@ namespace TaskableApp.ViewModels
             }
         }
 
+        public Identifier SelectedIdentifier { get; set; }
+
         public ObservableCollection<Identifier> Identifiers
         {
             get; set;
         }
+
+        public GenericCommand GotoIdentifierCommand { get; set; }
 
         public CodeEditorViewModel(MainWindowViewModel mainViewModel)
         {
@@ -94,6 +98,15 @@ namespace TaskableApp.ViewModels
             }
             SaveDocumentCommand = new GenericCommand(Save);
             OpenInVsCommand = new GenericCommand((Action)OpenFileInVs);
+            this.Identifiers = new ObservableCollection<Identifier>
+            {
+                new Identifier { FullName = "GitDownloadTask", Type = IdentifierType.Class, LineNumber = 7 },
+                new Identifier { FullName = "GitDownloadTask.Pattern", Type = IdentifierType.Property, LineNumber = 9 }
+            };
+            this.GotoIdentifierCommand = new GenericCommand(() =>
+            {
+                MessageBox.Show(SelectedIdentifier.FullName + " : " + SelectedIdentifier.LineNumber + " : " + SelectedIdentifier.Type);
+            });
         }
 
         private async Task Save()
