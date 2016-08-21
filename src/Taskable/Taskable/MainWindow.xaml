@@ -20,5 +20,13 @@
         <StackPanel Grid.Row="1">
             <views:TaskSelectorView DataContext="{Binding TaskSelectorViewModel}" />
         </StackPanel>
+
+        <Grid VerticalAlignment="Top">
+            <local:LoadingPanel x:Name="loadingPanel"
+                        IsLoading="{Binding PanelLoading}"
+                        Message="Regnerating tasks..."
+                        SubMessage="" 
+                        ClosePanelCommand="{Binding PanelCloseCommand}" />
+        </Grid>
     </Grid>
 </Window>

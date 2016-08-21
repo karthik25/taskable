@@ -124,6 +124,10 @@ namespace TaskableApp.ViewModels
         {
             await Task.Factory.StartNew(new Action(async () =>
             {
+                await Application.Current.Dispatcher.BeginInvoke(new Action(() => 
+                {
+                    _mainViewModel.ShowLoadingPanel();
+                }));
                 _tasker.ReleaseTasks();
                 var bootstrapper = new TaskBootstrapper();
                 var taskResult = bootstrapper.GetTasks(_options);
@@ -137,20 +141,9 @@ namespace TaskableApp.ViewModels
                     this.CommandList = new ObservableCollection<TaskItem>(_tasker.GetTaskCommands().Select(t => new TaskItem { Name = t }));
                     this.Errors = new ObservableCollection<Error>(taskResult.Errors.Select(e => new Error(e)));
                     this.OutputEntries.Add("Regenerated & registered the tasks discovered.");
+                    _mainViewModel.HideLoadingPanel();
                 }));
             }));
-        }
-
-        private void InitializeTasker()
-        {
-            _taskResult = _bootstrapper.GetTasks(_options);
-            foreach (var task in _taskResult.Tasks)
-            {
-                _tasker.RegisterTask(task);
-            }
-            _tasker.Initialize();
-            this.CommandList = new ObservableCollection<TaskItem>(_tasker.GetTaskCommands().Select(t => new TaskItem { Name = t }));
-            this.Errors = new ObservableCollection<Error>(_taskResult.Errors.Select(e => new Error(e)));
         }
 
         private void ParameterViewModel_Save(object sender, System.EventArgs e)
