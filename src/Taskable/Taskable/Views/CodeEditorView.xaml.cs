@@ -19,11 +19,12 @@ namespace TaskableApp.Views
             textEditor.Focus();
         }
 
-        private void BtnGoto_Click(object sender, RoutedEventArgs e)
+        private void IdList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var model = (CodeEditorViewModel)this.DataContext;
             textEditor.ScrollToLine(model.SelectedIdentifier.Line);
             textEditor.CaretOffset = model.SelectedIdentifier.Offset;
+            textEditor.Focus();
         }
     }
 }

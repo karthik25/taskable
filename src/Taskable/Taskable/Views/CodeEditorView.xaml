@@ -28,7 +28,7 @@
                     </StackPanel>
                 </Button>
                 <Label Margin="15,0,0,0" FontWeight="Bold" Content="Jump To: " />
-                <ComboBox Margin="5,0,0,0" Width="400" ItemsSource="{Binding Identifiers}" SelectedItem="{Binding SelectedIdentifier}">
+                <ComboBox Margin="5,0,0,0" Width="400" Name="IdList" ItemsSource="{Binding Identifiers}" SelectedItem="{Binding SelectedIdentifier}" SelectionChanged="IdList_SelectionChanged">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -38,11 +38,6 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-                <Button Height="20" Background="Transparent" BorderThickness="0" ToolTip="Go to..." Name="BtnGoto" Click="BtnGoto_Click">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="/Images/run.png" />
-                    </StackPanel>
-                </Button>
             </ToolBar>
         </ToolBarTray>
         <DockPanel Grid.Row="1">

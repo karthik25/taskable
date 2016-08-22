@@ -36,7 +36,7 @@ namespace TaskableRoslynCore.Analyzer
                     var methodIdentifier = new Identifier
                     {
                         FullName = string.Format("{0}.{1}", classInfo.FullName, methodType.Identifier),
-                        Offset = methodType.FullSpan.Start,
+                        Offset = methodType.Span.Start,
                         Line = methodType.GetLocation().GetLineSpan().StartLinePosition.Line,
                         Type = IdentifierType.Method
                     };
@@ -49,7 +49,7 @@ namespace TaskableRoslynCore.Analyzer
                     var propertyIdentifier = new Identifier
                     {
                         FullName = string.Format("{0}.{1}", classInfo.FullName, propertyType.Identifier),
-                        Offset = propertyType.FullSpan.Start,
+                        Offset = propertyType.Span.Start,
                         Line = propertyType.GetLocation().GetLineSpan().StartLinePosition.Line,
                         Type = IdentifierType.Property
                     };
@@ -62,7 +62,7 @@ namespace TaskableRoslynCore.Analyzer
                     var fieldIdentifier = new Identifier
                     {
                         FullName = string.Format("{0}.{1}", classInfo.FullName, fieldType.Declaration.Variables.First().Identifier),
-                        Offset = fieldType.FullSpan.Start,
+                        Offset = fieldType.Span.Start,
                         Line = fieldType.GetLocation().GetLineSpan().StartLinePosition.Line,
                         Type = IdentifierType.Property
                     };
