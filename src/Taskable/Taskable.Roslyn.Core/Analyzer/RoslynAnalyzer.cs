@@ -58,7 +58,7 @@ namespace TaskableRoslynCore.Analyzer
                 {
                     var fieldIdentifier = new Identifier
                     {
-                        FullName = string.Format("{0}.{1}", classInfo.FullName, fieldType.Declaration),
+                        FullName = string.Format("{0}.{1}", classInfo.FullName, fieldType.Declaration.Variables.First().Identifier),
                         LineNumber = fieldType.GetLocation().GetLineSpan().StartLinePosition.Line,
                         Type = IdentifierType.Property
                     };
