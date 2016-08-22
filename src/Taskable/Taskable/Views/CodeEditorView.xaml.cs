@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using TaskableApp.ViewModels;
 
 namespace TaskableApp.Views
 {
@@ -16,6 +17,12 @@ namespace TaskableApp.Views
         private void textEditor_Loaded(object sender, RoutedEventArgs e)
         {
             textEditor.Focus();
+        }
+
+        private void BtnGoto_Click(object sender, RoutedEventArgs e)
+        {
+            var model = (CodeEditorViewModel)this.DataContext;
+            textEditor.CaretOffset = model.SelectedIdentifier.Offset;
         }
     }
 }

@@ -102,7 +102,7 @@ namespace TaskableApp.ViewModels
             OpenInVsCommand = new GenericCommand((Action)OpenFileInVs);
             this.GotoIdentifierCommand = new GenericCommand(() =>
             {
-                MessageBox.Show(SelectedIdentifier.FullName + " : " + SelectedIdentifier.LineNumber + " : " + SelectedIdentifier.Type);
+                MessageBox.Show(SelectedIdentifier.FullName + " : " + SelectedIdentifier.Offset + " : " + SelectedIdentifier.Type);                
             });
             Application.Current.Dispatcher.InvokeAsync(() =>
             {

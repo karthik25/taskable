@@ -4,7 +4,7 @@
     {
         public IdentifierType Type { get; set; }
         public string FullName { get; set; }
-        public int LineNumber { get; set; }
+        public int Offset { get; set; }
 
         public string Image
         {

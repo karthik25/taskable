@@ -38,7 +38,7 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-                <Button Height="20" Background="Transparent" BorderThickness="0" Command="{Binding GotoIdentifierCommand}" ToolTip="Go to...">
+                <Button Height="20" Background="Transparent" BorderThickness="0" ToolTip="Go to..." Name="BtnGoto" Click="BtnGoto_Click">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Images/run.png" />
                     </StackPanel>

@@ -25,7 +25,7 @@ namespace TaskableRoslynCore.Analyzer
                 {
                     FullName = nameSpace != null ? string.Format("{0}.{1}", nameSpace.Name, classType.Identifier) : string.Format("{0}", classType.Identifier),
                     Type = IdentifierType.Class,
-                    LineNumber = classType.GetLocation().GetLineSpan().StartLinePosition.Line
+                    Offset = classType.FullSpan.Start
                 };
                 identifiers.Add(classInfo);
 
@@ -35,7 +35,7 @@ namespace TaskableRoslynCore.Analyzer
                     var methodIdentifier = new Identifier
                     {
                         FullName = string.Format("{0}.{1}", classInfo.FullName, methodType.Identifier),
-                        LineNumber = methodType.GetLocation().GetLineSpan().StartLinePosition.Line,
+                        Offset = methodType.FullSpan.Start,
                         Type = IdentifierType.Method
                     };
                     identifiers.Add(methodIdentifier);
@@ -47,7 +47,7 @@ namespace TaskableRoslynCore.Analyzer
                     var propertyIdentifier = new Identifier
                     {
                         FullName = string.Format("{0}.{1}", classInfo.FullName, propertyType.Identifier),
-                        LineNumber = propertyType.GetLocation().GetLineSpan().StartLinePosition.Line,
+                        Offset = propertyType.FullSpan.Start,
                         Type = IdentifierType.Property
                     };
                     identifiers.Add(propertyIdentifier);
@@ -59,7 +59,7 @@ namespace TaskableRoslynCore.Analyzer
                     var fieldIdentifier = new Identifier
                     {
                         FullName = string.Format("{0}.{1}", classInfo.FullName, fieldType.Declaration.Variables.First().Identifier),
-                        LineNumber = fieldType.GetLocation().GetLineSpan().StartLinePosition.Line,
+                        Offset = fieldType.FullSpan.Start,
                         Type = IdentifierType.Property
                     };
                     identifiers.Add(fieldIdentifier);
