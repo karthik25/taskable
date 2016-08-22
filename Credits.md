@@ -2,6 +2,7 @@
 
 ## Icons
 
+- https://www.microsoft.com/en-us/download/details.aspx?id=35825
 - https://www.iconfinder.com/icons/299045/error_sign_icon : CC 3.0 (http://creativecommons.org/licenses/by/3.0/)
 - https://www.iconfinder.com/icons/206463/keynote_parameters_icon
 - https://www.iconfinder.com/icons/299068/add_sign_icon : CC 3.0 (http://creativecommons.org/licenses/by/3.0/)
