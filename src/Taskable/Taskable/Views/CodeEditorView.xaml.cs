@@ -22,6 +22,7 @@ namespace TaskableApp.Views
         private void BtnGoto_Click(object sender, RoutedEventArgs e)
         {
             var model = (CodeEditorViewModel)this.DataContext;
+            textEditor.ScrollToLine(model.SelectedIdentifier.Line);
             textEditor.CaretOffset = model.SelectedIdentifier.Offset;
         }
     }
