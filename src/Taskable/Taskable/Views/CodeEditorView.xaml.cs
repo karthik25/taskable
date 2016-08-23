@@ -44,6 +44,8 @@ namespace TaskableApp.Views
             {
                 textEditor.ScrollToLine(model.SelectedIdentifier.Line);
                 textEditor.CaretOffset = model.SelectedIdentifier.Offset;
+                IdCombo.SelectedItem = null;
+                model.HideNav();
                 textEditor.Focus();
             }
         }

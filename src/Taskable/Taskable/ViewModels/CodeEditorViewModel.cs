@@ -117,6 +117,12 @@ namespace TaskableApp.ViewModels
             });
         }
 
+        public void HideNav()
+        {
+            this.SelectedIdentifier = null;
+            this.IsNavVisible = false;
+        }
+
         private async Task Save()
         {
             if (string.IsNullOrEmpty(CurrentFile))
