@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TaskableApp.Views"
              xmlns:editor="clr-namespace:TaskableApp;assembly="
+             xmlns:g="clr-namespace:TaskableApp"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.InputBindings>
@@ -70,8 +71,9 @@
                 <ComboBox Margin="5,5,5,5" 
                           Width="375" 
                           SelectedItem="{Binding SelectedIdentifier}" 
-                          ItemsSource="{Binding Identifiers}" 
+                          ItemsSource="{Binding Identifiers}"
                           IsEditable="True" 
+                          g:FocusExtension.IsFocused="{Binding IsNavVisible}"
                           Name="IdCombo"
                           KeyDown="IdCombo_KeyDown"
                           TextSearch.TextPath="Name" LostFocus="IdCombo_LostFocus"
