@@ -11,6 +11,9 @@
              xmlns:dockctrl="clr-namespace:Xceed.Wpf.AvalonDock.Controls;assembly=Xceed.Wpf.AvalonDock"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.InputBindings>
+        <KeyBinding Key="N" Command="{Binding NewDocumentCommand}" Modifiers="Ctrl" />
+    </UserControl.InputBindings>
     <dock:DockingManager DocumentsSource="{Binding CodeEditors, Mode=OneTime}" ActiveContent="{Binding CurrentDocument, Mode=TwoWay}"
                          DocumentClosing="DockingManager_DocumentClosing">
         <dock:DockingManager.Resources>
