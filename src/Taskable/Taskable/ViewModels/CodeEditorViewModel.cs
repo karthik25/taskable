@@ -77,8 +77,6 @@ namespace TaskableApp.ViewModels
             set { SetProperty(ref _identifiers, value); }
         }
 
-        public GenericCommand GotoIdentifierCommand { get; set; }
-
         public CodeEditorViewModel(MainWindowViewModel mainViewModel)
         {
             _mainViewModel = mainViewModel;
@@ -100,10 +98,6 @@ namespace TaskableApp.ViewModels
             }
             SaveDocumentCommand = new GenericCommand(Save);
             OpenInVsCommand = new GenericCommand((Action)OpenFileInVs);
-            this.GotoIdentifierCommand = new GenericCommand(() =>
-            {
-                MessageBox.Show(SelectedIdentifier.FullName + " : " + SelectedIdentifier.Offset + " : " + SelectedIdentifier.Type);                
-            });
             Application.Current.Dispatcher.InvokeAsync(() =>
             {
                 GetIdentifierList();

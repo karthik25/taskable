@@ -23,7 +23,8 @@ namespace TaskableRoslynCore.Analyzer
                 var nameSpace = classType.GetNamespace(out isNestedNamespace);
                 var classInfo = new Identifier
                 {
-                    FullName = nameSpace != null ? string.Format("{0}.{1}", nameSpace.Name, classType.Identifier) : string.Format("{0}", classType.Identifier),
+                    Prefix = string.Empty,
+                    Name = nameSpace != null ? string.Format("{0}.{1}", nameSpace.Name, classType.Identifier) : string.Format("{0}", classType.Identifier),
                     Type = IdentifierType.Class,
                     Line = classType.GetLocation().GetLineSpan().StartLinePosition.Line,
                     Offset = classType.FullSpan.Start
@@ -35,7 +36,8 @@ namespace TaskableRoslynCore.Analyzer
                 {
                     var methodIdentifier = new Identifier
                     {
-                        FullName = string.Format("{0}.{1}", classInfo.FullName, methodType.Identifier),
+                        Prefix = classInfo.Name,
+                        Name = methodType.Identifier.ToString(),
                         Offset = methodType.Span.Start,
                         Line = methodType.GetLocation().GetLineSpan().StartLinePosition.Line,
                         Type = IdentifierType.Method
@@ -48,7 +50,8 @@ namespace TaskableRoslynCore.Analyzer
                 {
                     var propertyIdentifier = new Identifier
                     {
-                        FullName = string.Format("{0}.{1}", classInfo.FullName, propertyType.Identifier),
+                        Prefix = classInfo.Name,
+                        Name = propertyType.Identifier.ToString(),
                         Offset = propertyType.Span.Start,
                         Line = propertyType.GetLocation().GetLineSpan().StartLinePosition.Line,
                         Type = IdentifierType.Property
@@ -61,7 +64,8 @@ namespace TaskableRoslynCore.Analyzer
                 {
                     var fieldIdentifier = new Identifier
                     {
-                        FullName = string.Format("{0}.{1}", classInfo.FullName, fieldType.Declaration.Variables.First().Identifier),
+                        Prefix = classInfo.Name,
+                        Name = fieldType.Declaration.Variables.First().Identifier.ToString(),
                         Offset = fieldType.Span.Start,
                         Line = fieldType.GetLocation().GetLineSpan().StartLinePosition.Line,
                         Type = IdentifierType.Property

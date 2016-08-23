@@ -3,9 +3,21 @@
     public class Identifier
     {
         public IdentifierType Type { get; set; }
-        public string FullName { get; set; }
+        public string Prefix { get; set; }
+        public string Name { get; set; }
         public int Line { get; set; }
         public int Offset { get; set; }
+
+        public string QualifiedPrefix
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Prefix))
+                    return string.Empty;
+                return string.Format("{0}.", Prefix);
+            }
+            set { }
+        }
 
         public string Image
         {
