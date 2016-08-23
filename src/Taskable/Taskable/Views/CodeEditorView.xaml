@@ -7,7 +7,13 @@
              xmlns:editor="clr-namespace:TaskableApp;assembly="
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.InputBindings>
+        <KeyBinding Command="{Binding NavCommand}" Key="I" Modifiers="Alt" />
+    </UserControl.InputBindings>
     <Grid>
+        <Grid.Resources>
+            <BooleanToVisibilityConverter x:Key="boolToVis" />
+        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition />
@@ -57,5 +63,31 @@
             <StatusBarItem Name="lblStatus" Content="{Binding StatusText}" HorizontalAlignment="Left"></StatusBarItem>
             <StatusBarItem Name="lblStatusY" Content="{Binding StatusTextY}" HorizontalAlignment="Right" Foreground="Green" FontWeight="Bold"></StatusBarItem>
         </StatusBar>
+
+        <Canvas Visibility="{Binding IsNavVisible, Converter={StaticResource boolToVis}}">
+            <WrapPanel Canvas.ZIndex="3" Width="400" Height="50" Canvas.Top="40" Canvas.Right="100" Background="LightYellow">
+                <TextBlock Text="Type, select an item, press tab to navigate..." FontWeight="Bold" FontSize="12" />
+                <ComboBox Margin="5,5,5,5" 
+                          Width="375" 
+                          SelectedItem="{Binding SelectedIdentifier}" 
+                          ItemsSource="{Binding Identifiers}" 
+                          IsEditable="True" 
+                          Name="IdCombo"
+                          KeyDown="IdCombo_KeyDown"
+                          TextSearch.TextPath="Name" LostFocus="IdCombo_LostFocus"
+                          SelectionChanged="IdCombo_SelectionChanged">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding Image}" Width="16" Height="16" />
+                                <TextBlock Margin="5,0,0,0">
+                                    <Run Foreground="Gray" Text="{Binding QualifiedPrefix}"></Run><Run Text="{Binding Name}"></Run>
+                                </TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </WrapPanel>
+        </Canvas>
     </Grid>
 </UserControl>

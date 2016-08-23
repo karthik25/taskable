@@ -77,6 +77,15 @@ namespace TaskableApp.ViewModels
             set { SetProperty(ref _identifiers, value); }
         }
 
+        private bool _isNavVisible;
+        public bool IsNavVisible
+        {
+            get { return _isNavVisible; }
+            set { SetProperty(ref _isNavVisible, value); }
+        }
+
+        public GenericCommand NavCommand { get; set; }
+
         public CodeEditorViewModel(MainWindowViewModel mainViewModel)
         {
             _mainViewModel = mainViewModel;
@@ -101,6 +110,10 @@ namespace TaskableApp.ViewModels
             Application.Current.Dispatcher.InvokeAsync(() =>
             {
                 GetIdentifierList();
+            });
+            this.NavCommand = new GenericCommand(() =>
+            {
+                this.IsNavVisible = !this.IsNavVisible;
             });
         }
 
