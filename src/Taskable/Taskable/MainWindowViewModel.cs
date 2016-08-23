@@ -14,19 +14,6 @@ namespace TaskableApp
             set { SetProperty(ref _panelLoading, value); }
         }
 
-        public GenericCommand PanelCloseCommand
-        {
-            get
-            {
-                return new GenericCommand(() =>
-                {
-                    // Your code here.
-                    // You may want to terminate the running thread etc.
-                    PanelLoading = false;
-                });
-            }
-        }
-
         public void ShowLoadingPanel()
         {
             this.PanelLoading = true;
