@@ -90,29 +90,38 @@ namespace TaskableApp.ViewModels
             await ReinitializeTasks();            
         }
 
-        private void RunSelectedTask()
+        private async void RunSelectedTask()
         {
-            if (!string.IsNullOrEmpty(SelectedTask))
+            await Task.Factory.StartNew(new Action(async () =>
             {
-                var computedTask = _tasker.FindTask(SelectedTask);
-                if (computedTask.Data.Positions.Count() == Parameters.Count)
+                if (!string.IsNullOrEmpty(SelectedTask))
                 {
-                    var parameterIndex = 0;
-                    var cmdSplit = computedTask.Pattern.Split(new[] { ' ' }).ToList();
-                    for (int i = 0; i < cmdSplit.Count; i++)
+                    var computedTask = _tasker.FindTask(SelectedTask);
+                    if (computedTask.Data.Positions.Count() == Parameters.Count)
                     {
-                        if (cmdSplit[i] == "{}")
+                        var parameterIndex = 0;
+                        var cmdSplit = computedTask.Pattern.Split(new[] { ' ' }).ToList();
+                        for (int i = 0; i < cmdSplit.Count; i++)
                         {
-                            cmdSplit[i] = Parameters[parameterIndex].ParameterValue;
-                            parameterIndex++;
+                            if (cmdSplit[i] == "{}")
+                            {
+                                cmdSplit[i] = Parameters[parameterIndex].ParameterValue;
+                                parameterIndex++;
+                            }
                         }
+                        var finalCommand = string.Join(" ", cmdSplit);
+                        await Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                        {
+                            this.OutputEntries.Add("Running: " + finalCommand);
+                        }));
+                        var runStatus = _tasker.InvokeTask(finalCommand);
+                        await Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                        {
+                            this.OutputEntries.Add("Completed running the task (status): " + runStatus);
+                        }));
                     }
-                    var finalCommand = string.Join(" ", cmdSplit);
-                    OutputEntries.Add("Running: " + finalCommand);
-                    var runStatus = _tasker.InvokeTask(finalCommand);
-                    OutputEntries.Add("Completed running the task (status): " + runStatus);
                 }
-            }
+            }));
         }
 
         public async Task RefreshTaskableInstances()
