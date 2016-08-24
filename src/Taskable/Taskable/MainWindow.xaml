@@ -25,7 +25,7 @@
             <local:LoadingPanel x:Name="loadingPanel"
                         IsLoading="{Binding PanelLoading}"
                         Message="Please Wait!"
-                        SubMessage="Generating tasks..." 
+                        SubMessage="{Binding CurrentActivity}" 
                         Width="400" />
         </Grid>
     </Grid>

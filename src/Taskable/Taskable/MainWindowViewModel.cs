@@ -7,6 +7,13 @@ namespace TaskableApp
         public TaskSelectorViewModel TaskSelectorViewModel { get; set; }
         public CodeCollectionViewModel CodeCollectionViewModel { get; set; }
 
+        private string _currentActivity;
+        public string CurrentActivity
+        {
+            get { return _currentActivity; }
+            set { SetProperty(ref _currentActivity, value); }
+        }
+
         private bool _panelLoading;
         public bool PanelLoading
         {
@@ -14,8 +21,10 @@ namespace TaskableApp
             set { SetProperty(ref _panelLoading, value); }
         }
 
-        public void ShowLoadingPanel()
+        public void ShowLoadingPanel(string currentActivity = "")
         {
+            if (!string.IsNullOrEmpty(currentActivity))
+                this.CurrentActivity = currentActivity;
             this.PanelLoading = true;
         }
 
@@ -26,6 +35,7 @@ namespace TaskableApp
 
         public MainWindowViewModel()
         {
+            this.CurrentActivity = "Generating tasks...";
             this.TaskSelectorViewModel = new TaskSelectorViewModel(this);
             this.CodeCollectionViewModel = new CodeCollectionViewModel(this);
         }
