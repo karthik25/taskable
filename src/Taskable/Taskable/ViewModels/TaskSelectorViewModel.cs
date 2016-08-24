@@ -96,6 +96,11 @@ namespace TaskableApp.ViewModels
             {
                 if (!string.IsNullOrEmpty(SelectedTask))
                 {
+                    await Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        this._mainViewModel.ShowLoadingPanel("Running the selected task...");
+                    }));
+
                     var computedTask = _tasker.FindTask(SelectedTask);
                     if (computedTask.Data.Positions.Count() == Parameters.Count)
                     {
@@ -118,6 +123,7 @@ namespace TaskableApp.ViewModels
                         await Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                         {
                             this.OutputEntries.Add("Completed running the task (status): " + runStatus);
+                            this._mainViewModel.HideLoadingPanel();
                         }));
                     }
                 }
