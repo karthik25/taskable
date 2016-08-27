@@ -100,8 +100,8 @@ namespace TaskableRoslynCore.Analyzer
                 Name = name,
                 StartLine = node.GetLocation().GetLineSpan().StartLinePosition.Line,
                 EndLine = node.GetLocation().GetLineSpan().EndLinePosition.Line,
-                OffsetStart = node.FullSpan.Start,
-                OffsetEnd = node.FullSpan.End,
+                OffsetStart = node.Span.Start,
+                OffsetEnd = node.Span.End,
                 Index = _nodeIndex++,
                 Type = type,
                 Prefix = GetPrefix(node)
