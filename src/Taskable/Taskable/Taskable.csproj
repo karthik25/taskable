@@ -76,6 +76,7 @@
     <Compile Include="CircularProgressBar.xaml.cs">
       <DependentUpon>CircularProgressBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CodeEditorNavEventArgs.cs" />
     <Compile Include="CommandManagerHelper.cs" />
     <Compile Include="DelegateCommand.cs" />
     <Compile Include="LoadingPanel.xaml.cs">

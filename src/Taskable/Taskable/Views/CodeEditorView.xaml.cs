@@ -54,12 +54,16 @@ namespace TaskableApp.Views
             }
         }
 
-        private void Model_CaretPositionChanged(object sender, System.EventArgs e)
+        private void Model_CaretPositionChanged(object sender, CodeEditorNavEventArgs e)
         {
             var model = (CodeEditorViewModel)this.DataContext;
-            textEditor.ScrollToLine(model.NextIdentifier.StartLine);
-            textEditor.CaretOffset = model.NextIdentifier.OffsetStart;
-            textEditor.Focus();
+            var nextIdentifier = e.EventType == NavEventType.Down ? model.GetNextIdentifier(textEditor.CaretOffset) : model.GetPreviousIdentifier(textEditor.CaretOffset);
+            if (nextIdentifier != null)
+            {
+                textEditor.ScrollToLine(nextIdentifier.StartLine);
+                textEditor.CaretOffset = nextIdentifier.OffsetStart;
+                textEditor.Focus();
+            }
         }
     }
 }

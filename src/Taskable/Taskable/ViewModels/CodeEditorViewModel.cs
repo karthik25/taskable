@@ -99,15 +99,9 @@ namespace TaskableApp.ViewModels
 
         public GenericCommand NavCommand { get; set; }
         public GenericCommand DownArrowCommand { get; set; }
+        public GenericCommand UpArrowCommand { get; set; }
 
-        private int _currentOffset;
-        public int CurrentOffset
-        {
-            get { return _currentOffset; }
-            set { SetProperty(ref _currentOffset, value); }
-        }
-
-        public event EventHandler CaretPositionChanged;
+        public event EventHandler<CodeEditorNavEventArgs> CaretPositionChanged;
 
         public CodeEditorViewModel(MainWindowViewModel mainViewModel)
         {
@@ -140,21 +134,39 @@ namespace TaskableApp.ViewModels
             });
             this.DownArrowCommand = new GenericCommand(() =>
             {
-                var currentIdentifier = this.Identifiers.Where(i => i.OffsetStart <= this.CurrentOffset)
-                                                 .Where(i => i.Between(this.CurrentOffset))
-                                                 .LeastDistance();
-                this.NextIdentifier = this.Identifiers.FirstOrDefault(i => i.Index == (currentIdentifier.Index + 1));
-                OnCaretPositionChanged();
+                OnCaretPositionChanged(NavEventType.Down);
+            });
+            this.UpArrowCommand = new GenericCommand(() =>
+            {
+                OnCaretPositionChanged(NavEventType.Up);
             });
         }
 
-        private void OnCaretPositionChanged()
+        private void OnCaretPositionChanged(NavEventType eventType)
         {
             if (CaretPositionChanged != null)
             {
                 var handler = CaretPositionChanged;
-                handler(this, new EventArgs());
+                handler(this, new CodeEditorNavEventArgs(eventType));
             }
+        }
+
+        public Identifier GetNextIdentifier(int caretOffset)
+        {
+            var currentIdentifier = this.Identifiers.Where(i => i.OffsetStart <= caretOffset)
+                                                 .Where(i => i.Between(caretOffset))
+                                                 .LeastDistance();
+            this.NextIdentifier = this.Identifiers.FirstOrDefault(i => i.Index == (currentIdentifier.Index + 1));
+            return this.NextIdentifier;
+        }
+
+        public Identifier GetPreviousIdentifier(int caretOffset)
+        {
+            var currentIdentifier = this.Identifiers.Where(i => i.OffsetStart <= caretOffset)
+                                                 .Where(i => i.Between(caretOffset))
+                                                 .LeastDistance();
+            this.NextIdentifier = this.Identifiers.FirstOrDefault(i => i.Index == (currentIdentifier.Index - 1));
+            return this.NextIdentifier;
         }
 
         public void HideNav()

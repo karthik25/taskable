@@ -82,6 +82,7 @@ namespace TaskableRoslynCore
     {
         Namespace,
         Class,
+        Constructor,
         Method,
         Interface,
         Property,

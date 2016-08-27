@@ -37,6 +37,13 @@ namespace TaskableRoslynCore.Analyzer
             base.VisitClassDeclaration(node);
         }
 
+        public override void VisitConstructorDeclaration(ConstructorDeclarationSyntax node)
+        {
+            var identifier = GetBasicInfo(node, node.Identifier.ToString(), IdentifierType.Constructor);
+            _identifiers.Add(identifier);
+            base.VisitConstructorDeclaration(node);
+        }
+
         public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
         {
             var identifier = GetBasicInfo(node, node.Identifier.ToString(), IdentifierType.Method);
