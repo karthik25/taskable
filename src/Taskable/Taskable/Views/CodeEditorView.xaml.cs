@@ -23,7 +23,7 @@ namespace TaskableApp.Views
         {
             var model = (CodeEditorViewModel)this.DataContext;
             textEditor.ScrollToLine(model.SelectedIdentifier.StartLine);
-            textEditor.ScrollToHorizontalOffset(model.SelectedIdentifier.OffsetStart);
+            textEditor.CaretOffset = model.SelectedIdentifier.OffsetStart;
             textEditor.Focus();
         }
 
@@ -38,7 +38,7 @@ namespace TaskableApp.Views
             if (model != null && model.SelectedIdentifier != null)
             {
                 textEditor.ScrollToLine(model.SelectedIdentifier.StartLine);
-                textEditor.ScrollToHorizontalOffset(model.SelectedIdentifier.OffsetStart);
+                textEditor.CaretOffset = model.SelectedIdentifier.OffsetStart;
                 IdCombo.SelectedItem = null;
                 model.HideNav();
                 textEditor.Focus();
@@ -58,7 +58,7 @@ namespace TaskableApp.Views
         {
             var model = (CodeEditorViewModel)this.DataContext;
             textEditor.ScrollToLine(model.NextIdentifier.StartLine);
-            textEditor.ScrollToHorizontalOffset(model.NextIdentifier.OffsetStart);
+            textEditor.CaretOffset = model.NextIdentifier.OffsetStart;
             textEditor.Focus();
         }
     }

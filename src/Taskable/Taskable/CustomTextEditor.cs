@@ -25,7 +25,7 @@ namespace TaskableApp
         public new int CaretOffset
         {
             get { return base.CaretOffset; }
-            set { SetValue(CaretOffsetProperty, value); }
+            set { base.CaretOffset = value; }
         }
         #endregion // Caret Offset.
 
