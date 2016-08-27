@@ -10,6 +10,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.InputBindings>
         <KeyBinding Command="{Binding NavCommand}" Key="I" Modifiers="Alt" />
+        <KeyBinding Command="{Binding DownArrowCommand}" Key="Down" Modifiers="Alt" />
     </UserControl.InputBindings>
     <Grid>
         <Grid.Resources>
@@ -55,6 +56,10 @@
                                  FontFamily="Consolas"
                                  FontSize="10pt" 
                                  Document="{Binding Document}"
+                                 CaretOffset="{Binding CurrentOffset, 
+                                                Mode=TwoWay, 
+                                                NotifyOnSourceUpdated=True, 
+                                                NotifyOnTargetUpdated=True}"
                                  HorizontalAlignment="Stretch"
                                  VerticalAlignment="Stretch"
                                  HorizontalScrollBarVisibility="Hidden"

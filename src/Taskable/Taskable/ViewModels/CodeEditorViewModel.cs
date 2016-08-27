@@ -85,6 +85,14 @@ namespace TaskableApp.ViewModels
         }
 
         public GenericCommand NavCommand { get; set; }
+        public GenericCommand DownArrowCommand { get; set; }
+
+        private int _currentOffset;
+        public int CurrentOffset
+        {
+            get { return _currentOffset; }
+            set { SetProperty(ref _currentOffset, value); }
+        }
 
         public CodeEditorViewModel(MainWindowViewModel mainViewModel)
         {
@@ -114,6 +122,10 @@ namespace TaskableApp.ViewModels
             this.NavCommand = new GenericCommand(() =>
             {
                 this.IsNavVisible = !this.IsNavVisible;
+            });
+            this.DownArrowCommand = new GenericCommand(() =>
+            {
+                MessageBox.Show("Down arrow: " + this.CurrentOffset);
             });
         }
 
