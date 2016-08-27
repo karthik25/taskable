@@ -23,7 +23,7 @@ namespace TaskableApp.Views
         {
             var model = (CodeEditorViewModel)this.DataContext;
             textEditor.ScrollToLine(model.SelectedIdentifier.StartLine);
-            textEditor.CaretOffset = model.SelectedIdentifier.OffsetStart;
+            textEditor.ScrollToHorizontalOffset(model.SelectedIdentifier.OffsetStart);
             textEditor.Focus();
         }
 
@@ -32,22 +32,34 @@ namespace TaskableApp.Views
             IdCombo.IsDropDownOpen = true;
         }
 
-        private void IdCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void IdCombo_LostFocus(object sender, RoutedEventArgs e)
         {
             var model = (CodeEditorViewModel)this.DataContext;
             if (model != null && model.SelectedIdentifier != null)
             {
                 textEditor.ScrollToLine(model.SelectedIdentifier.StartLine);
-                textEditor.CaretOffset = model.SelectedIdentifier.OffsetStart;
+                textEditor.ScrollToHorizontalOffset(model.SelectedIdentifier.OffsetStart);
                 IdCombo.SelectedItem = null;
                 model.HideNav();
                 textEditor.Focus();
             }
+        }
+
+        private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            var model = (CodeEditorViewModel)this.DataContext;
+            if (model != null)
+            {
+                model.CaretPositionChanged += Model_CaretPositionChanged;
+            }
+        }
+
+        private void Model_CaretPositionChanged(object sender, System.EventArgs e)
+        {
+            var model = (CodeEditorViewModel)this.DataContext;
+            textEditor.ScrollToLine(model.NextIdentifier.StartLine);
+            textEditor.ScrollToHorizontalOffset(model.NextIdentifier.OffsetStart);
+            textEditor.Focus();
         }
     }
 }

@@ -69,7 +69,19 @@ namespace TaskableApp.ViewModels
             }
         }
 
-        public Identifier SelectedIdentifier { get; set; }
+        private Identifier _selectedIdentifier;
+        public Identifier SelectedIdentifier
+        {
+            get { return _selectedIdentifier; }
+            set { SetProperty(ref _selectedIdentifier, value); }
+        }
+
+        private Identifier _nextIdentifier;
+        public Identifier NextIdentifier
+        {
+            get { return _nextIdentifier; }
+            set { SetProperty(ref _nextIdentifier, value); }
+        }
 
         private ObservableCollection<Identifier> _identifiers;
         public ObservableCollection<Identifier> Identifiers
@@ -94,6 +106,8 @@ namespace TaskableApp.ViewModels
             get { return _currentOffset; }
             set { SetProperty(ref _currentOffset, value); }
         }
+
+        public event EventHandler CaretPositionChanged;
 
         public CodeEditorViewModel(MainWindowViewModel mainViewModel)
         {
@@ -126,11 +140,21 @@ namespace TaskableApp.ViewModels
             });
             this.DownArrowCommand = new GenericCommand(() =>
             {
-                var identifier = this.Identifiers.Where(i => i.OffsetStart <= this.CurrentOffset)
+                var currentIdentifier = this.Identifiers.Where(i => i.OffsetStart <= this.CurrentOffset)
                                                  .Where(i => i.Between(this.CurrentOffset))
                                                  .LeastDistance();
-                MessageBox.Show("Down arrow: " + identifier.Name);
+                this.NextIdentifier = this.Identifiers.FirstOrDefault(i => i.Index == (currentIdentifier.Index + 1));
+                OnCaretPositionChanged();
             });
+        }
+
+        private void OnCaretPositionChanged()
+        {
+            if (CaretPositionChanged != null)
+            {
+                var handler = CaretPositionChanged;
+                handler(this, new EventArgs());
+            }
         }
 
         public void HideNav()

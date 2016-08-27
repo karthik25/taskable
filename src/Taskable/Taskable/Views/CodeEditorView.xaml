@@ -7,6 +7,7 @@
              xmlns:editor="clr-namespace:TaskableApp;assembly="
              xmlns:g="clr-namespace:TaskableApp"
              mc:Ignorable="d" 
+             DataContextChanged="UserControl_DataContextChanged"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.InputBindings>
         <KeyBinding Command="{Binding NavCommand}" Key="I" Modifiers="Alt" />
@@ -81,8 +82,7 @@
                           g:FocusExtension.IsFocused="{Binding IsNavVisible}"
                           Name="IdCombo"
                           KeyDown="IdCombo_KeyDown"
-                          TextSearch.TextPath="Name" LostFocus="IdCombo_LostFocus"
-                          SelectionChanged="IdCombo_SelectionChanged">
+                          TextSearch.TextPath="Name" LostFocus="IdCombo_LostFocus">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
