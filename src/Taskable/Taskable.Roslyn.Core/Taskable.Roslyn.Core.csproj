@@ -126,7 +126,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analyzer\CustomWalker.cs" />
     <Compile Include="Analyzer\RoslynAnalyzer.cs" />
+    <Compile Include="Analyzer\RoslynHost.cs" />
     <Compile Include="Identifier.cs" />
     <Compile Include="LanguageType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

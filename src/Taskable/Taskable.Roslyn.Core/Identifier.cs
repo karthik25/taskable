@@ -1,12 +1,29 @@
-﻿namespace TaskableRoslynCore
+﻿using System.Collections.Generic;
+
+namespace TaskableRoslynCore
 {
     public class Identifier
     {
         public IdentifierType Type { get; set; }
         public string Prefix { get; set; }
         public string Name { get; set; }
-        public int Line { get; set; }
-        public int Offset { get; set; }
+        public int StartLine { get; set; }
+        public int EndLine { get; set; }
+        public int OffsetStart { get; set; }
+        public int OffsetEnd { get; set; }
+        public List<string> Parameters { get; set; }
+        public int Index { get; set; }
+
+        public string FullName
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Prefix))
+                    return Name;
+                return string.Format("{0}.{1}", Prefix, Name);
+            }
+            set { }
+        }
 
         public string QualifiedPrefix
         {
@@ -40,14 +57,24 @@
                 }
             }
         }
+
+        public override string ToString()
+        {
+            return string.Format("{0}, {1}, {2}, {3}, {4} [{5}] ({6})", FullName, StartLine, EndLine, OffsetStart, OffsetEnd, Type, Index);
+        }
     }
 
     public enum IdentifierType
     {
+        Namespace,
         Class,
         Method,
         Interface,
         Property,
-        Field
+        Field,
+        Enumeration,
+        EnumerationMember,
+        Delegate,
+        Event
     }
 }

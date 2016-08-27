@@ -26,8 +26,8 @@ namespace TaskableRoslynCore.Analyzer
                     Prefix = string.Empty,
                     Name = nameSpace != null ? string.Format("{0}.{1}", nameSpace.Name, classType.Identifier) : string.Format("{0}", classType.Identifier),
                     Type = IdentifierType.Class,
-                    Line = classType.GetLocation().GetLineSpan().StartLinePosition.Line,
-                    Offset = classType.FullSpan.Start
+                    StartLine = classType.GetLocation().GetLineSpan().StartLinePosition.Line,
+                    OffsetStart = classType.FullSpan.Start
                 };
                 identifiers.Add(classInfo);
 
@@ -38,8 +38,8 @@ namespace TaskableRoslynCore.Analyzer
                     {
                         Prefix = classInfo.Name,
                         Name = methodType.Identifier.ToString(),
-                        Offset = methodType.Span.Start,
-                        Line = methodType.GetLocation().GetLineSpan().StartLinePosition.Line,
+                        OffsetStart = methodType.Span.Start,
+                        StartLine = methodType.GetLocation().GetLineSpan().StartLinePosition.Line,
                         Type = IdentifierType.Method
                     };
                     identifiers.Add(methodIdentifier);
@@ -52,8 +52,8 @@ namespace TaskableRoslynCore.Analyzer
                     {
                         Prefix = classInfo.Name,
                         Name = propertyType.Identifier.ToString(),
-                        Offset = propertyType.Span.Start,
-                        Line = propertyType.GetLocation().GetLineSpan().StartLinePosition.Line,
+                        OffsetStart = propertyType.Span.Start,
+                        StartLine = propertyType.GetLocation().GetLineSpan().StartLinePosition.Line,
                         Type = IdentifierType.Property
                     };
                     identifiers.Add(propertyIdentifier);
@@ -66,8 +66,8 @@ namespace TaskableRoslynCore.Analyzer
                     {
                         Prefix = classInfo.Name,
                         Name = fieldType.Declaration.Variables.First().Identifier.ToString(),
-                        Offset = fieldType.Span.Start,
-                        Line = fieldType.GetLocation().GetLineSpan().StartLinePosition.Line,
+                        OffsetStart = fieldType.Span.Start,
+                        StartLine = fieldType.GetLocation().GetLineSpan().StartLinePosition.Line,
                         Type = IdentifierType.Property
                     };
                     identifiers.Add(fieldIdentifier);

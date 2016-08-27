@@ -22,8 +22,8 @@ namespace TaskableApp.Views
         private void IdList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var model = (CodeEditorViewModel)this.DataContext;
-            textEditor.ScrollToLine(model.SelectedIdentifier.Line);
-            textEditor.CaretOffset = model.SelectedIdentifier.Offset;
+            textEditor.ScrollToLine(model.SelectedIdentifier.StartLine);
+            textEditor.CaretOffset = model.SelectedIdentifier.OffsetStart;
             textEditor.Focus();
         }
 
@@ -42,8 +42,8 @@ namespace TaskableApp.Views
             var model = (CodeEditorViewModel)this.DataContext;
             if (model != null && model.SelectedIdentifier != null)
             {
-                textEditor.ScrollToLine(model.SelectedIdentifier.Line);
-                textEditor.CaretOffset = model.SelectedIdentifier.Offset;
+                textEditor.ScrollToLine(model.SelectedIdentifier.StartLine);
+                textEditor.CaretOffset = model.SelectedIdentifier.OffsetStart;
                 IdCombo.SelectedItem = null;
                 model.HideNav();
                 textEditor.Focus();
