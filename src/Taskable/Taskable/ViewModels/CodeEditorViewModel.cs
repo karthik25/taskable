@@ -4,6 +4,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -125,7 +126,10 @@ namespace TaskableApp.ViewModels
             });
             this.DownArrowCommand = new GenericCommand(() =>
             {
-                MessageBox.Show("Down arrow: " + this.CurrentOffset);
+                var identifier = this.Identifiers.Where(i => i.OffsetStart <= this.CurrentOffset)
+                                                 .Where(i => i.Between(this.CurrentOffset))
+                                                 .LeastDistance();
+                MessageBox.Show("Down arrow: " + identifier.Name);
             });
         }
 
@@ -194,7 +198,7 @@ namespace TaskableApp.ViewModels
 
             await Task.Factory.StartNew(new Action(async () =>
             {
-                var identifiers = text.GetIdentifiers();
+                var identifiers = await RoslynHost.GetIdentifiers(text);
 
                 await Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                 {

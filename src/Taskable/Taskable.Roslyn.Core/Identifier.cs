@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace TaskableRoslynCore
 {
@@ -61,6 +62,19 @@ namespace TaskableRoslynCore
         public override string ToString()
         {
             return string.Format("{0}, {1}, {2}, {3}, {4} [{5}] ({6})", FullName, StartLine, EndLine, OffsetStart, OffsetEnd, Type, Index);
+        }
+    }
+
+    public static class IdentifierHelpers
+    {
+        public static bool Between(this Identifier identifier, int offset)
+        {
+            return identifier.OffsetStart <= offset && identifier.OffsetEnd >= offset;
+        }
+
+        public static Identifier LeastDistance(this IEnumerable<Identifier> identifiers)
+        {
+            return identifiers.OrderByDescending(i => i.OffsetStart).First();
         }
     }
 
