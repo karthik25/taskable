@@ -17,22 +17,46 @@
         <TextBlock Text="Task Definition Paths" FontWeight="Bold" Grid.Row="0" Grid.Column="0" />
         <TextBlock Text="Additional Reference Paths" FontWeight="Bold" Grid.Row="0" Grid.Column="1" />
         <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0">
-            <ListBox ItemsSource="{Binding TaskDefitionPaths}" Height="100" />
-            <Button Name="BtnAddFolder" Height="16" Margin="5" Background="Transparent" BorderThickness="0" ToolTip="Add Task Def. Path" Click="BtnAddFolder_Click">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="/Images/plus.png" />
-                    <TextBlock Margin="5,0,0,0" Text="Add Path" />
-                </StackPanel>
-            </Button>
+            <ListBox ItemsSource="{Binding TaskDefitionPaths}" SelectedItem="{Binding SelectedPath}" Height="100" />
+            <Grid HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Name="BtnAddFolder" Height="16" Margin="5" Background="Transparent" BorderThickness="0" ToolTip="Add Task Def. Path" Click="BtnAddFolder_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Images/plus.png" />
+                        <TextBlock Margin="5,0,0,0" Text="Add Path" />
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="1" Name="BtnRemoveFolder" Height="16" Margin="5" Background="Transparent" BorderThickness="0" ToolTip="Remove Task Def. Path" Command="{Binding RemovePathCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Images/minus.png" />
+                        <TextBlock Margin="5,0,0,0" Text="Remove Path" />
+                    </StackPanel>
+                </Button>
+            </Grid>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1">
-            <ListBox ItemsSource="{Binding AdditionalReferences}" Height="100" />
-            <Button Name="BtnAddFile" Height="16" Margin="5" Background="Transparent" BorderThickness="0" ToolTip="Add Reference" Click="BtnAddFile_Click">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="/Images/plus.png" />
-                    <TextBlock Margin="5,0,0,0" Text="Add Reference" />
-                </StackPanel>
-            </Button>
+            <ListBox ItemsSource="{Binding AdditionalReferences}" SelectedItem="{Binding SelectedReference}" Height="100" />
+            <Grid HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Name="BtnAddFile" Height="16" Margin="5" Background="Transparent" BorderThickness="0" ToolTip="Add Reference" Click="BtnAddFile_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Images/plus.png" />
+                        <TextBlock Margin="5,0,0,0" Text="Add Reference" />
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="1" Name="BtnRemoveFile" Height="16" Margin="5" Background="Transparent" BorderThickness="0" ToolTip="Remove Reference" Command="{Binding RemoveReferenceCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Images/minus.png" />
+                        <TextBlock Margin="5,0,0,0" Text="Remove Reference" />
+                    </StackPanel>
+                </Button>
+            </Grid>
         </StackPanel>
     </Grid>
 </UserControl>

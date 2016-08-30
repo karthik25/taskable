@@ -62,8 +62,8 @@ namespace TaskableApp.ViewModels
             this.RunTaskCommand = new GenericCommand((Action)RunSelectedTask);
             this.RemoveParameter = new GenericCommand((Action)RemoveParam);
             this.SettingsTabViewModel = new SettingsTabViewModel(this);
-            this.SettingsTabViewModel.TasksAdded += SettingsTabViewModel_TasksAdded;
-            this.SettingsTabViewModel.ReferencesAdded += SettingsTabViewModel_ReferencesAdded;
+            this.SettingsTabViewModel.TasksAddedOrRemoved += SettingsTabViewModel_TasksAdded;
+            this.SettingsTabViewModel.ReferencesAddedOrRemoved += SettingsTabViewModel_ReferencesAdded;
         }
 
         private async void SettingsTabViewModel_TasksAdded(object sender, EventArgs e)

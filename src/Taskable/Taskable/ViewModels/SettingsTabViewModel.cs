@@ -13,8 +13,25 @@ namespace TaskableApp.ViewModels
         public FileOrFolderSelectionViewModel FileSelectionViewModel { get; set; }
         public FileOrFolderSelectionViewModel FolderSelectionViewModel { get; set; }
 
-        public event EventHandler TasksAdded;
-        public event EventHandler ReferencesAdded;
+        public event EventHandler TasksAddedOrRemoved;
+        public event EventHandler ReferencesAddedOrRemoved;
+
+        private string _selectedPath;
+        public string SelectedPath
+        {
+            get { return _selectedPath; }
+            set { SetProperty(ref _selectedPath, value); }
+        }
+
+        private string _selectedReference;
+        public string SelectedReference
+        {
+            get { return _selectedReference; }
+            set { SetProperty(ref _selectedReference, value); }
+        }
+
+        public GenericCommand RemovePathCommand { get; set; }
+        public GenericCommand RemoveReferenceCommand { get; set; }
 
         public SettingsTabViewModel(TaskSelectorViewModel model)
         {
@@ -27,6 +44,9 @@ namespace TaskableApp.ViewModels
             this.FileSelectionViewModel.Save += FileSelectionViewModel_Save;
             this.FolderSelectionViewModel = new FileOrFolderSelectionViewModel(SelectionType.Folder);
             this.FolderSelectionViewModel.Save += FolderSelectionViewModel_Save;
+
+            this.RemovePathCommand = new GenericCommand((Action)RemovePath);
+            this.RemoveReferenceCommand = new GenericCommand((Action)RemoveReference);
         }
 
         private void FolderSelectionViewModel_Save(object sender, EventArgs e)
@@ -36,7 +56,7 @@ namespace TaskableApp.ViewModels
 
             this.TaskDefitionPaths.Add(this.FolderSelectionViewModel.FileOrFolder);
 
-            OnTasksAdded();
+            OnTasksAddedOrRemoved();
         }
 
         private void FileSelectionViewModel_Save(object sender, EventArgs e)
@@ -47,11 +67,29 @@ namespace TaskableApp.ViewModels
             this.AdditionalReferences.Add(this.FileSelectionViewModel.FileOrFolder);
         }
 
-        private void OnTasksAdded()
+        private void RemovePath()
         {
-            if (TasksAdded != null)
+            if (!string.IsNullOrEmpty(SelectedPath))
             {
-                var handler = TasksAdded;
+                this.TaskDefitionPaths.Remove(SelectedPath);
+                OnTasksAddedOrRemoved();
+            }
+        }
+
+        private void RemoveReference()
+        {
+            if (!string.IsNullOrEmpty(SelectedReference))
+            {
+                this.AdditionalReferences.Remove(SelectedReference);
+                OnTasksAddedOrRemoved();
+            }
+        }
+
+        private void OnTasksAddedOrRemoved()
+        {
+            if (TasksAddedOrRemoved != null)
+            {
+                var handler = TasksAddedOrRemoved;
                 handler(this, new EventArgs());
             }
         }
