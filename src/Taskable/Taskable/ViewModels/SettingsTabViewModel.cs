@@ -65,6 +65,8 @@ namespace TaskableApp.ViewModels
                 return;
 
             this.AdditionalReferences.Add(this.FileSelectionViewModel.FileOrFolder);
+
+            OnReferencesAddedOrRemoved();
         }
 
         private void RemovePath()
@@ -81,7 +83,7 @@ namespace TaskableApp.ViewModels
             if (!string.IsNullOrEmpty(SelectedReference))
             {
                 this.AdditionalReferences.Remove(SelectedReference);
-                OnTasksAddedOrRemoved();
+                OnReferencesAddedOrRemoved();
             }
         }
 
@@ -90,6 +92,15 @@ namespace TaskableApp.ViewModels
             if (TasksAddedOrRemoved != null)
             {
                 var handler = TasksAddedOrRemoved;
+                handler(this, new EventArgs());
+            }
+        }
+
+        private void OnReferencesAddedOrRemoved()
+        {
+            if (ReferencesAddedOrRemoved != null)
+            {
+                var handler = ReferencesAddedOrRemoved;
                 handler(this, new EventArgs());
             }
         }

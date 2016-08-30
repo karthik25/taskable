@@ -68,6 +68,16 @@ namespace TaskableApp.ViewModels
 
         private async void SettingsTabViewModel_TasksAdded(object sender, EventArgs e)
         {
+            await SaveOptionsAndReInitTasks();
+        }
+
+        private async void SettingsTabViewModel_ReferencesAdded(object sender, EventArgs e)
+        {
+            await SaveOptionsAndReInitTasks();
+        }
+
+        private async Task SaveOptionsAndReInitTasks()
+        {
             var options = new Options
             {
                 TaskDefinitionPaths = SettingsTabViewModel.TaskDefitionPaths.ToList(),
@@ -77,11 +87,6 @@ namespace TaskableApp.ViewModels
 
             this.OutputEntries.Add("Attempting to regenerate the tasks...");
             await ReinitializeTasks();
-        }
-
-        private void SettingsTabViewModel_ReferencesAdded(object sender, EventArgs e)
-        {
-
         }
 
         public async void TaskSaved()
