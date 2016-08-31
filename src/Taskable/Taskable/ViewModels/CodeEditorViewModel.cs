@@ -28,9 +28,11 @@ namespace TaskableApp.ViewModels
             get; set;
         }
 
+        private string _title;
         public string Title
         {
-            get; set;
+            get { return _title; }
+            set { SetProperty(ref _title, value); }
         }
 
         public string CurrentFile
@@ -189,6 +191,7 @@ namespace TaskableApp.ViewModels
 
                 if (dialog.ShowDialog() == true)
                 {
+                    this.Title = Path.GetFileName(dialog.FileName);
                     this.CurrentFile = dialog.FileName;
                 }
             }
