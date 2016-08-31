@@ -10,6 +10,7 @@ namespace TaskableApp.ViewModels
     public class CodeCollectionViewModel : BindableBase
     {
         private MainWindowViewModel _mainViewModel;
+        private TaskSelectorViewModel _taskSelectorModel;
 
         public GenericCommand NewDocumentCommand
         {
@@ -24,9 +25,16 @@ namespace TaskableApp.ViewModels
         public CodeCollectionViewModel(MainWindowViewModel mainViewModel)
         {
             _mainViewModel = mainViewModel;
+            _taskSelectorModel = _mainViewModel.GetTaskSelectorModel();
+            _taskSelectorModel.OptionsSaved += _taskSelectorModel_OptionsSaved;
             NewDocumentCommand = new GenericCommand((Action) CreateNewDocument);
             CloseDocumentCommand = new GenericCommand<CodeEditorViewModel>(CloseDocument);
             CodeEditors = new ObservableCollection<CodeEditorViewModel>();
+        }
+
+        private async void _taskSelectorModel_OptionsSaved(object sender, EventArgs e)
+        {
+            await RepopulateTree();
         }
 
         public async Task RepopulateTree()

@@ -50,6 +50,8 @@ namespace TaskableApp.ViewModels
 
         public SettingsTabViewModel SettingsTabViewModel { get; set; }
 
+        public event EventHandler OptionsSaved;
+
         public TaskSelectorViewModel(MainWindowViewModel mainViewModel)
         {
             _mainViewModel = mainViewModel;
@@ -87,12 +89,19 @@ namespace TaskableApp.ViewModels
 
             this.OutputEntries.Add("Attempting to regenerate the tasks...");
             await ReinitializeTasks();
+
+            OnOptionsSaved();
         }
 
         public async void TaskSaved()
         {
             this.OutputEntries.Add("Attempting to regenerate the tasks...");
             await ReinitializeTasks();            
+        }
+
+        public void OnOptionsSaved()
+        {
+            OptionsSaved?.Invoke(this, new EventArgs());
         }
 
         private async void RunSelectedTask()

@@ -33,6 +33,11 @@ namespace TaskableApp
             this.PanelLoading = false;
         }
 
+        public TaskSelectorViewModel GetTaskSelectorModel()
+        {
+            return this.TaskSelectorViewModel;
+        }
+
         public MainWindowViewModel()
         {
             this.CurrentActivity = "Generating tasks...";
