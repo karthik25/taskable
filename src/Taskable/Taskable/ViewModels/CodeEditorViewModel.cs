@@ -153,6 +153,9 @@ namespace TaskableApp.ViewModels
 
         public Identifier GetNextIdentifier(int caretOffset)
         {
+            if (caretOffset < this.Identifiers.Min(i => i.OffsetStart))
+                return this.Identifiers.FirstOrDefault();
+
             var currentIdentifier = this.Identifiers.Where(i => i.OffsetStart <= caretOffset)
                                                  .Where(i => i.Between(caretOffset))
                                                  .LeastDistance();
@@ -162,6 +165,9 @@ namespace TaskableApp.ViewModels
 
         public Identifier GetPreviousIdentifier(int caretOffset)
         {
+            if (caretOffset > this.Identifiers.Max(i => i.OffsetStart))
+                return this.Identifiers.LastOrDefault();
+
             var currentIdentifier = this.Identifiers.Where(i => i.OffsetStart <= caretOffset)
                                                  .Where(i => i.Between(caretOffset))
                                                  .LeastDistance();
