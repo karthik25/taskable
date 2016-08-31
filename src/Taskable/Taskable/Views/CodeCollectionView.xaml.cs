@@ -56,5 +56,11 @@ namespace TaskableApp.Views
                 ((CodeCollectionViewModel)this.DataContext).AddDocument(openFileDialog.FileName);
             }
         }
+
+        private async void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            var model = (CodeCollectionViewModel)this.DataContext;
+            await model.RepopulateTree();
+        }
     }
 }

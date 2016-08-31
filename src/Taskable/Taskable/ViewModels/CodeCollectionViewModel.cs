@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Windows;
 using TaskableApp.Models;
 
 namespace TaskableApp.ViewModels
@@ -24,8 +26,20 @@ namespace TaskableApp.ViewModels
             _mainViewModel = mainViewModel;
             NewDocumentCommand = new GenericCommand((Action) CreateNewDocument);
             CloseDocumentCommand = new GenericCommand<CodeEditorViewModel>(CloseDocument);
-            FileOrFolderEntries = new ObservableCollection<FileOrFolderEntry>(DirectoryTreeGenerator.GetFilesAndFoldersRecursively(_options.TaskDefinitionPaths));
             CodeEditors = new ObservableCollection<CodeEditorViewModel>();
+        }
+
+        public async Task RepopulateTree()
+        {
+            await Task.Factory.StartNew(new Action(async () =>
+            {
+                var allFiles = DirectoryTreeGenerator.GetFilesAndFoldersRecursively(_options.TaskDefinitionPaths);
+
+                await Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    this.FileOrFolderEntries = new ObservableCollection<FileOrFolderEntry>(allFiles);
+                }));
+            }));
         }
 
         public void AddDocument(string filePath)
@@ -49,9 +63,11 @@ namespace TaskableApp.ViewModels
             set { SetProperty(ref _currentDocument, value); }
         }
 
+        private ObservableCollection<FileOrFolderEntry> _fileOrFolderEntries;
         public ObservableCollection<FileOrFolderEntry> FileOrFolderEntries
         {
-            get; set;
+            get { return _fileOrFolderEntries; }
+            set { SetProperty(ref _fileOrFolderEntries, value); }
         }
 
         public void CreateNewDocument()

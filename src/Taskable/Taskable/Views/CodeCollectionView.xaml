@@ -10,6 +10,7 @@
              xmlns:dock="http://schemas.xceed.com/wpf/xaml/avalondock"
              xmlns:dockctrl="clr-namespace:Xceed.Wpf.AvalonDock.Controls;assembly=Xceed.Wpf.AvalonDock"
              mc:Ignorable="d" 
+             DataContextChanged="UserControl_DataContextChanged"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.InputBindings>
         <KeyBinding Key="N" Command="{Binding NewDocumentCommand}" Modifiers="Ctrl" />
