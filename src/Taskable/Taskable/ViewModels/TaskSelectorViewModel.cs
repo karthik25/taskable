@@ -6,6 +6,7 @@ using System.Windows;
 using TaskableApp.Models;
 using TaskableCore;
 using TaskableRoslynCore;
+using TaskableScriptCs.Contracts;
 
 namespace TaskableApp.ViewModels
 {
@@ -66,6 +67,15 @@ namespace TaskableApp.ViewModels
             this.SettingsTabViewModel = new SettingsTabViewModel(this);
             this.SettingsTabViewModel.TasksAddedOrRemoved += SettingsTabViewModel_TasksAdded;
             this.SettingsTabViewModel.ReferencesAddedOrRemoved += SettingsTabViewModel_ReferencesAdded;
+            TaskProgress.MessageReceived += TaskProgress_MessageReceived;
+        }
+
+        private async void TaskProgress_MessageReceived(object sender, ProgressEventArgs e)
+        {
+            await Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                this.OutputEntries.Insert(0, e.Message);
+            }));
         }
 
         private async void SettingsTabViewModel_TasksAdded(object sender, EventArgs e)
@@ -87,7 +97,7 @@ namespace TaskableApp.ViewModels
             };
             this.UpdateUserSpecificOptions(options);
 
-            this.OutputEntries.Add("Attempting to regenerate the tasks...");
+            this.OutputEntries.Insert(0, "Attempting to regenerate the tasks...");
             await ReinitializeTasks();
 
             OnOptionsSaved();
@@ -95,7 +105,7 @@ namespace TaskableApp.ViewModels
 
         public async void TaskSaved()
         {
-            this.OutputEntries.Add("Attempting to regenerate the tasks...");
+            this.OutputEntries.Insert(0, "Attempting to regenerate the tasks...");
             await ReinitializeTasks();            
         }
 
@@ -131,12 +141,12 @@ namespace TaskableApp.ViewModels
                         var finalCommand = string.Join(" ", cmdSplit);
                         await Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                         {
-                            this.OutputEntries.Add("Running: " + finalCommand);
+                            this.OutputEntries.Insert(0, "Running: " + finalCommand);
                         }));
                         var runStatus = _tasker.InvokeTask(finalCommand);
                         await Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                         {
-                            this.OutputEntries.Add("Completed running the task (status): " + runStatus);
+                            this.OutputEntries.Insert(0, "Completed running the task (status): " + runStatus);
                             this._mainViewModel.HideLoadingPanel();
                         }));
                     }
@@ -169,7 +179,7 @@ namespace TaskableApp.ViewModels
                 {
                     this.CommandList = new ObservableCollection<TaskItem>(_tasker.GetTaskCommands().Select(t => new TaskItem { Name = t }));
                     this.Errors = new ObservableCollection<Error>(taskResult.Errors.Select(e => new Error(e)));
-                    this.OutputEntries.Add("Regenerated & registered the tasks discovered.");
+                    this.OutputEntries.Insert(0, "Regenerated & registered the tasks discovered.");
                     _mainViewModel.HideLoadingPanel();
                 }));
             }));
@@ -181,7 +191,7 @@ namespace TaskableApp.ViewModels
                 return;
 
             this.Parameters.Add(new ParameterItemViewModel(this.ParameterViewModel.Parameter));
-            this.OutputEntries.Add("Parameter added: " + this.ParameterViewModel.Parameter);
+            this.OutputEntries.Insert(0, "Parameter added: " + this.ParameterViewModel.Parameter);
             this.ParameterViewModel.Reset();
         }
 
@@ -189,7 +199,7 @@ namespace TaskableApp.ViewModels
         {
             if (SelectedItem != null)
             {
-                this.OutputEntries.Add("Parameter removed: " + SelectedItem.ParameterValue);
+                this.OutputEntries.Insert(0, "Parameter removed: " + SelectedItem.ParameterValue);
                 this.Parameters.Remove(SelectedItem);
             }
         }
