@@ -55,6 +55,12 @@
                                                     <TextBlock Margin="5,0,0,0" Text="Open File" />
                                                 </StackPanel>
                                             </Button>
+                                            <Button Height="20" Margin="5" Background="Transparent" BorderThickness="0" ToolTip="Display Help" Name="BtnHelp">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Image Source="/Images/help.png" />
+                                                    <TextBlock Margin="5,0,0,0" Text="Help" />
+                                                </StackPanel>
+                                            </Button>
                                         </ToolBar>
                                     </ToolBarTray>
                                 </WrapPanel>

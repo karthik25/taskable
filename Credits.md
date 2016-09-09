@@ -9,6 +9,7 @@
 - https://www.iconfinder.com/icons/1282962/add_hide_minus_remove_icon : CC 2.5 (http://creativecommons.org/licenses/by/2.5/)
 - https://www.iconfinder.com/icons/1055071/document_file_icon : GPL (http://www.gnu.org/copyleft/gpl.html)
 - https://www.iconfinder.com/icons/48047/active_directory_icon : GPL (http://www.gnu.org/copyleft/gpl.html)
+- https://www.iconfinder.com/icons/27853/help_question_support_icon : CC 3.0 (http://creativecommons.org/licenses/by-nd/3.0/)
 
 ## Controls/Utils
 
