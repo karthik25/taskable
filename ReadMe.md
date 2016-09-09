@@ -1,6 +1,12 @@
 # Read Me
 
-Taskable is an attempt to do complex tasks with english like statements. Taskable can be used as scriptcs script pack or a WPF application.
+Taskable is an attempt to do complex tasks with english like statements. Taskable can be used as scriptcs script pack or a WPF application. For example, you will be able to do the following -
+
+```
+git-download https://github.com/karthik25/sblog.net/archive/master.zip to d:\temp\GitDownloads
+```
+
+In order to download an copy a file in to a specified location! 
 
 Taskable was highly influenced by bau. I was using Bau for a few things and something I missed the most was the ability to pass parameters. I did submit a PR for it. But it still hasn't been merged, prompting me to think of something else and I thought of this - taskable! At that point I had rarely used powershell and when I did, I was surprsied to see how similar my thought process was to powershell!That's one reason I would say taskable is the Poor man's PowerShell :-)
 
@@ -67,6 +73,8 @@ public class EchoTask : ISimpleTask
 taskable.RegisterTask(new EchoTask());
 taskable.WaitForCommands();
 ```
+
+As you can see, your task needs to implement the ISimpleTask interface which has a property called `Pattern` and an action called  `Stuff`. `Pattern` defines a task's name and its parameters. For example, in this case its`echo {}`, where `echo` is the task name and `{}` indicates that this task takes 1 parameter which is passed on to the action method!
 
 Here is yet another task. This task downloads the identified file that is available to the public:
 
