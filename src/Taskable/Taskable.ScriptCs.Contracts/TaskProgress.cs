@@ -12,13 +12,21 @@ namespace TaskableScriptCs.Contracts
         {
             lock (rootObj)
             {
-                OnMessageReceived(message);
+                OnMessageReceived(message, ProgressType.Log);
             }
         }
 
-        private static void OnMessageReceived(string message)
+        public static void ReportError(string message)
         {
-            MessageReceived?.Invoke(null, new ProgressEventArgs(message));
+            lock (rootObj)
+            {
+                OnMessageReceived(message, ProgressType.Error);
+            }
+        }
+
+        private static void OnMessageReceived(string message, ProgressType type)
+        {
+            MessageReceived?.Invoke(null, new ProgressEventArgs(message, type));
         }
     }
 }

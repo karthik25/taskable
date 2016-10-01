@@ -74,7 +74,8 @@ namespace TaskableApp.ViewModels
         {
             await Application.Current.Dispatcher.BeginInvoke(new Action(() =>
             {
-                this.OutputEntries.Insert(0, e.Message);
+                var displayedMessage = e.Type == ProgressType.Log ? e.Message : string.Format("(error) {0}", e.Message);
+                this.OutputEntries.Insert(0, displayedMessage);
             }));
         }
 
