@@ -14,7 +14,40 @@ Taskable was highly influenced by bau. I was using Bau for a few things and some
 
 ### WPF application
 
-Just build the solution and hit `Ctrl + F5` to launch the application!
+> Will be adding some screenshots soon!
+
+Just build the solution and hit `Ctrl + F5` to launch the application! You can create new tasks in here and also add directories that contains task definitions or any additional references you may need. Here is a sample task, that pretty much does nothing complex! This is just to give you a taste of how a task should look. Complex examples follow!
+
+```csharp
+var taskable = Require<Taskable>();
+
+[TaskName("Echo Task")]
+[TaskExample("echo hello")]
+[TaskExample(@"echo ""hello again""")]
+public class EchoTask : ISimpleTask
+{
+    public string Pattern
+    {
+        get
+        {
+            return "echo {}";
+        }
+    }
+
+    public Action<string[]> Stuff
+    {
+        get
+        {
+            return parameters =>
+            {
+                TaskProgress.Report("Echo: " + parameters[0]);
+            };
+        }
+    }
+}
+```
+
+You mush have noticed the `TaskProgress.Report` method call and this can be used in place of `Console.WriteLine` to display messages in the progress section of the application.
 
 ### scriptcs package
 
