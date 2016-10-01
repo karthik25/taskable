@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:g="clr-namespace:TaskableApp"
         mc:Ignorable="d" Closed="Window_Closed" ContentRendered="Window_ContentRendered"
-        Title="{Binding SelectorTitle}" Height="150" Width="450">
+        Title="{Binding SelectorTitle}" Height="150" Width="450" Icon="/Images/taskable.png" ResizeMode="NoResize">
     <Grid Margin="15">
         <Grid.Resources>
             <BooleanToVisibilityConverter x:Key="boolToVis" />
@@ -27,7 +27,7 @@
 
         <Label Grid.Column="1" Visibility="{Binding IsFolder, Converter={StaticResource boolToVis}}">Task Def. Path:</Label>
         <Label Grid.Column="1" Visibility="{Binding IsFolder, Converter={StaticResource inverseBoolToVis}, ConverterParameter=Inverted}">Assembly Reference Path:</Label>
-        <TextBox Name="TxtFileOrFolder" Grid.Column="1" Grid.Row="1" MinWidth="250" Text="{Binding FileOrFolder}"></TextBox>
+        <TextBox Name="TxtFileOrFolder" Grid.Column="1" Grid.Row="1" Width="300" Text="{Binding FileOrFolder}"></TextBox>
         <Button Name="FileSelector" Visibility="{Binding IsFolder, Converter={StaticResource inverseBoolToVis}, ConverterParameter=Inverted}" Click="FileSelector_Click" Grid.Column="2" Grid.Row="1" Content="." />
 
         <WrapPanel Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,15,0,0">
