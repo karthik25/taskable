@@ -41,6 +41,8 @@ namespace TaskableApp.ViewModels
         {
             await Task.Factory.StartNew(new Action(async () =>
             {
+                this.ParseUserSpecificOptions();
+
                 var allFiles = DirectoryTreeGenerator.GetFilesAndFoldersRecursively(_options.TaskDefinitionPaths);
 
                 await Application.Current.Dispatcher.BeginInvoke(new Action(() =>

@@ -13,7 +13,7 @@ namespace TaskableApp
 
         public BindableBase()
         {
-            _options = ParseUserSpecificOptions();
+            ParseUserSpecificOptions();
         }
 
         protected virtual void SetProperty<T>(ref T member, T val,
@@ -32,7 +32,7 @@ namespace TaskableApp
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
-        private Options ParseUserSpecificOptions()
+        protected void ParseUserSpecificOptions()
         {
             var baseConfigPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             var configPath = string.Format(@"{0}\taskable.yml", baseConfigPath);
@@ -40,7 +40,7 @@ namespace TaskableApp
             {
                 Options.CreateDefaultOptionsFile(configPath);
             }
-            return Options.ParseFromFile(configPath);
+            this._options = Options.ParseFromFile(configPath);
         }
 
         protected Options UpdateUserSpecificOptions(Options options)
