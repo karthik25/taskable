@@ -14,7 +14,7 @@ Taskable was highly influenced by bau. I was using Bau for a few things and some
 
 ### WPF application
 
-![a simple demo](https://github.com/karthik25/taskable/demos/basic-1.gif)
+![a simple demo](https://raw.githubusercontent.com/karthik25/taskable/master/demos/basic-1.gif)
 
 Just build the solution and hit `Ctrl + F5` to launch the application! You can create new tasks in here and also add directories that contains task definitions or any additional references you may need. Here is a sample task, that pretty much does nothing complex! This is just to give you a taste of how a task should look. Complex examples follow!
 
