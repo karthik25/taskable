@@ -51,13 +51,13 @@ You mush have noticed the `TaskProgress.Report` method call and this can be used
 
 ### scriptcs package
 
-First step is to create the scriptcs package. To create this, navigate to the `TaskableScriptPack` project's directory. The `.nuspec` file is already present in here. Enter the following to create the package:
+This section currently, only deals with the taskable script pack available locally. Before going any further, you need to install chocolatey and then scriptcs. First step is to create the nupkg that contains script pack. To create this, navigate to the `TaskableScriptPack` project's directory. The `.nuspec` file is already present in here. Enter the following to create the package:
 
 ```
 nuget pack TaskableScriptPack.csproj -IncludeReferencedProjects
 ```
 
-Once this is done, you need to inform nuget about the presence of this package. To do this go to `%AppData\Roaming\NuGet\NuGet.config` and add a new key to indicate the location of this package.
+Once this is done a `.nupkg` file is created. Copy this to a directory of your choice. Then, you need to inform nuget about the presence of this package. To do this go to `%AppData%\NuGet\NuGet.config` and add a new key to the `packageSources` element indicate the location of this package. Refere to [this](https://github.com/scriptcs/scriptcs/wiki/Package-installation) link for more information about how scriptcs locates packages.
 
 Next step is to add an entry for Taskable in your `scriptcs_packages.config`.
 
