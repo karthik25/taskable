@@ -156,7 +156,7 @@ taskable.WaitForCommands();
 To start using taskable, you can do the following:
 
 ```
-> scriptcs -- hello_taskable.csx
+> scriptcs hello_taskable.csx
 ```
 
 Now you can start calling the registered commands! For example, the following would run the echo task and display the results.
