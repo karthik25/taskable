@@ -164,5 +164,3 @@ Now you can start calling the registered commands! For example, the following wo
 ```
 > echo hello
 ```
-
-This read me file is also a work-in-progress. So come back later and check!
