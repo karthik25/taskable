@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="ISimpleTask.cs" />
     <Compile Include="ITaskableContext.cs" />
+    <Compile Include="ParameterIndexAttribute.cs" />
     <Compile Include="ProgressEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TaskExampleAttribute.cs" />

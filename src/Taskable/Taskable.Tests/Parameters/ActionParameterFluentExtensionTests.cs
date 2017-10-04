@@ -1,4 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TaskableRoslynCore.Parameters;
+using TaskableScriptCs.Contracts;
 
 namespace TaskableTests.Parameters
 {
@@ -8,7 +10,19 @@ namespace TaskableTests.Parameters
         [TestMethod]
         public void CanBindStringsToType1()
         {
-
+            var parameters = new string[] { "somefile.zip", "some/destination" };
+            var simpleArgs = parameters.Bind<SimpleArgs>();
+            Assert.IsNotNull(simpleArgs);
+            Assert.AreEqual("somefile.zip", simpleArgs.SourceUrl);
+            Assert.AreEqual("some/destination", simpleArgs.DestinationDirectory);
         }
+    }
+
+    public class SimpleArgs
+    {
+        [ParameterIndex(0)]
+        public string SourceUrl { get; set; }
+        [ParameterIndex(1)]
+        public string DestinationDirectory { get; set; }
     }
 }

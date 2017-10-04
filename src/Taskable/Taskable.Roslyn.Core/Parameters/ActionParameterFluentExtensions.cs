@@ -1,18 +1,37 @@
 ﻿using System;
+using System.Linq;
+using TaskableScriptCs.Contracts;
 
 namespace TaskableRoslynCore.Parameters
 {
     public static class ActionParameterFluentExtensions
     {
-        public static T Bind<T>(this string[] args)
-            where T : class
+        public static TConcrete Bind<TConcrete>(this string[] args)
+            where TConcrete : class
         {
-            throw new NotImplementedException();
+            return (TConcrete) Bind(typeof(TConcrete), args);
         }
 
         public static object Bind(this Type type, string[] args)
         {
-            throw new NotImplementedException();
+            var parameterIndexAttr = typeof(ParameterIndexAttribute);
+            var propertiesWithParameterAttr = type.GetProperties()
+                                                  .Where(p => p.GetCustomAttributes(false)
+                                                               .Any(a => a.GetType() == parameterIndexAttr));
+            if (propertiesWithParameterAttr.Count() != args.Length)
+                throw new Exception("Count of properties with the ParameterIndexAttribute does not match the count for the arguments array");
+            var instance = Activator.CreateInstance(type);
+            for (int i = 0; i < args.Length; i++)
+            {
+                var requiredProperty = propertiesWithParameterAttr.SingleOrDefault(
+                                            p => p.GetCustomAttributes(false)
+                                                  .OfType<ParameterIndexAttribute>()
+                                                  .Any(a => a.Index == i));
+                if (requiredProperty == null)
+                    throw new Exception("Unable to find a mapping parameter with index " + i);
+                requiredProperty.SetValue(instance, args[i]);
+            }
+            return instance;
         }
     }
 }
