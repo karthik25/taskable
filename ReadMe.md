@@ -10,54 +10,15 @@ In order to download an copy a file in to a specified location!
 
 Taskable was highly influenced by bau. I was using Bau for a few things and something I missed the most was the ability to pass parameters. I did submit a PR for it. But it still hasn't been merged, prompting me to think of something else and I thought of this - taskable! At that point I had rarely used powershell and when I did, I was surprsied to see how similar my thought process was to powershell!That's one reason I would say taskable is the Poor man's PowerShell :-)
 
-## Building
+### Script Pack (scriptcs package)
 
-### WPF application
-
-![a simple demo](https://raw.githubusercontent.com/karthik25/taskable/master/demos/basic-1.gif)
-
-Just build the solution and hit `Ctrl + F5` to launch the application! You can create new tasks in here and also add directories that contains task definitions or any additional references you may need. Here is a sample task, that pretty much does nothing complex! This is just to give you a taste of how a task should look. Complex examples follow!
-
-```csharp
-var taskable = Require<Taskable>();
-
-[TaskName("Echo Task")]
-[TaskExample("echo hello")]
-[TaskExample(@"echo ""hello again""")]
-public class EchoTask : ISimpleTask
-{
-    public string Pattern
-    {
-        get
-        {
-            return "echo {}";
-        }
-    }
-
-    public Action<string[]> Stuff
-    {
-        get
-        {
-            return parameters =>
-            {
-                TaskProgress.Report("Echo: " + parameters[0]);
-            };
-        }
-    }
-}
-```
-
-You mush have noticed the `TaskProgress.Report` method call and this can be used in place of `Console.WriteLine` to display messages in the progress section of the application.
-
-### scriptcs package
-
-This section currently, only deals with the taskable script pack available locally. Before going any further, you need to install chocolatey and then scriptcs. First step is to create the nupkg that contains script pack. To create this, navigate to the `TaskableScriptPack` project's directory. The `.nuspec` file is already present in here. Enter the following to create the package:
+This section currently deals with the taskable script pack built locally. Before going any further, you need to install chocolatey and then scriptcs. First step is to create the nupkg that contains script pack. To create the nuget package, navigate to the `TaskableScriptPack` project's directory. The `.nuspec` file is already present in here. Enter the following to create the package:
 
 ```
 nuget pack TaskableScriptPack.csproj -IncludeReferencedProjects
 ```
 
-Once this is done a `.nupkg` file is created. Copy this to a directory of your choice. Then, you need to inform nuget about the presence of this package. To do this go to `%AppData%\NuGet\NuGet.config` and add a new key to the `packageSources` element indicate the location of this package. Refere to [this](https://github.com/scriptcs/scriptcs/wiki/Package-installation) link for more information about how scriptcs locates packages.
+Once this is done a `.nupkg` file is created. Copy this to a directory of your choice. Then, you need to inform nuget about the presence of this package. To do this go to `%AppData%\NuGet\NuGet.config` and add a new key to the `packageSources` element to indicate the location of this package. Refere to [this](https://github.com/scriptcs/scriptcs/wiki/Package-installation) link for more information about how scriptcs locates packages.
 
 Next step is to add an entry for Taskable in your `scriptcs_packages.config`.
 
