@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskable.Core", "Taskable.Core\Taskable.Core.csproj", "{8974C622-6F81-4227-B168-7E0104C735DF}"
 EndProject
@@ -16,8 +16,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskable.Roslyn.Core", "Taskable.Roslyn.Core\Taskable.Roslyn.Core.csproj", "{1F03ED77-DCDE-43E5-B441-03BA3C551359}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskableScriptPack", "TaskableScriptPack\TaskableScriptPack.csproj", "{5ACC8872-5D1B-43AB-ADDB-A4A3A3D71777}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskable", "Taskable\Taskable.csproj", "{D766ED95-31DA-4578-B26A-B2A6CA69E5E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +51,6 @@ Global
 		{5ACC8872-5D1B-43AB-ADDB-A4A3A3D71777}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5ACC8872-5D1B-43AB-ADDB-A4A3A3D71777}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5ACC8872-5D1B-43AB-ADDB-A4A3A3D71777}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D766ED95-31DA-4578-B26A-B2A6CA69E5E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D766ED95-31DA-4578-B26A-B2A6CA69E5E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D766ED95-31DA-4578-B26A-B2A6CA69E5E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D766ED95-31DA-4578-B26A-B2A6CA69E5E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
