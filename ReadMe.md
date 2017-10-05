@@ -58,7 +58,7 @@ public class EchoTask : ISimpleTask
         {
             return parameters =>
             {
-                Console.WriteLine("Echo: " + parameters[0]);
+                Console.WriteLine($"Echo: {parameters[0]}");
             };
         }
     }
@@ -97,10 +97,11 @@ public class GitDownloadTask : ISimpleTask
             {
                 var fileUrl = parameters[0];
                 var destinationDirectory = parameters[1];
-                Console.WriteLine("Copying " + fileUrl + " to " + destinationDirectory);
+                var destinationFileName = Path.GetFileName(fileUrl);
+                Console.WriteLine($"Copying {fileUrl} to {destinationDirectory}");
                 try{
                     WebClient client = new WebClient();
-                    client.DownloadFile(fileUrl, destinationDirectory + @"\master.zip");
+                    client.DownloadFile(fileUrl, $@"{destinationDirectory}\{destinationFileName}");
                 }
                 catch(Exception ex){
                     Console.WriteLine(ex.ToString());
