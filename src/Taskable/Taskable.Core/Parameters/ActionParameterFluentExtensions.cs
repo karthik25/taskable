@@ -29,7 +29,11 @@ namespace Taskable.Core.Parameters
                                                   .Any(a => a.Index == i));
                 if (requiredProperty == null)
                     throw new Exception("Unable to find a mapping parameter with index " + i);
-                requiredProperty.SetValue(instance, args[i]);
+                if (typeof(IConvertible).IsAssignableFrom(requiredProperty.PropertyType))
+                {
+                    var value = Convert.ChangeType(args[i], requiredProperty.PropertyType);
+                    requiredProperty.SetValue(instance, value);
+                }
             }
             return instance;
         }

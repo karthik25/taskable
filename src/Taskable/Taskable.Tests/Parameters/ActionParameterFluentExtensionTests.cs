@@ -16,6 +16,17 @@ namespace TaskableTests.Parameters
             Assert.AreEqual("somefile.zip", simpleArgs.SourceUrl);
             Assert.AreEqual("some/destination", simpleArgs.DestinationDirectory);
         }
+
+        [TestMethod]
+        public void CanBindToTypeWithDifferentDataTypes()
+        {
+            var parameters = new string[] { "1", "2", "some-name" };
+            var convertibleArgs = parameters.Bind<ConvertibleArgs>();
+            Assert.IsNotNull(convertibleArgs);
+            Assert.AreEqual(1, convertibleArgs.Day);
+            Assert.AreEqual(2, convertibleArgs.Month);
+            Assert.AreEqual("some-name", convertibleArgs.Name);
+        }
     }
 
     public class SimpleArgs
@@ -24,5 +35,15 @@ namespace TaskableTests.Parameters
         public string SourceUrl { get; set; }
         [ParameterIndex(1)]
         public string DestinationDirectory { get; set; }
+    }
+
+    public class ConvertibleArgs
+    {
+        [ParameterIndex(0)]
+        public int Day { get; set; }
+        [ParameterIndex(1)]
+        public short Month { get; set; }
+        [ParameterIndex(2)]
+        public string Name { get; set; }
     }
 }
