@@ -114,6 +114,18 @@ taskable.RegisterTask(new GitDownloadTask());
 taskable.WaitForCommands();
 ```
 
+`DownloadOptions` is a simple POCO, where the properties are decorated with a special attribute called `ParameterIndex` which identifies the position of this property in the `parameters` string array passed to the action method!
+
+```csharp
+public class DownloadOptions
+{
+    [ParameterIndex(0)]
+    public string FileUrl { get;set; }
+    [ParameterIndex(1)]
+    public string DestinationDirectory { get; set; }
+}
+```
+
 To start using taskable, you can do the following:
 
 ```
