@@ -70,7 +70,7 @@ taskable.WaitForCommands();
 
 As you can see, your task needs to implement the ISimpleTask interface which has a property called `Pattern` and an action called  `Stuff`. `Pattern` defines a task's name and its parameters. For example, in this case its`echo {}`, where `echo` is the task name and `{}` indicates that this task takes 1 parameter which is passed on to the action method!
 
-Here is yet another task. This task downloads the identified file that is available to the public:
+Here is yet another task. This task downloads the identified file that is available to the public. Also, notice line 98. You have a `Bind` method that can be used to, as the name suggests, bind the parameters array to a strongly typed object.
 
 ```csharp
 using System.Net;
@@ -95,13 +95,12 @@ public class GitDownloadTask : ISimpleTask
         {
             return parameters =>
             {
-                var fileUrl = parameters[0];
-                var destinationDirectory = parameters[1];
-                var destinationFileName = Path.GetFileName(fileUrl);
-                Console.WriteLine($"Copying {fileUrl} to {destinationDirectory}");
+                var options = parameters.Bind<DownloadOptions>();
+                var destinationFileName = Path.GetFileName(options.FileUrl);
+                Console.WriteLine($"Copying {options.FileUrl} to {options.DestinationDirectory}");
                 try{
                     WebClient client = new WebClient();
-                    client.DownloadFile(fileUrl, $@"{destinationDirectory}\{destinationFileName}");
+                    client.DownloadFile(options.FileUrl, $@"{options.DestinationDirectory}\{destinationFileName}");
                 }
                 catch(Exception ex){
                     Console.WriteLine(ex.ToString());
