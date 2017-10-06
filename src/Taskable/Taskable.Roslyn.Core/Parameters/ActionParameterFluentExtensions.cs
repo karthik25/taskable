@@ -14,10 +14,10 @@ namespace TaskableRoslynCore.Parameters
 
         public static object Bind(this Type type, string[] args)
         {
-            var parameterIndexAttr = typeof(ParameterIndexAttribute);
             var propertiesWithParameterAttr = type.GetProperties()
                                                   .Where(p => p.GetCustomAttributes(false)
-                                                               .Any(a => a.GetType() == parameterIndexAttr));
+                                                               .OfType<ParameterIndexAttribute>()
+                                                               .Any());
             if (propertiesWithParameterAttr.Count() != args.Length)
                 throw new Exception("Count of properties with the ParameterIndexAttribute does not match the count for the arguments array");
             var instance = Activator.CreateInstance(type);
