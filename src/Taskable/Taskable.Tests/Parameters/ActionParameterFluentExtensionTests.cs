@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TaskableRoslynCore.Parameters;
+using Taskable.Core.Parameters;
 using TaskableScriptCs.Contracts;
 
 namespace TaskableTests.Parameters
