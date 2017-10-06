@@ -2,7 +2,7 @@
 using System.Linq;
 using TaskableScriptCs.Contracts;
 
-namespace Taskable.Core.Parameters
+namespace TaskableScriptCs.Contracts.Parameters
 {
     public static class ActionParameterFluentExtensions
     {
